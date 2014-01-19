@@ -1,0 +1,106 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+### Environment
+
+# User specific environment and startup programs
+source /usr/share/git-core/contrib/completion/git-prompt.sh
+
+if [[ -n "${UNDER_JHBUILD}" ]]; then
+    PSE="${PSE}JH"
+fi
+if [[ -n "$STY" ]]; then 
+    if [[ -n "${PSE}" ]]; then 
+        PSE="${PSE},"
+    fi
+    PSE="${PSE}SC"
+fi
+if [[ -n "${PSE}" ]]; then 
+    PSE="[\[\e[0;31m\]${PSE}\[\e[00m\]]"
+fi
+export PS1="\[\e[01;m\]\u@\[\e[0;32m\]\h\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(__git_ps1) \$ "
+
+export LS_COLORS="di=36"
+
+export LOCAL=$HOME/.local
+export CACHE=$HOME/.cache
+
+export PATH=$PATH:$LOCAL/bin
+
+export EDITOR="emacs -nw"
+export ALTERNATE_EDITOR=""
+
+export LESS="-R"
+
+### Extra software
+
+# Node.js
+
+export NODE_PATH=$LOCAL/lib/node_modules/:$NODE_PATH
+
+# Ruby gem
+
+export GEM_HOME=$LOCAL/share/gem
+export GEM_CACHE=$CACHE/gem.cache
+export GEMCACHE=$GEM_CACHE
+
+export PATH=$PATH:$GEM_HOME/bin
+
+# Haskell cabal
+
+export PATH=$PATH:$HOME/.cabal/bin
+
+# npm completion
+
+COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+export COMP_WORDBREAKS
+
+_npm_completion () {
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+        COMP_LINE="$COMP_LINE" \
+        COMP_POINT="$COMP_POINT" \
+        npm completion -- "${COMP_WORDS[@]}" \
+        2>/dev/null)) || return $?
+    IFS="$si"
+	
+}
+complete -F _npm_completion npm
+
+# JHBuild
+
+if [[ -n "${UNDER_JHBUILD}" ]]; then
+#    export `dbus-launch`
+    export GTK_CSD=1
+fi
+
+### Aliases / Functions
+
+alias open="xdg-open"
+alias ls="ls -B --color=auto"
+
+function amd_on () {
+	sudo su -c "echo \"ON\" > /sys/kernel/debug/vgaswitcheroo/switch"
+	sudo su -c "echo \"DDIS\" > /sys/kernel/debug/vgaswitcheroo/switch"
+}
+
+function amd_off () {
+	sudo su -c "echo \"OFF\" > /sys/kernel/debug/vgaswitcheroo/switch"
+}
+
+function power_status () {
+	cat /sys/devices/system/cpu/cpu{0,1,2,3}/cpufreq/scaling_governor
+}
+
+function power_powersave () {
+	sudo su -c 'for i in /sys/devices/system/cpu/cpu{0,1,2,3}/cpufreq/scaling_governor; do echo "powersave" > $i; done'
+}
+
+function power_ondemand () {
+	sudo su -c 'for i in /sys/devices/system/cpu/cpu{0,1,2,3}/cpufreq/scaling_governor; do echo "ondemand" > $i; done'
+}

@@ -1,0 +1,23 @@
+#[diff]
+#	external = meld-git.sh
+[merge]
+	tool = meld-git.sh
+[user]
+	name = Mattias Bengtsson
+	email = mattias.jc.bengtsson@gmail.com
+[push]
+	default = simple
+[color]
+	diff = auto
+
+[url "ssh://mattiasb@git.gnome.org/git/"]
+	insteadOf = gnome:
+[url "git@github.com:"]
+	insteadOf = gh:
+
+[bz]
+	browser = google-chrome
+[core]
+	editor = emacs-git.sh
+[alias]
+	slog = log --oneline
