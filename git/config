@@ -21,3 +21,4 @@
 	editor = emacs-git.sh
 [alias]
 	slog = log --oneline
+	unstage = rm --cached
