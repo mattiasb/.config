@@ -109,3 +109,16 @@ function power_ondemand () {
 function git-commiters-since () {
     git log --oneline --pretty="format:%an <%ae>" $1.. | uniq | sort
 }
+
+function cmake-build () {
+    if [ ! -f "./CMakeLists.txt" ]; then
+        echo "No CMakeLists.txt file found!";
+        exit 1;
+    fi
+
+    mkdir -p "./build"
+    cd build
+    echo "Executing cmake..."
+    cmake "${@}" ..
+    cd ..
+}
