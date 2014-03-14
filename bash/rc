@@ -110,7 +110,9 @@ function git-commiters-since () {
     git log --oneline --pretty="format:%an <%ae>" $1.. | uniq | sort
 }
 
-function cmake-build () {
+## CMake helpers
+
+function _cm-pre () {
     if [ ! -f "./CMakeLists.txt" ]; then
         echo "No CMakeLists.txt file found!";
         exit 1;
@@ -118,7 +120,38 @@ function cmake-build () {
 
     mkdir -p "./build"
     cd build
+}
+
+function _cm-conf () {
     echo "Executing cmake..."
     cmake "${@}" ..
+}
+
+function _cm-build () {
+    echo "Building..."
+    make
+}
+
+function _cm-install () {
+    echo "Installing..."
+    make install
+}
+
+function _cm-post () {
     cd ..
+}
+
+function cmake-conf () {
+    _cm-pre && _cm-conf
+    _cm-post
+}
+
+function cmake-build () {
+    _cm-pre && _cm-conf && _cm-build
+    _cm-post
+}
+
+function cmake-install () {
+    _cm-pre && _cm-conf && _cm-build && _cm-install
+    _cm-post
 }
