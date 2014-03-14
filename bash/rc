@@ -36,6 +36,13 @@ export ALTERNATE_EDITOR=""
 
 export LESS="-R"
 
+# SE
+export CVSROOT=":pserver:mattiasb@oden:/usr/cvs"
+export HTTP_PROXY=proxy.smarteye.se:8080
+export HTTPS_PROXY=proxy.smarteye.se:8080
+export http_proxy=proxy.smarteye.se:8080
+export https_proxy=proxy.smarteye.se:8080
+
 ### Extra software
 
 # Node.js

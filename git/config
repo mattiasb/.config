@@ -4,7 +4,7 @@
 	tool = meld-git.sh
 [user]
 	name = Mattias Bengtsson
-	email = mattias.jc.bengtsson@gmail.com
+	email = mattiasb@smarteye.se
 [push]
 	default = simple
 [color]
@@ -12,8 +12,10 @@
 
 [url "ssh://mattiasb@git.gnome.org/git/"]
 	insteadOf = gnome:
-[url "git@github.com:"]
+[url "https://github.com/"]
 	insteadOf = gh:
+[url "git@git.smarteye.se:"]
+        insteadOf = se:
 
 [bz]
 	browser = google-chrome
