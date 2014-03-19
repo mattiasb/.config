@@ -1,2 +1,4 @@
 prefix = /home/mattiasb/.local
 email = mattias.jc.bengtsson@gmail.com
+proxy = http://proxy.smarteye.se:8080/
+https-proxy = http://proxy.smarteye.se:8080
