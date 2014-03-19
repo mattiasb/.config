@@ -154,11 +154,11 @@ function cmake-conf () {
 }
 
 function cmake-build () {
-    _cm-pre && _cm-conf && _cm-build
+    _cm-pre && _cm-conf "${@}" && _cm-build
     _cm-post
 }
 
 function cmake-install () {
-    _cm-pre && _cm-conf && _cm-build && _cm-install
+    _cm-pre && _cm-conf "${@}" && _cm-build && _cm-install
     _cm-post
 }
