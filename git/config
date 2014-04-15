@@ -22,3 +22,5 @@
 [alias]
 	slog = log --oneline
 	unstage = rm --cached
+[diff]
+	tool = meld

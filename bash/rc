@@ -5,6 +5,11 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# Source any potential machine local scripts
+if [ -f "${HOME}/.config/bash/rc.local" ]; then
+    . "${HOME}/.config/bash/rc.local"
+fi
+
 ### Environment
 
 # User specific environment and startup programs
