@@ -8,7 +8,9 @@ fi
 ### Environment
 
 # User specific environment and startup programs
-source /usr/share/git-core/contrib/completion/git-prompt.sh
+if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
+    source /usr/share/git-core/contrib/completion/git-prompt.sh
+fi
 
 if [[ -n "${UNDER_JHBUILD}" ]]; then
     PSE="${PSE}JH"
