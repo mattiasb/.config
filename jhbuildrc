@@ -11,7 +11,7 @@
 # what module set should be used.  The default can be found in
 # jhbuild/defaults.jhbuildrc, but can be any file in the modulesets directory
 # or a URL of a module set file on a web server.
-moduleset = 'gnome-apps-3.12'
+moduleset = 'gnome-apps-3.14'
 #
 # A list of the modules to build.  Defaults to the GNOME core and tested apps.
 # modules = [ 'meta-gnome-core', 'meta-gnome-apps-tested' ]
@@ -27,7 +27,7 @@ checkoutroot = '~/Code/gnome'
 prefix = '/opt/gnome'
 
 skip = [
-    'WebKit', 
+    # 'WebKit', 
     'evolution-data-server'
 ]
 # custom CFLAGS / environment pieces for the build

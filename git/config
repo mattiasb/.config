@@ -16,7 +16,7 @@
 	insteadOf = gh:
 
 [bz]
-	browser = google-chrome
+	browser = firefox3
 [core]
 	editor = emacs-git.sh
 [alias]
