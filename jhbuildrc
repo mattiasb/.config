@@ -31,7 +31,9 @@ skip = [
     'evolution-data-server'
 ]
 # custom CFLAGS / environment pieces for the build
-# os.environ['CFLAGS'] = '-UGTK_DEPRECATED'
+
+## For profiling
+# os.environ['CFLAGS'] = '-pg'
 
 # extra arguments to pass to all autogen.sh scripts
 # to speed up builds of GNOME, try '--disable-static --disable-gtk-doc'
