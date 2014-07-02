@@ -57,6 +57,10 @@ export GEMCACHE=$GEM_CACHE
 
 export PATH=$PATH:$GEM_HOME/bin
 
+# Go
+export GOBIN=$LOCAL/bin
+export GOPATH=$HOME/Code/go:/usr/share/gocode
+
 # Haskell cabal
 
 export PATH=$PATH:$HOME/.cabal/bin
