@@ -36,7 +36,7 @@ export LS_COLORS="di=36"
 export LOCAL=$HOME/.local
 export CACHE=$HOME/.cache
 
-export PATH=$PATH:$LOCAL/bin
+export PATH=$LOCAL/bin:$PATH
 
 export EDITOR="emacs -nw"
 export ALTERNATE_EDITOR=""
@@ -55,7 +55,7 @@ export GEM_HOME=$LOCAL/share/gem
 export GEM_CACHE=$CACHE/gem.cache
 export GEMCACHE=$GEM_CACHE
 
-export PATH=$PATH:$GEM_HOME/bin
+export PATH=$GEM_HOME/bin:$PATH
 
 # Go
 export GOBIN=$LOCAL/bin
@@ -63,7 +63,7 @@ export GOPATH=$HOME/Code/go:/usr/share/gocode
 
 # Haskell cabal
 
-export PATH=$PATH:$HOME/.cabal/bin
+export PATH=$HOME/.cabal/bin:$PATH
 
 # npm completion
 
