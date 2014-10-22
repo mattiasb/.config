@@ -9,6 +9,7 @@
 	default = simple
 [color]
 	diff = auto
+	pager = no
 
 [url "ssh://mattiasb@git.gnome.org/git/"]
 	insteadOf = gnome:
@@ -19,6 +20,7 @@
 	browser = firefox3
 [core]
 	editor = emacs-git.sh
+	pager  = tig
 [alias]
 	slog = log --oneline
 	unstage = rm --cached
