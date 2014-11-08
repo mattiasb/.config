@@ -19,7 +19,6 @@
 [bz]
 	browser = firefox3
 [core]
-	editor = emacs-git.sh
 	pager  = tig
 [alias]
 	slog = log --oneline
