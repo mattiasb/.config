@@ -11,6 +11,12 @@
 	diff = auto
 	pager = no
 
+# Prefer SSH
+[url "ssh://mattiasb@git.gnome.org/git/"]
+	insteadOf = https://git.gnome.org/browse/
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+# Aliases
 [url "ssh://mattiasb@git.gnome.org/git/"]
 	insteadOf = gnome:
 [url "ssh://git@github.com:"]
