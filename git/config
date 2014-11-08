@@ -13,7 +13,7 @@
 
 [url "ssh://mattiasb@git.gnome.org/git/"]
 	insteadOf = gnome:
-[url "git@github.com:"]
+[url "ssh://git@github.com:"]
 	insteadOf = gh:
 
 [bz]
