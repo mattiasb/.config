@@ -91,6 +91,14 @@ if [[ -n "${UNDER_JHBUILD}" ]]; then
     export GTK_CSD=1
 fi
 
+### Completion
+
+for comp in `ls -w1 ${CONFIG}/bash/completion.d/*.completion.bash`; do
+    if [ -f "${comp}" ] ; then
+        . $comp
+    fi
+done
+
 ### Aliases / Functions
 
 alias dmesg="dmesg --human"
