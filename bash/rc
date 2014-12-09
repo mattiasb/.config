@@ -35,6 +35,7 @@ export LS_COLORS="di=36"
 
 export LOCAL=$HOME/.local
 export CACHE=$HOME/.cache
+export CONFIG=$HOME/.config
 
 export PATH=$LOCAL/bin:$PATH
 
