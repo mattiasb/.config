@@ -128,7 +128,7 @@ function _cm-post () {
 }
 
 function cmake-conf () {
-    _cm-pre && _cm-conf
+    _cm-pre && _cm-conf "${@}"
     _cm-post
 }
 
