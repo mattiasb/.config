@@ -66,13 +66,6 @@ export GOPATH=$HOME/Code/go:/usr/share/gocode
 
 export PATH=$HOME/.cabal/bin:$PATH
 
-# JHBuild
-
-if [[ -n "${UNDER_JHBUILD}" ]]; then
-#    export `dbus-launch`
-    export GTK_CSD=1
-fi
-
 ### Completion
 
 for comp in `ls -w1 ${CONFIG}/bash/completion.d/*.completion.bash`; do
