@@ -92,8 +92,12 @@ function power_ondemand () {
     sudo su -c 'for i in /sys/devices/system/cpu/cpu{0,1,2,3}/cpufreq/scaling_governor; do echo "ondemand" > $i; done'
 }
 
-function git-commiters-since () {
-    git log --oneline --pretty="format:%an <%ae>" $1.. | uniq | sort
+function git-commiters () {
+    if [ $# -eq 0 ]; then
+        git log --oneline --pretty="format:%an <%ae>" | sort | uniq
+    else
+        git log --oneline --pretty="format:%an <%ae>" $1.. | sort | uniq
+    fi
 }
 
 function mkcd () {
