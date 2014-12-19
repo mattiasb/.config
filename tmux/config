@@ -1,0 +1,53 @@
+set -g default-terminal "screen-256color"
+source ~/.config/tmux/colors
+
+# status bar
+set-option -g status-utf8 on
+set-option -g status-position top
+
+set-option -g prefix C-x
+
+# Start numbering at 1
+set -g base-index 1
+
+bind-key -n S-Right select-pane -R
+bind-key -n S-Left  select-pane -L
+bind-key -n S-Up    select-pane -U
+bind-key -n S-Down  select-pane -D
+
+bind-key -n C-S-Up    swap-pane -U
+bind-key -n C-S-Down  swap-pane -D
+
+bind-key 3 split-window -h 
+bind-key 2 split-window
+bind-key b choose-window
+bind-key x send-prefix
+bind-key k kill-pane
+
+# Allows for faster key repetition
+set -s escape-time 0
+
+# Rather than constraining window size to the maximum size of any client 
+# connected to the *session*, constrain window size to the maximum size of any 
+# client connected to *that window*. Much more reasonable.
+setw -g aggressive-resize on
+
+# Activity monitoring
+setw -g monitor-activity on
+set -g visual-activity on
+
+# emacs copypaste mode
+set-window-option -g mode-keys emacs
+
+# reload config
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
+
+# auto window rename
+# set-window-option -g automatic-rename
+
+# rm mouse mode fail
+set -g mode-mouse on
+
+# color
+
+set -g status-right ""
