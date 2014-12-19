@@ -96,6 +96,11 @@ function git-commiters-since () {
     git log --oneline --pretty="format:%an <%ae>" $1.. | uniq | sort
 }
 
+function mkcd () {
+    local DIR="${!#}"
+    mkdir "${@}" && cd $DIR
+}
+
 ## CMake helpers
 
 function _cm-pre () {
