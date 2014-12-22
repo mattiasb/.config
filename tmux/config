@@ -7,6 +7,8 @@ set-option -g status-position top
 
 set-option -g prefix C-x
 
+set-window-option -g xterm-keys on
+
 # Start numbering at 1
 set -g base-index 1
 
