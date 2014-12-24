@@ -1,11 +1,11 @@
-set -g default-terminal "screen-256color"
+set -g default-shell "/bin/bash"
 source ~/.config/tmux/colors
 
 # status bar
 set-option -g status-utf8 on
 set-option -g status-position top
 
-set-option -g prefix C-x
+set-option -g prefix C-z
 
 set-window-option -g xterm-keys on
 
@@ -23,8 +23,11 @@ bind-key -n C-S-Down  swap-pane -D
 bind-key 3 split-window -h 
 bind-key 2 split-window
 bind-key b choose-window
-bind-key x send-prefix
+bind-key C-z send-prefix
 bind-key k kill-pane
+
+bind-key Right next-window
+bind-key Left  previous-window
 
 # Allows for faster key repetition
 set -s escape-time 0
