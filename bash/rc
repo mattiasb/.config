@@ -2,7 +2,7 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    /etc/bashrc
 fi
 
 # Source any potential machine local scripts
@@ -20,13 +20,19 @@ fi
 if [[ -n "${UNDER_JHBUILD}" ]]; then
     PSE="${PSE}JH"
 fi
-if [[ -n "$STY" ]]; then 
-    if [[ -n "${PSE}" ]]; then 
+if [[ -n "$STY" ]]; then
+    if [[ -n "${PSE}" ]]; then
         PSE="${PSE},"
     fi
     PSE="${PSE}SC"
 fi
-if [[ -n "${PSE}" ]]; then 
+if [[ -n "${TMUX}" ]]; then
+    if [[ -n "${PSE}" ]]; then
+        PSE="${PSE},"
+    fi
+    PSE="${PSE}TX"
+fi
+if [[ -n "${PSE}" ]]; then
     PSE="[\[\e[0;31m\]${PSE}\[\e[00m\]]"
 fi
 export PS1="\[\e[01;m\]\u@\[\e[0;32m\]\h\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(__git_ps1) \$ "
