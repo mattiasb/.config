@@ -6,7 +6,7 @@
 # if you have a GNOME git account, uncomment this line
 # repos['git.gnome.org'] = 'ssh://user@git.gnome.org/git/'
 
-# repos['git.gnome.org'] = 'ssh://mattiasb@git.gnome.org/git/'
+repos['git.gnome.org'] = 'ssh://mattiasb@git.gnome.org/git/'
 
 # what module set should be used.  The default can be found in
 # jhbuild/defaults.jhbuildrc, but can be any file in the modulesets directory
@@ -25,7 +25,7 @@ checkoutroot = '~/Code/gnome'
 
 # the prefix to configure/install modules to (must have write access)
 prefix = '/opt/gnome'
-
+tarballdir = '~/.cache/jhbuild/tarballs/'
 skip = [
     'WebKit',
     'evolution-data-server'
