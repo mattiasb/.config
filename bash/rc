@@ -54,7 +54,6 @@ export LESS="-R"
 
 # Node.js
 
-export NODE_PATH=$LOCAL/lib/node_modules/:$NODE_PATH
 export NPM_CONFIG_USERCONFIG=$CONFIG/npm/config
 
 # Ruby gem
