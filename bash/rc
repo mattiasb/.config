@@ -86,6 +86,7 @@ done
 alias dmesg="dmesg --human"
 alias open="xdg-open"
 alias ls="ls -B --color=auto"
+alias tmux="tmux -f ~/.config/tmux/config"
 
 function power_status () {
     cat /sys/devices/system/cpu/cpu{0,1,2,3}/cpufreq/scaling_governor
