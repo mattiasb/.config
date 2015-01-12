@@ -1,2 +1,3 @@
-prefix = /home/mattiasb/.local
+prefix = ${HOME}/.local/
+cache = ${HOME}/.cache/npm/
 email = mattias.jc.bengtsson@gmail.com
