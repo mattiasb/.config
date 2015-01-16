@@ -84,7 +84,7 @@ done
 
 alias dmesg="dmesg --human"
 alias open="xdg-open"
-alias ls="ls -B --color=auto"
+alias ls="ls -B --color=auto  --group-directories-first"
 alias tmux="tmux -f ~/.config/tmux/config"
 
 function power_status () {
