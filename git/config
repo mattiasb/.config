@@ -1,7 +1,3 @@
-#[diff]
-#	external = meld-git.sh
-[merge]
-	tool = meld-git.sh
 [user]
 	name = Mattias Bengtsson
 	email = mattias.jc.bengtsson@gmail.com
