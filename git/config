@@ -15,8 +15,6 @@
 	insteadOf = https://git.gnome.org/browse/
 
 # Github
-[url "https://github.com/"]
-	insteadOf = gh:
 # Use SSH when I have access	
 [url "ssh://git@github.com/moonlite/"]
 	insteadOf = https://github.com/moonlite/
