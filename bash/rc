@@ -112,6 +112,10 @@ function mkcd () {
     mkdir "${@}" && cd $DIR
 }
 
+function history-wipe () {
+    cat /dev/null > ~/.bash_history && history -c && exit
+}
+
 ## CMake helpers
 
 function _cm-pre () {
