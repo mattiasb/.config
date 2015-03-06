@@ -7,6 +7,9 @@
 	diff = auto
 	pager = no
 
+[include]
+	path = config.local
+
 # GNOME
 [url "ssh://mattiasb@git.gnome.org/git/"]
 	insteadOf = gnome:
