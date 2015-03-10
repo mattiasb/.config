@@ -33,3 +33,5 @@
 	unstage = rm --cached
 [diff]
 	tool = meld
+[rebase]
+	autosquash = true
