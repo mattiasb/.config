@@ -80,6 +80,12 @@ for comp in `ls -w1 ${CONFIG}/bash/completion.d/*.completion.bash`; do
     fi
 done
 
+for comp in `ls -w1 ${HOME}/.local/share/bash-completion/completions/*`; do
+    if [ -f "${comp}" ] ; then
+        . $comp
+    fi
+done
+
 ### Aliases / Functions
 
 alias dmesg="dmesg --human"
