@@ -74,17 +74,16 @@ export PATH=$HOME/.cabal/bin:$PATH
 
 ### Completion
 
-for comp in `ls -w1 ${CONFIG}/bash/completion.d/*.completion.bash`; do
-    if [ -f "${comp}" ] ; then
-        . $comp
-    fi
-done
+function _load_completions {
+    for comp in "${1}"; do
+        if [ -f "${comp}" ] ; then
+            . $comp
+        fi
+    done
+}
 
-for comp in `ls -w1 ${HOME}/.local/share/bash-completion/completions/*`; do
-    if [ -f "${comp}" ] ; then
-        . $comp
-    fi
-done
+_load_completions `ls -w1 ${CONFIG}/bash/completion.d/*.completion.bash`
+_load_completions `ls -w1 ${HOME}/.local/share/bash-completion/completions/*`
 
 ### Aliases / Functions
 
