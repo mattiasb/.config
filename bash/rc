@@ -52,6 +52,10 @@ export LESS="-R"
 
 ### Extra software
 
+# Lua
+
+export LUAROCKS_CONFIG="${CONFIG}/luarocks/config.lua"
+
 # Node.js
 
 export NPM_CONFIG_USERCONFIG=$CONFIG/npm/config
