@@ -172,3 +172,11 @@ function cmake-install () {
     _cm-pre && _cm-conf "${@}" && _cm-build && _cm-install
     _cm-post
 }
+
+function docker-enter {
+    if [ -z "${1}" ]; then
+        echo "Usage docker-enter <container>"
+    else
+        sudo docker exec -it "${1}" bash -c "export TERM=xterm; bash"
+    fi
+}
