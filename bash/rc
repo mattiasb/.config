@@ -132,11 +132,10 @@ function history-wipe () {
 function _cm-pre () {
     if [ ! -f "./CMakeLists.txt" ]; then
         echo "No CMakeLists.txt file found!";
-        exit 1;
+    else
+        mkdir -p "./build"
+        cd build
     fi
-
-    mkdir -p "./build"
-    cd build
 }
 
 function _cm-conf () {
