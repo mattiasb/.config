@@ -68,6 +68,9 @@ export GEMCACHE=$GEM_CACHE
 
 export PATH=$GEM_HOME/bin:$PATH
 
+# Rust
+export RUST_SRC_PATH=$HOME/Code/github/rust-lang/rust/src
+
 # Go
 export GOBIN=$LOCAL/bin
 export GOPATH=$HOME/Code/go:/usr/share/gocode
