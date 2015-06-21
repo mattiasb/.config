@@ -184,3 +184,7 @@ function docker-enter {
         sudo docker exec -it "${1}" bash -c "export TERM=xterm; bash"
     fi
 }
+
+function tm {
+    tmux a || tmux
+}
