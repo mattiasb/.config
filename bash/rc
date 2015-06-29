@@ -81,18 +81,12 @@ export PATH=$HOME/.cabal/bin:$PATH
 
 ### Completion
 
-function _load_completions {
-    for comp in "${1}"; do
-        if [ -f "${comp}" ] ; then
-            . $comp
-        fi
-    done
-}
-
-_load_completions `ls -w1 ${CONFIG}/bash/completion.d/*.completion.bash`
-_load_completions `ls -w1 ${LOCAL}/share/bash-completion/completions/*`
-
-unset -f _load_completions
+for comp in ${LOCAL}/share/bash-completion/completions/*	\
+                    ${CONFIG}/bash/completion.d/*; 		do
+    if [ -f "${comp}" ] ; then
+        . $comp
+    fi
+done
 
 ### Aliases / Functions
 
