@@ -90,7 +90,7 @@ function _load_completions {
 }
 
 _load_completions `ls -w1 ${CONFIG}/bash/completion.d/*.completion.bash`
-_load_completions `ls -w1 ${HOME}/.local/share/bash-completion/completions/*`
+_load_completions `ls -w1 ${LOCAL}/share/bash-completion/completions/*`
 
 unset -f _load_completions
 
