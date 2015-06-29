@@ -27,8 +27,7 @@ checkoutroot = '~/Code/gnome'
 prefix = '/opt/gnome'
 tarballdir = '~/.cache/jhbuild/tarballs/'
 skip = [
-    'WebKit',
-    'evolution-data-server'
+    'WebKit'
 ]
 # custom CFLAGS / environment pieces for the build
 
@@ -38,6 +37,9 @@ skip = [
 # extra arguments to pass to all autogen.sh scripts
 # to speed up builds of GNOME, try '--disable-static --disable-gtk-doc'
 autogenargs='--disable-static'
+
+# module_extra_env['libgdata'] = { "CFLAGS": "-Wno-error=unused-function" }
+# module_extra_env['grilo-plugins'] = { "CFLAGS": "-Wno-error" }
 
 # A string listing additional arguments to be passed to make.
 # Set makeargs to 'V=1' for verbose build output.
