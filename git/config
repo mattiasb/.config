@@ -35,3 +35,5 @@
 	tool = meld
 [rebase]
 	autosquash = true
+[branch]
+	autosetuprebase = always
