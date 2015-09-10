@@ -21,9 +21,6 @@
 # Use SSH when I have access	
 [url "ssh://git@github.com/moonlite/"]
 	insteadOf = https://github.com/moonlite/
-[url "ssh://git@github.com/kartena/"]
-	insteadOf = https://github.com/kartena/
-
 [bz]
 	browser = firefox3
 [core]
