@@ -81,8 +81,7 @@ export PATH=$HOME/.cabal/bin:$PATH
 
 ### Completion
 
-for comp in ${LOCAL}/share/bash-completion/completions/*	\
-                    ${CONFIG}/bash/completion.d/*; 		do
+for comp in ${CONFIG}/bash_completion.d/*; do
     if [ -f "${comp}" ] ; then
         . $comp
     fi
