@@ -52,6 +52,9 @@ export LESS="-R"
 
 ### Extra software
 
+# git-spindle
+export GIT_SPINDLE_COMPLETE_REMOTE=yes
+
 # Lua
 
 export LUAROCKS_CONFIG="${CONFIG}/luarocks/config.lua"
