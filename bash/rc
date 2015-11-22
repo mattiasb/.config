@@ -184,3 +184,7 @@ function docker-enter {
 function tm {
     tmux a || tmux
 }
+
+function twitch {
+    livestreamer "twitch.tv/${1}" source
+}
