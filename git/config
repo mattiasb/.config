@@ -3,6 +3,7 @@
 	email = mattias.jc.bengtsson@gmail.com
 [push]
 	default = simple
+	followTags = true
 [color]
 	diff = auto
 	pager = no
