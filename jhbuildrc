@@ -21,7 +21,8 @@ moduleset = 'gnome-world'
 # modules = ['meta-gnome-desktop']
 
 # what directory should the source be checked out to?
-checkoutroot = '~/Code/gnome'
+checkoutroot = '~/Code/gnome/src'
+buildroot = '~/Code/gnome/build'
 
 # the prefix to configure/install modules to (must have write access)
 prefix = '/opt/gnome'
