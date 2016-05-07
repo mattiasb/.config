@@ -74,6 +74,7 @@ export PATH=$GEM_HOME/bin:$PATH
 # Rust
 export RUST_SRC_PATH=$HOME/Code/github/rust-lang/rust/src
 export CARGO_HOME=$LOCAL/share/cargo
+export CARGO_INSTALL_ROOT=$LOCAL/
 
 # Go
 export GOBIN=$LOCAL/bin
