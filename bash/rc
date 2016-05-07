@@ -98,18 +98,6 @@ alias open="xdg-open"
 alias ls="ls -B --color=auto  --group-directories-first"
 alias tmux="tmux -f ~/.config/tmux/config"
 
-function power_status () {
-    cat /sys/devices/system/cpu/cpu{0,1,2,3}/cpufreq/scaling_governor
-}
-
-function power_powersave () {
-    sudo su -c 'for i in /sys/devices/system/cpu/cpu{0,1,2,3}/cpufreq/scaling_governor; do echo "powersave" > $i; done'
-}
-
-function power_ondemand () {
-    sudo su -c 'for i in /sys/devices/system/cpu/cpu{0,1,2,3}/cpufreq/scaling_governor; do echo "ondemand" > $i; done'
-}
-
 function git-commiters () {
     if [ $# -eq 0 ]; then
         git log --oneline --pretty="format:%an <%ae>" | sort | uniq
