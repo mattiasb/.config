@@ -86,7 +86,7 @@ export PATH=$HOME/.cabal/bin:$PATH
 
 for comp in ${CONFIG}/bash_completion.d/*; do
     if [ -f "${comp}" ] ; then
-        . $comp
+        . "${comp}"
     fi
 done
 
@@ -113,7 +113,7 @@ function git-commiters () {
     if [ $# -eq 0 ]; then
         git log --oneline --pretty="format:%an <%ae>" | sort | uniq
     else
-        git log --oneline --pretty="format:%an <%ae>" $1.. | sort | uniq
+        git log --oneline --pretty="format:%an <%ae>" "${1}".. | sort | uniq
     fi
 }
 
