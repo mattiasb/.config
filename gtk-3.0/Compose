@@ -1,0 +1,86 @@
+# Notice the X name <minus> refer to the ASCII hyphen‐minus, not the
+# true minus.
+<Multi_key> <minus> <period>                     : "‐" U2010
+<Multi_key> <colon> <colon>                      : "∷" U2237
+
+# Check boxes
+<Multi_key> <bracketleft> <space> <bracketright> : "☐" U2610
+<Multi_key> <bracketleft> <slash> <bracketright> : "☑" U2611
+<Multi_key> <bracketleft> <x> <bracketright>     : "☒" U2612
+
+<Multi_key> <v> <v> 				 : "✓" U2713
+<Multi_key> <V> <V> 				 : "✔" U2714
+
+# Arrows
+<Multi_key> <equal> <greater>                    : "⇒" U21D2
+<Multi_key> <equal> <less>                       : "⇐" U21D0
+<Multi_key> <asciicircum> <bar>			 : "↑" U2191
+<Multi_key> <bar> <asciicircum>			 : "↑" U2191
+<Multi_key> <v> <bar>				 : "↓" U2193
+<Multi_key> <bar> <v>				 : "↓" U2193
+<Multi_key> <less> <o>				 : "⟲" U27F2
+<Multi_key> <greater> <o>			 : "⟳" U27F3
+
+# Bullets
+<Multi_key> <asterisk> <asterisk>		 : "•" U2022
+<Multi_key> <asterisk> <o>			 : "◦" U25E6
+<Multi_key> <asterisk> <greater>		 : "‣" U2023
+<Multi_key> <asterisk> <minus>			 : "⁃" U2043
+<Multi_key> <asterisk> <at>			 : "◉" U25C9
+
+# Fractions
+<Multi_key> <1> <slash> <4>			 : "¼" onequarter
+<Multi_key> <1> <slash> <2>			 : "½" onehalf
+<Multi_key> <3> <slash> <4>			 : "¾" threequarters
+<Multi_key> <1> <slash> <3>			 : "⅓" U2153
+<Multi_key> <2> <slash> <3>			 : "⅔" U2154
+<Multi_key> <1> <slash> <5>			 : "⅕" U2155
+<Multi_key> <2> <slash> <5>			 : "⅖" U2156
+<Multi_key> <3> <slash> <5>			 : "⅗" U2157
+<Multi_key> <4> <slash> <5>			 : "⅘" U2158
+<Multi_key> <1> <slash> <6>			 : "⅙" U2159
+<Multi_key> <5> <slash> <6>			 : "⅚" U215A
+<Multi_key> <1> <slash> <8>			 : "⅛" U215B
+<Multi_key> <3> <slash> <8>			 : "⅜" U215C
+<Multi_key> <5> <slash> <8>			 : "⅝" U215D
+<Multi_key> <7> <slash> <8>			 : "⅞" U215E
+
+# Math
+<Multi_key> <asciitilde> <asciitilde>        	 : "≈" U2248
+<Multi_key> <equal> <equal>			 : "≡" U2261
+<Multi_key> <colon> <equal> 			 : "≔" U2254
+<Multi_key> <equal> <colon> 			 : "≕" U2255
+<Multi_key> <slash> <backslash>			 : "∧" U2227
+<Multi_key> <backslash> <slash>			 : "∨" U2228
+<Multi_key> <backslash> <underscore> <slash>	 : "⊻" U22BB
+<Multi_key> <asterisk> <x>			 : "⨯" U2A2F
+<Multi_key> <asterisk> <period>			 : "⋅" U22C5
+<Multi_key> <E> <slash>                     	 : "∃" U2203
+<Multi_key> <slash> <E>     			 : "∄" U2204
+<Multi_key> <A> <A>                     	 : "∀" U2200
+<Multi_key> <asterisk> <asterisk>                : "∗" U2217
+<Multi_key> <underscore> <i>  	       		 : "ᵢ" U1D62
+<Multi_key> <underscore> <o>	       		 : "ₒ" U2092
+<Multi_key> <underscore> <x>	       		 : "ₓ" U2093
+<Multi_key> <underscore> <j>	       		 : "ⱼ" U2C7C
+<Multi_key> <underscore> <k>           		 : "ₖ" U2096
+<Multi_key> <underscore> <m>	       		 : "ₘ" U2098
+<Multi_key> <underscore> <n>	       		 : "ₙ" U2099
+<Multi_key> <underscore> <minus>       		 : "₋" U208B
+
+# Emojis
+<Multi_key> <t> <e> <l>				 : "☎" U260E
+<Multi_key> <p> <l> <a> <n> <e>			 : "✈" U2708
+<Multi_key> <m> <a> <i> <l>			 : "✉" U2709
+<Multi_key> <b> <u> <l> <b>                      : "💡" U1F4A1
+<Multi_key> <b> <o> <m> <b>			 : "💣" U1F4A3
+<Multi_key> <z> <z> <z>				 : "💤" U1F4A4
+
+
+# Dice
+# <Multi_key> <bracketleft> <1> <bracketright>  	 : "⚀" U2680
+# <Multi_key> <bracketleft> <2> <bracketright>  	 : "⚁" U2681
+# <Multi_key> <bracketleft> <3> <bracketright>  	 : "⚂" U2682
+# <Multi_key> <bracketleft> <4> <bracketright>  	 : "⚃" U2683
+# <Multi_key> <bracketleft> <5> <bracketright>  	 : "⚄" U2684
+# <Multi_key> <bracketleft> <6> <bracketright>  	 : "⚅" U2685

@@ -53,7 +53,7 @@ bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 # set-window-option -g automatic-rename
 
 # rm mouse mode fail
-set -g mode-mouse on
+# set -g mode-mouse on
 
 # color
 
