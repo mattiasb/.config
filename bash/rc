@@ -178,3 +178,7 @@ function tm {
 function twitch {
     livestreamer "twitch.tv/${1}" source
 }
+
+function ansible-local {
+    ansible-playbook -i "localhost," -c local "${@}"
+}
