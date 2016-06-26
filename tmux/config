@@ -4,7 +4,6 @@ source ~/.config/tmux/colors
 # status bar
 set-option -g status off
 set-option -g status-position top
-set-option -g status-utf8 on
 
 set-option -g prefix C-z
 
