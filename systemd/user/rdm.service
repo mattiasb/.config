@@ -1,8 +1,8 @@
 [Unit]
 Description=RTags daemon
 
-Requires=rdm.socketp
+Requires=rdm.socket
 
 [Service]
 Type=simple
-ExecStart= -v --inactivity-timeout 300
+ExecStart=/home/mattiasb/.local/bin/rdm -v --inactivity-timeout 300

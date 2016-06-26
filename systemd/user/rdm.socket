@@ -5,4 +5,4 @@ Description=RTags daemon socket
 ListenStream=%h/.rdm
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
