@@ -30,3 +30,4 @@
 bash_completion.d/git-fpaste-completion.bash
 gnome-control-center/*
 ibus/*
+/systemd/user/*.target.wants/*
