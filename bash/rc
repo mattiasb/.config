@@ -12,11 +12,14 @@ fi
 
 ### Environment
 
-# User specific environment and startup programs
+## Set up PS1
+
+# Git prompt
 if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
     source /usr/share/git-core/contrib/completion/git-prompt.sh
 fi
 
+# Screen, tmux and jhbuild shell
 if [[ -n "${UNDER_JHBUILD}" ]]; then
     PSE="${PSE}JH"
 fi
@@ -37,56 +40,39 @@ if [[ -n "${PSE}" ]]; then
 fi
 export PS1="\[\e[01;m\]\u@\[\e[0;32m\]\h\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(__git_ps1) \$ "
 
+##
 export LS_COLORS="di=36"
-
-export LOCAL=$HOME/.local
-export CACHE=$HOME/.cache
-export CONFIG=$HOME/.config
-
-export PATH=$LOCAL/bin:$PATH
 
 export EDITOR="emacs -nw"
 export ALTERNATE_EDITOR=""
 
 export LESS="-R"
 
-### Extra software
-
 # git-spindle
 export GIT_SPINDLE_COMPLETE_REMOTE=yes
 
 # Lua
-
-export LUAROCKS_CONFIG="${CONFIG}/luarocks/config.lua"
+export LUAROCKS_CONFIG="${HOME}/.config/luarocks/config.lua"
 
 # Node.js
-
-export NPM_CONFIG_USERCONFIG=$CONFIG/npm/config
+export NPM_CONFIG_USERCONFIG=$HOME/.config/npm/config
 
 # Ruby gem
-
-export GEM_HOME=$LOCAL/share/gem
-export GEM_CACHE=$CACHE/gem.cache
+export GEM_HOME=$HOME/.local/share/gem
+export GEM_CACHE=$HOME/.cache/gem.cache
 export GEMCACHE=$GEM_CACHE
-
-export PATH=$GEM_HOME/bin:$PATH
 
 # Rust
 export RUST_SRC_PATH=$HOME/Code/github/rust-lang/rust/src
-export CARGO_HOME=$LOCAL/share/cargo
-export CARGO_INSTALL_ROOT=$LOCAL/
+export CARGO_HOME=$HOME/.local/share/cargo
+export CARGO_INSTALL_ROOT=$HOME/.local/
 
 # Go
-export GOBIN=$LOCAL/bin
+export GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/Code/go:/usr/share/gocode
 
-# Haskell cabal
-
-export PATH=$HOME/.cabal/bin:$PATH
-
 ### Completion
-
-for comp in ${CONFIG}/bash_completion.d/*; do
+for comp in ${HOME}/.config/bash_completion.d/*; do
     if [ -f "${comp}" ] ; then
         . "${comp}"
     fi
@@ -98,6 +84,9 @@ alias dmesg="dmesg --human"
 alias open="xdg-open"
 alias ls="ls -B --color=auto  --group-directories-first"
 alias tmux="tmux -f ~/.config/tmux/config"
+alias tm="tmux a || tmux"
+alias ansi="ansible-playbook -i 'localhost,' -c local"
+alias wipehist="cat /dev/null > ~/.bash_history && history -c && exit"
 
 function git-commiters () {
     if [ $# -eq 0 ]; then
@@ -114,71 +103,10 @@ function mkcd () {
     cd "${1}"
 }
 
-function history-wipe () {
-    cat /dev/null > ~/.bash_history && history -c && exit
-}
-
-## CMake helpers
-
-function _cm-pre () {
-    if [ ! -f "./CMakeLists.txt" ]; then
-        echo "No CMakeLists.txt file found!";
-    else
-        mkdir -p "./build"
-        cd build
-    fi
-}
-
-function _cm-conf () {
-    echo "Executing cmake..."
-    cmake "${@}" ..
-}
-
-function _cm-build () {
-    echo "Building..."
-    make
-}
-
-function _cm-install () {
-    echo "Installing..."
-    make install
-}
-
-function _cm-post () {
-    cd ..
-}
-
-function cmake-conf () {
-    _cm-pre && _cm-conf "${@}"
-    _cm-post
-}
-
-function cmake-build () {
-    _cm-pre && _cm-conf "${@}" && _cm-build
-    _cm-post
-}
-
-function cmake-install () {
-    _cm-pre && _cm-conf "${@}" && _cm-build && _cm-install
-    _cm-post
-}
-
 function docker-enter {
     if [ -z "${1}" ]; then
         echo "Usage docker-enter <container>"
     else
         sudo docker exec -it "${1}" bash -c "export TERM=xterm; bash"
     fi
-}
-
-function tm {
-    tmux a || tmux
-}
-
-function twitch {
-    livestreamer "twitch.tv/${1}" source
-}
-
-function ansible-local {
-    ansible-playbook -i "localhost," -c local "${@}"
 }
