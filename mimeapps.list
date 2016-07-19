@@ -1,6 +1,6 @@
 [Added Associations]
 application/vnd.ms-publisher=emacs.desktop;
-text/markdown=firefox.desktop;
+text/markdown=emacs.desktop;firefox.desktop;
 text/html=firefox.desktop;
 text/xml=firefox.desktop;
 application/xhtml+xml=firefox.desktop;
@@ -16,3 +16,4 @@ application/xhtml+xml=firefox.desktop
 application/vnd.mozilla.xul+xml=firefox.desktop
 text/mml=firefox.desktop
 x-scheme-handler/https=firefox.desktop
+text/markdown=firefox.desktop
