@@ -40,6 +40,9 @@ if [[ -n "${PSE}" ]]; then
 fi
 export PS1="\[\e[01;m\]\u@\[\e[0;32m\]\h\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(__git_ps1) \$ "
 
+# Path
+export PATH=$HOME/.cabal/bin:$HOME/.local/bin:$GEM_HOME/bin:$PATH
+
 ##
 export LS_COLORS="di=36"
 
