@@ -24,8 +24,10 @@ bind-key 3 split-window -h
 bind-key 2 split-window
 bind-key C-z send-prefix
 bind-key k kill-pane
-bind-key c set-option status on \; new-window
+bind-key n set-option status on \; new-window
 bind-key b set-option status
+bind-key c copy-mode
+bind-key y paste-buffer
 
 bind-key Right next-window
 bind-key Left  previous-window
