@@ -29,6 +29,7 @@
 [alias]
 	slog = log --oneline
 	ignore = "!f() { echo \"${1}\" >> \"${GIT_PREFIX}.gitignore\"; }; f"
+	bd = "!f() { git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short):%(committerdate:relative)'; }; f | column -t -s ':'"
 [diff]
 	tool = meld
 [rebase]
