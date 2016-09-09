@@ -38,3 +38,5 @@
 	autosetuprebase = always
 [status]
 	showUntrackedFiles = all
+[gpg]
+	program = gpg2
