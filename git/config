@@ -28,7 +28,6 @@
 	pager  = tig
 [alias]
 	slog = log --oneline
-	unstage = rm --cached
 	ignore = "!f() { echo \"${1}\" >> \"${GIT_PREFIX}.gitignore\"; }; f"
 [diff]
 	tool = meld
