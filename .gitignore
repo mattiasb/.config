@@ -33,3 +33,6 @@ ibus/*
 /systemd/user/*.target.wants/*
 /skypeforlinux/*
 monitors.xml
+/gtk-2.0
+/nautilus/search-metadata
+/inkscape/
