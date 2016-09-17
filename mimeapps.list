@@ -7,6 +7,8 @@ application/xhtml+xml=firefox.desktop;
 application/vnd.mozilla.xul+xml=firefox.desktop;
 text/mml=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
+text/x-nfo=emacs.desktop;
+inode/directory=emacs.desktop;
 
 [Default Applications]
 x-scheme-handler/http=firefox.desktop
