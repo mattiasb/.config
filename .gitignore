@@ -36,3 +36,11 @@ monitors.xml
 /gtk-2.0
 /nautilus/search-metadata
 /inkscape/
+/Mattermost/*
+/bash/rc.local
+/eog/*
+/evince/*
+/git/gitk
+/remmina/*
+/gconf/*
+/freerdp/*
