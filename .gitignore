@@ -45,3 +45,4 @@ monitors.xml
 /gconf/*
 /freerdp/*
 chromium/*
+transmission/*
