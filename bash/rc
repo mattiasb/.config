@@ -74,12 +74,6 @@ export CARGO_INSTALL_ROOT=$HOME/.local/
 export GOBIN=$HOME/.local/bin
 export GOPATH=$HOME/Code/go:/usr/share/gocode
 
-export _JAVA_OPTIONS="                                                    \
-       -Dawt.useSystemAAFontSettings=on                                   \
-       -Dswing.aatext=true                                                \
-       -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel      \
-       -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-
 ### Completion
 for comp in ${HOME}/.config/bash_completion.d/*; do
     if [ -f "${comp}" ] ; then
