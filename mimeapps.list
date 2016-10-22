@@ -9,6 +9,7 @@ text/mml=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
 text/x-nfo=emacs.desktop;
 inode/directory=emacs.desktop;
+text/calendar=org.gnome.Calendar.desktop;
 
 [Default Applications]
 x-scheme-handler/http=firefox.desktop
@@ -19,3 +20,4 @@ application/vnd.mozilla.xul+xml=firefox.desktop
 text/mml=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 text/markdown=firefox.desktop
+text/calendar=org.gnome.Calendar.desktop
