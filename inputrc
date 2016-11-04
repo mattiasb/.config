@@ -1,0 +1,5 @@
+set colored-stats on
+set completion-display-width 80
+set mark-directories off
+set show-all-if-ambiguous on
+set skip-completed-text on
