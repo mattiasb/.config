@@ -1,3 +1,4 @@
+$include  /etc/inputrc
 set colored-stats on
 set completion-display-width 80
 set mark-directories off
