@@ -47,3 +47,5 @@ monitors.xml
 chromium/*
 transmission/*
 vlc/*
+bash_completion.d/npm
+bash_completion.d/pandoc
