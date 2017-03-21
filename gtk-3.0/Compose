@@ -4,9 +4,9 @@
 <Multi_key> <colon> <colon>                                : "∷" U2237
 
 # Check boxes
-<Multi_key> <bracketleft> <space> <bracketright>           : "☐" U2610
-<Multi_key> <bracketleft> <slash> <bracketright>           : "☑" U2611
-<Multi_key> <bracketleft> <x> <bracketright>               : "☒" U2612
+<Multi_key> <bracketleft> <space>                          : "☐" U2610
+<Multi_key> <bracketleft> <v>                              : "☑" U2611
+<Multi_key> <bracketleft> <x>                              : "☒" U2612
 
 <Multi_key> <v> <v>                                        : "✓" U2713
 <Multi_key> <V> <V>                                        : "✔" U2714
