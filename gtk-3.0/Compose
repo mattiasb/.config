@@ -76,11 +76,10 @@
 <Multi_key> <b> <o> <m> <b>                                : "💣" U1F4A3
 <Multi_key> <z> <z> <z>                                    : "💤" U1F4A4
 
-
 # Dice
-# <Multi_key> <bracketleft> <1> <bracketright>             : "⚀" U2680
-# <Multi_key> <bracketleft> <2> <bracketright>             : "⚁" U2681
-# <Multi_key> <bracketleft> <3> <bracketright>             : "⚂" U2682
-# <Multi_key> <bracketleft> <4> <bracketright>             : "⚃" U2683
-# <Multi_key> <bracketleft> <5> <bracketright>             : "⚄" U2684
-# <Multi_key> <bracketleft> <6> <bracketright>             : "⚅" U2685
+<Multi_key> <bracketleft> <1> <bracketright>               : "⚀" U2680
+<Multi_key> <bracketleft> <2> <bracketright>               : "⚁" U2681
+<Multi_key> <bracketleft> <3> <bracketright>               : "⚂" U2682
+<Multi_key> <bracketleft> <4> <bracketright>               : "⚃" U2683
+<Multi_key> <bracketleft> <5> <bracketright>               : "⚄" U2684
+<Multi_key> <bracketleft> <6> <bracketright>               : "⚅" U2685
