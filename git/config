@@ -38,6 +38,7 @@
 	tool = meld
 [rebase]
 	autosquash = true
+	autoStash = true
 [branch]
 	autosetuprebase = always
 [status]
