@@ -76,6 +76,7 @@
 <Multi_key> <b> <u> <l> <b>                                : "💡" U1F4A1
 <Multi_key> <b> <o> <m> <b>                                : "💣" U1F4A3
 <Multi_key> <z> <z> <z>                                    : "💤" U1F4A4
+<Multi_key> <c> <c> <c> <p>                                : "☭" U262D
 
 # Dice
 <Multi_key> <bracketleft> <1> <bracketright>               : "⚀" U2680
