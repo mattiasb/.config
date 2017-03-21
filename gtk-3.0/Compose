@@ -23,11 +23,12 @@
 <Multi_key> <Return>                                       : "⏎" U23CE
 
 # Bullets
-<Multi_key> <asterisk> <asterisk>                          : "•" U2022
-<Multi_key> <asterisk> <o>                                 : "◦" U25E6
+<Multi_key> <asterisk> <period>                            : "•" U2022
+<Multi_key> <asterisk> <o>                                 : "￮" UFFEE
+<Multi_key> <asterisk> <bracketleft>                       : "▪" U25AA
+<Multi_key> <asterisk> <numbersign>                        : "▪" U25AA
 <Multi_key> <asterisk> <greater>                           : "‣" U2023
-<Multi_key> <asterisk> <minus>                             : "⁃" U2043
-<Multi_key> <asterisk> <at>                                : "◉" U25C9
+<Multi_key> <asterisk> <v>                                 : "‣" U2023
 
 # Fractions
 <Multi_key> <1> <slash> <4>                                : "¼" onequarter
