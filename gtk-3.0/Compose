@@ -20,6 +20,7 @@
 <Multi_key> <bar> <v>                                      : "↓" U2193
 <Multi_key> <less> <o>                                     : "⟲" U27F2
 <Multi_key> <greater> <o>                                  : "⟳" U27F3
+<Multi_key> <Return>                                       : "⏎" U23CE
 
 # Bullets
 <Multi_key> <asterisk> <asterisk>                          : "•" U2022
