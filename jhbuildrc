@@ -45,3 +45,7 @@ autogenargs = '--disable-static'
 # A string listing additional arguments to be passed to make.
 # Set makeargs to 'V=1' for verbose build output.
 makeargs = '-j8'
+
+# Make sure CMake produces a compilation_database.json file (Meson does this by
+# default)
+cmakeargs = '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON'
