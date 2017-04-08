@@ -5,4 +5,4 @@ Requires=rdm.socket
 
 [Service]
 Type=simple
-ExecStart=/home/mattiasb/.local/bin/rdm -v --inactivity-timeout 300 --log-flush
+ExecStart=/bin/rdm -v --inactivity-timeout 300 --log-flush
