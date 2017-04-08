@@ -32,12 +32,12 @@ skip = [
 ]
 # custom CFLAGS / environment pieces for the build
 
-## For profiling
+# For profiling
 # os.environ['CFLAGS'] = '-pg'
 
 # extra arguments to pass to all autogen.sh scripts
 # to speed up builds of GNOME, try '--disable-static --disable-gtk-doc'
-autogenargs='--disable-static'
+autogenargs = '--disable-static'
 
 # module_extra_env['libgdata'] = { "CFLAGS": "-Wno-error=unused-function" }
 # module_extra_env['grilo-plugins'] = { "CFLAGS": "-Wno-error" }
