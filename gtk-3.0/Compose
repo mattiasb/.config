@@ -70,7 +70,9 @@
 <Multi_key> <underscore> <n>                               : "ₙ" U2099
 <Multi_key> <underscore> <minus>                           : "₋" U208B
 
-# Emojis
+## Emojis
+
+# General
 <Multi_key> <t> <e> <l>                                    : "☎" U260E
 <Multi_key> <p> <l> <a> <n> <e>                            : "✈" U2708
 <Multi_key> <m> <a> <i> <l>                                : "✉" U2709
