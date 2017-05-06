@@ -74,6 +74,7 @@
 
 # General
 <Multi_key> <t> <e> <l>                                    : "☎" U260E
+<Multi_key> <p> <h> <o> <n> <e>                            : "☎" U260E
 <Multi_key> <p> <l> <a> <n> <e>                            : "✈" U2708
 <Multi_key> <m> <a> <i> <l>                                : "✉" U2709
 <Multi_key> <b> <u> <l> <b>                                : "💡" U1F4A1
@@ -83,6 +84,7 @@
 <Multi_key> <less> <slash> <3>                             : "💔" U1F494
 <Multi_key> <c> <a> <f>                                    : "☕" U2615
 <Multi_key> <k> <a> <f> <f> <e>                            : "☕" U2615
+<Multi_key> <b> <e> <e> <r>                                : "🍺" U1F37A
 <Multi_key> <w> <i> <n> <e>                                : "🍷" U1F377
 <Multi_key> <d> <r> <i> <n> <k>                            : "🍹" U1F379
 <Multi_key> <c> <i> <g> <g>                                : "🚬" U1F6AC
