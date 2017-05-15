@@ -45,3 +45,5 @@
 	showUntrackedFiles = all
 [gpg]
 	program = gpg2
+[github]
+	user = mattiasb
