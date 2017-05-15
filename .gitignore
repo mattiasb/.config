@@ -49,3 +49,4 @@ transmission/*
 vlc/*
 bash_completion.d/npm
 bash_completion.d/pandoc
+/bash_completion.d/git-wip-completion.bash
