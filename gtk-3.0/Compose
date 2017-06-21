@@ -14,10 +14,10 @@
 # Arrows
 <Multi_key> <equal> <greater>                              : "⇒" U21D2
 <Multi_key> <equal> <less>                                 : "⇐" U21D0
-<Multi_key> <asciicircum> <bar>                            : "↑" U2191
-<Multi_key> <bar> <asciicircum>                            : "↑" U2191
-<Multi_key> <v> <bar>                                      : "↓" U2193
-<Multi_key> <bar> <v>                                      : "↓" U2193
+<Multi_key> <Left>                                         : "←" U2190
+<Multi_key> <Up>                                           : "↑" U2191
+<Multi_key> <Right>                                        : "→" U2192
+<Multi_key> <Down>                                         : "↓" U2193
 <Multi_key> <less> <o>                                     : "⟲" U27F2
 <Multi_key> <greater> <o>                                  : "⟳" U27F3
 <Multi_key> <Return>                                       : "⏎" U23CE
@@ -88,20 +88,27 @@
 <Multi_key> <w> <i> <n> <e>                                : "🍷" U1F377
 <Multi_key> <d> <r> <i> <n> <k>                            : "🍹" U1F379
 <Multi_key> <c> <i> <g> <g>                                : "🚬" U1F6AC
+<Multi_key> <l> <i> <t>                                    : "🔥" U1F525
+<Multi_key> <h> <o> <t>                                    : "🔥" U1F525
+<Multi_key> <f> <i> <r> <e>                                : "🔥" U1F525
+<Multi_key> <l> <i> <c> <k>                                : "👅" U1F445
+<Multi_key> <t> <o> <n> <g> <u> <e>                        : "👅" U1F445
+<Multi_key> <s> <h> <r> <u> <g>                            : "🤷" U1F937
+<Multi_key> <m> <e> <h>                                    : "🤷" U1F937
 
 <Multi_key> <w> <a> <s> <h>                                : "🚿" U1F6BF
-<Multi_key> <d> <u> <s> <c><h>                             : "🚿" U1F6BF
+<Multi_key> <d> <u> <s> <c> <h>                            : "🚿" U1F6BF
 <Multi_key> <w> <c>                                        : "🚽" U1F6BD
 <Multi_key> <t> <o> <i> <l> <e> <t>                        : "🚽" U1F6BD
 
 # Hand Signs
-<Multi_key> <F> <O>                                        : "🖕" U1F595
+<Multi_key> <f> <u>                                        : "🖕" U1F595
+<Multi_key> <f> <o>                                        : "🖕" U1F595
 <Multi_key> <w> <a> <v> <e>                                : "👋" U1F44B
 <Multi_key> <c> <l> <a> <p>                                : "👏" U1F44F
 <Multi_key> <f> <i> <s> <t>                                : "👊" U1F44A
 <Multi_key> <f> <i> <g> <h> <t>                            : "✊" U270A
 <Multi_key> <w> <r> <i> <t> <e>                            : "✍" U270D
-<Multi_key> <f> <o>                                        : "🖕" U1F595
 <Multi_key> <O> <K>                                        : "👌" U1F44C
 <Multi_key> <o> <k>                                        : "👌" U1F44C
 <Multi_key> <plus> <1>                                     : "👍" U1F44D
@@ -110,6 +117,7 @@
 # Smileys
 <Multi_key> <colon> <asterisk>                             : "😗" U1F617
 <Multi_key> <colon> <D>                                    : "😃" U1F603
+<Multi_key> <colon> <D> <D>                                : "😂" U1F602
 <Multi_key> <colon> <o>                                    : "😮" U1F62E
 <Multi_key> <colon> <O>                                    : "😲" U1F632
 <Multi_key> <colon> <slash>                                : "😕" U1F615
@@ -117,8 +125,13 @@
 <Multi_key> <X> <D>                                        : "😆" U1F606
 <Multi_key> <greater> <colon> <parenleft>                  : "😠" U1F620
 <Multi_key> <colon> <less> <3>                             : "😍" U1F60D
-<Multi_key> <greater> <less>                               : "😣" 1F623
-<Multi_key> <O> <colon> <parenright>                       : "😇" 1F607
+<Multi_key> <x> <parenleft>                                : "😣" U1F623
+<Multi_key> <X> <parenleft>                                : "😣" U1F623
+<Multi_key> <O> <colon> <parenright>                       : "😇" U1F607
+<Multi_key> <o> <colon> <parenright>                       : "😇" U1F607
+<Multi_key> <l> <o> <l>                                    : "😂" U1F602
+<Multi_key> <h> <m>                                        : "🤔" U1F914
+<Multi_key> <n> <e> <r> <d>                                : "🤓" U1F913
 
 # Dice
 <Multi_key> <bracketleft> <1> <bracketright>               : "⚀" U2680
