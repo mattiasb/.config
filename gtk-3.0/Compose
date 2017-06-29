@@ -55,7 +55,9 @@
 <Multi_key> <backslash> <underscore> <slash>               : "⊻" U22BB
 <Multi_key> <asterisk> <x>                                 : "⨯" U2A2F
 <Multi_key> <asterisk> <period>                            : "⋅" U22C5
-<Multi_key> <E> <slash>                                    : "∃" U2203
+<Multi_key> <parenleft> <equal>                            : "∈" U2208
+<Multi_key> <E> <E>                                        : "∃" U2203
+<Multi_key> <E> <slash>                                    : "∄" U2204
 <Multi_key> <slash> <E>                                    : "∄" U2204
 <Multi_key> <A> <A>                                        : "∀" U2200
 <Multi_key> <asterisk> <asterisk>                          : "∗" U2217
