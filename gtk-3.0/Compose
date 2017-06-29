@@ -12,8 +12,6 @@
 <Multi_key> <V> <V>                                        : "✔" U2714
 
 # Arrows
-<Multi_key> <equal> <greater>                              : "⇒" U21D2
-<Multi_key> <equal> <less>                                 : "⇐" U21D0
 <Multi_key> <Left>                                         : "←" U2190
 <Multi_key> <Up>                                           : "↑" U2191
 <Multi_key> <Right>                                        : "→" U2192
