@@ -99,6 +99,8 @@
 
 # Smileys
 <Multi_key> <colon> <asterisk>                             : "😗" U1F617
+<Multi_key> <colon> <asterisk> <asterisk>                  : "😘" U1F618
+<Multi_key> <colon> <asterisk> <less> <3>                  : "😘" U1F618
 <Multi_key> <colon> <D>                                    : "😃" U1F603
 <Multi_key> <colon> <D> <D>                                : "😂" U1F602
 <Multi_key> <colon> <o>                                    : "😮" U1F62E
@@ -115,6 +117,7 @@
 <Multi_key> <l> <o> <l>                                    : "😂" U1F602
 <Multi_key> <h> <m>                                        : "🤔" U1F914
 <Multi_key> <n> <e> <r> <d>                                : "🤓" U1F913
+<Multi_key> <c> <r> <y>                                    : "😢" U1F622
 
 # Dice
 <Multi_key> <bracketleft> <1> <bracketright>               : "⚀" U2680
