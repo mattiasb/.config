@@ -28,23 +28,6 @@
 <Multi_key> <asterisk> <greater>                           : "‣" U2023
 <Multi_key> <asterisk> <v>                                 : "‣" U2023
 
-# Fractions
-<Multi_key> <1> <slash> <4>                                : "¼" onequarter
-<Multi_key> <1> <slash> <2>                                : "½" onehalf
-<Multi_key> <3> <slash> <4>                                : "¾" threequarters
-<Multi_key> <1> <slash> <3>                                : "⅓" U2153
-<Multi_key> <2> <slash> <3>                                : "⅔" U2154
-<Multi_key> <1> <slash> <5>                                : "⅕" U2155
-<Multi_key> <2> <slash> <5>                                : "⅖" U2156
-<Multi_key> <3> <slash> <5>                                : "⅗" U2157
-<Multi_key> <4> <slash> <5>                                : "⅘" U2158
-<Multi_key> <1> <slash> <6>                                : "⅙" U2159
-<Multi_key> <5> <slash> <6>                                : "⅚" U215A
-<Multi_key> <1> <slash> <8>                                : "⅛" U215B
-<Multi_key> <3> <slash> <8>                                : "⅜" U215C
-<Multi_key> <5> <slash> <8>                                : "⅝" U215D
-<Multi_key> <7> <slash> <8>                                : "⅞" U215E
-
 # Math
 <Multi_key> <asciitilde> <asciitilde>                      : "≈" U2248
 <Multi_key> <equal> <equal>                                : "≡" U2261
