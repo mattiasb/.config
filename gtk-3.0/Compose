@@ -29,7 +29,7 @@
 <Multi_key> <asterisk> <v>                                 : "‣" U2023
 
 # Math
-<Multi_key> <asciitilde> <asciitilde>                      : "≈" U2248
+<Multi_key> <dead_tilde> <dead_tilde>                      : "≈" U2248
 <Multi_key> <equal> <equal>                                : "≡" U2261
 <Multi_key> <colon> <equal>                                : "≔" U2254
 <Multi_key> <equal> <colon>                                : "≕" U2255
