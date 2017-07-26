@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Xresources
+GenericName=X Resources
+Comment=Load X Resources
+Exec=/bin/sh -c "xrdb -nocpp -merge ~/.config/xorg/resources"
+Type=Application
+Terminal=true
+X-GNOME-Autostart-Delay=10
+StartupNotify=false
