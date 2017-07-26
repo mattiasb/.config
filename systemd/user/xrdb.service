@@ -1,0 +1,11 @@
+[Unit]
+Description=Load X Resources
+
+[Service]
+Type=oneshot
+ExecStart=/bin/xrdb -nocpp -merge %h/.config/xorg/resources
+RemainAfterExit=true
+StandardOutput=journal
+
+[Install]
+WantedBy=default.target
