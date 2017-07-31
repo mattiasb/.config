@@ -11,6 +11,7 @@ text/x-nfo=emacs.desktop;
 inode/directory=emacs.desktop;
 text/calendar=org.gnome.Calendar.desktop;
 text/plain=emacs.desktop;
+application/x-shellscript=emacs.desktop;
 
 [Default Applications]
 x-scheme-handler/http=firefox.desktop
