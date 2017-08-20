@@ -51,3 +51,6 @@ bash_completion.d/pandoc
 /bash_completion.d/git-wip-completion.bash
 /user-share/*
 /autostart/dropbox.desktop
+/systemd/user/debug-usage-detailed.service
+/systemd/user/debug-usage-uptime.service
+/systemd/user/debug-usage-load.service
