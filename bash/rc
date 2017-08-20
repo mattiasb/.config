@@ -92,6 +92,7 @@ alias tm="tmux a || tmux"
 alias ansi="ansible-playbook -i 'localhost,' -c local"
 alias wipehist="cat /dev/null > ~/.bash_history && history -c && exit"
 alias ninja="ninja-build"
+alias emacs="emacsclient -c"
 
 function git-commiters () {
     if [ $# -eq 0 ]; then
