@@ -1,25 +1,31 @@
 [Added Associations]
 application/vnd.ms-publisher=emacs.desktop;
-text/markdown=emacs.desktop;firefox.desktop;
-text/html=firefox.desktop;
-text/xml=firefox.desktop;
+text/markdown=google-chrome.desktop;emacs.desktop;firefox.desktop;
+text/html=firefox.desktop;google-chrome.desktop;
+text/xml=firefox.desktop;google-chrome.desktop;
 application/xhtml+xml=firefox.desktop;
 application/vnd.mozilla.xul+xml=firefox.desktop;
 text/mml=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;google-chrome.desktop;
 text/x-nfo=emacs.desktop;
 inode/directory=emacs.desktop;
 text/calendar=org.gnome.Calendar.desktop;
 text/plain=emacs.desktop;
 application/x-shellscript=emacs.desktop;
+application/xhtml_xml=google-chrome.desktop;
+image/webp=google-chrome.desktop;
+x-scheme-handler/ftp=google-chrome.desktop;
 
 [Default Applications]
-x-scheme-handler/http=firefox.desktop
-text/html=firefox.desktop
-text/xml=firefox.desktop
+x-scheme-handler/http=google-chrome.desktop
+text/html=google-chrome.desktop
+text/xml=google-chrome.desktop
 application/xhtml+xml=firefox.desktop
 application/vnd.mozilla.xul+xml=firefox.desktop
 text/mml=firefox.desktop
-x-scheme-handler/https=firefox.desktop
+x-scheme-handler/https=google-chrome.desktop
 text/markdown=firefox.desktop
 text/calendar=org.gnome.Calendar.desktop
+application/xhtml_xml=google-chrome.desktop
+image/webp=google-chrome.desktop
+x-scheme-handler/ftp=google-chrome.desktop
