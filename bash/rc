@@ -135,3 +135,12 @@ function docker-enter {
         sudo docker exec -it "${1}" bash -c "export TERM=xterm; bash"
     fi
 }
+
+function create-project {
+    mkcd "${HOME}/Code/Projects/${1}"
+    git init
+    echo "*~"   > .gitignore
+    echo "*#*" >> .gitignore
+    echo       >> .gitignore
+    touch README.md
+}
