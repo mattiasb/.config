@@ -14,32 +14,39 @@ fi
 
 ## Set up PS1
 
-# Git prompt
-if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
-    source /usr/share/git-core/contrib/completion/git-prompt.sh
-fi
-
-# Screen, tmux and jhbuild shell
-if [[ -n "${UNDER_JHBUILD}" ]]; then
-    PSE="${PSE}JH"
-fi
-if [[ -n "$STY" ]]; then
-    if [[ -n "${PSE}" ]]; then
-        PSE="${PSE},"
+if [ "$(systemctl is-active --user powerline-daemon.service)" = "active" ]; then
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    . /usr/share/powerline/bash/powerline.sh
+else
+    # My old prompt for reference
+    # Git prompt
+    if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
+        source /usr/share/git-core/contrib/completion/git-prompt.sh
     fi
-    PSE="${PSE}SC"
-fi
-if [[ -n "${TMUX}" ]]; then
-    if [[ -n "${PSE}" ]]; then
-        PSE="${PSE},"
-    fi
-    PSE="${PSE}TX"
-fi
-if [[ -n "${PSE}" ]]; then
-    PSE="[\[\e[0;31m\]${PSE}\[\e[00m\]]"
-fi
 
-export PS1="\[\e[01;m\]\u@\[\e[0;32m\]\h\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(type __git_ps1 1>/dev/null 2>/dev/null && __git_ps1) \$ "
+    # Screen, tmux and jhbuild shell
+    if [[ -n "${UNDER_JHBUILD}" ]]; then
+        PSE="${PSE}JH"
+    fi
+    if [[ -n "$STY" ]]; then
+        if [[ -n "${PSE}" ]]; then
+            PSE="${PSE},"
+        fi
+        PSE="${PSE}SC"
+    fi
+    if [[ -n "${TMUX}" ]]; then
+        if [[ -n "${PSE}" ]]; then
+            PSE="${PSE},"
+        fi
+        PSE="${PSE}TX"
+    fi
+    if [[ -n "${PSE}" ]]; then
+        PSE="[\[\e[0;31m\]${PSE}\[\e[00m\]]"
+    fi
+
+    export PS1="\[\e[01;m\]\u@\[\e[0;32m\]\h\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(type __git_ps1 1>/dev/null 2>/dev/null && __git_ps1) \$ "
+fi
 
 # Path
 export PATH=$HOME/.cabal/bin:$HOME/.local/bin:$GEM_HOME/bin:$PATH
