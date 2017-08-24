@@ -1,6 +1,12 @@
 $include  /etc/inputrc
 set colored-stats on
+set colored-completion-prefix on
 set completion-display-width 80
 set show-all-if-ambiguous on
 set skip-completed-text on
 set match-hidden-files off
+set blink-matching-paren on
+set completion-ignore-case on
+set completion-query-items 10000
+set page-completions off
+set skip-completed-text on
