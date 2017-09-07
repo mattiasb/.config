@@ -14,7 +14,9 @@ fi
 
 ## Set up PS1
 
-if [ "$(systemctl is-active --user powerline-daemon.service)" = "active" ]; then
+if [ "${TERM}" = "xterm-256color" ] &&
+       [ "$(systemctl is-active --user powerline-daemon.service)" = "active" ];
+then
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
     . /usr/share/powerline/bash/powerline.sh
@@ -45,7 +47,7 @@ else
         PSE="[\[\e[0;31m\]${PSE}\[\e[00m\]]"
     fi
 
-    export PS1="\[\e[01;m\]\u@\[\e[0;32m\]\h\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(type __git_ps1 1>/dev/null 2>/dev/null && __git_ps1) \$ "
+    export PS1="\[\e[0;32m\]\u\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(type __git_ps1 1>/dev/null 2>/dev/null && __git_ps1) \$ "
 fi
 
 # Path
