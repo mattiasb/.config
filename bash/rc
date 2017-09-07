@@ -115,9 +115,12 @@ alias ninja="ninja-build"
 alias emacs="emacsclient -c"
 alias refresh='source ~/.bashrc'
 alias c='command'
+alias sys='systemctl'
 
 _completion_loader command
+_completion_loader systemctl
 complete -F _command c
+complete -F _systemctl sys
 complete -G "*.yaml" -d  ansi
 complete -W "" tm
 complete -W "" wipehist
