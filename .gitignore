@@ -54,3 +54,4 @@ bash_completion.d/pandoc
 /systemd/user/debug-usage-detailed.service
 /systemd/user/debug-usage-uptime.service
 /systemd/user/debug-usage-load.service
+VirtualBox/*
