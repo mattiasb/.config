@@ -114,6 +114,14 @@ alias wipehist="cat /dev/null > ~/.bash_history && history -c && exit"
 alias ninja="ninja-build"
 alias emacs="emacsclient -c"
 alias refresh='source ~/.bashrc'
+alias c='command'
+
+_completion_loader command
+complete -F _command c
+complete -G "*.yaml" -d  ansi
+complete -W "" tm
+complete -W "" wipehist
+complete -W "" refresh
 
 function git-commiters () {
     if [ $# -eq 0 ]; then
@@ -129,6 +137,8 @@ function mkcd () {
     fi
     cd "${1}" || exit
 }
+complete -d mkcd
+
 
 function docker-enter {
     if [ -z "${1}" ]; then
@@ -146,3 +156,4 @@ function create-project {
     echo       >> .gitignore
     touch README.md
 }
+complete -W "" create-project
