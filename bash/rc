@@ -145,6 +145,8 @@ complete -d mkcd
 function cpcd () {
     cp "${@}" && cd "${@: -1}" || return $?
 }
+_completion_loader _longopt
+complete -F _longopt cpcd
 
 function docker-enter {
     if [ -z "${1}" ]; then
