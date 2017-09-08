@@ -148,6 +148,12 @@ function cpcd () {
 _completion_loader _longopt
 complete -F _longopt cpcd
 
+function mvcd () {
+    mv "${@}" && cd "${@: -1}" || return $?
+}
+_completion_loader _longopt
+complete -F _longopt mvcd
+
 function docker-enter {
     if [ -z "${1}" ]; then
         echo "Usage docker-enter <container>"
