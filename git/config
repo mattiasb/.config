@@ -52,3 +52,5 @@
 	hideCampaign = true
 [credential]
 	helper = libsecret
+[merge]
+	tool = meld
