@@ -50,3 +50,5 @@
 	user = mattiasb
 [magit]
 	hideCampaign = true
+[credential]
+	helper = /usr/share/doc/lastpass-cli/examples/git-credential-lastpass -l mattias.jc.bengtsson@gmail.com
