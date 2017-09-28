@@ -26,6 +26,7 @@
 	browser = firefox3
 [core]
 	pager  = tig
+	excludesfile = ~/.config/git/ignore
 [alias]
 	slog 		 = log --oneline
 	smarteye         = lab --account=smarteye
