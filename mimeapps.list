@@ -29,3 +29,5 @@ text/calendar=org.gnome.Calendar.desktop
 application/xhtml_xml=google-chrome.desktop
 image/webp=google-chrome.desktop
 x-scheme-handler/ftp=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
