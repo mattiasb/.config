@@ -128,6 +128,10 @@ complete -W "" tm
 complete -W "" wipehist
 complete -W "" refresh
 
+function _help-flag {
+    [[ " ${*} " == *" --help "* ]] || [[ " ${*} " == *" -h "* ]]
+}
+
 function git-commiters () {
     if [ $# -eq 0 ]; then
         git log --oneline --pretty="format:%an <%ae>" | sort | uniq
@@ -173,3 +177,14 @@ function create-project {
     touch README.md
 }
 complete -W "" create-project
+
+function simple-sync {
+    if [ "${#}" -lt 3 ] || _help-flag "${@}"; then
+        echo "Usage: simple-sync <host> <src> <dest>"
+        echo
+        echo "Sync (push) a directory to a remote ssh directory via lftp."
+        return 2
+    fi
+
+    lftp -c "open sftp://${1}; mirror --dry-run -c -e -R -L \"${2}\" \"${3}\""
+}
