@@ -52,37 +52,7 @@ fi
 
 # Path
 export PATH=$HOME/.cabal/bin:$HOME/.local/bin:$GEM_HOME/bin:$PATH
-
-##
 export LS_COLORS="di=36"
-
-export EDITOR="emacsclient -nw -c"
-export ALTERNATE_EDITOR=""
-
-export LESS="-R"
-
-# git-spindle
-export GIT_SPINDLE_COMPLETE_REMOTE=yes
-
-# Lua
-export LUAROCKS_CONFIG="${HOME}/.config/luarocks/config.lua"
-
-# Node.js
-export NPM_CONFIG_USERCONFIG=$HOME/.config/npm/config
-
-# Ruby gem
-export GEM_HOME=$HOME/.local/share/gem
-export GEM_CACHE=$HOME/.cache/gem.cache
-export GEMCACHE=$GEM_CACHE
-
-# Rust
-export RUST_SRC_PATH=$HOME/Code/github/rust-lang/rust/src
-export CARGO_HOME=$HOME/.local/share/cargo
-export CARGO_INSTALL_ROOT=$HOME/.local/
-
-# Go
-export GOBIN=$HOME/.local/bin
-export GOPATH=$HOME/Code/go:/usr/share/gocode
 
 ### Completion
 for comp in ${HOME}/.config/bash_completion.d/*; do

@@ -6,7 +6,6 @@ Type=forking
 ExecStart=/usr/bin/emacs --daemon
 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
-Environment=PATH=~/.local/bin:~/.cabal/bin:~/.local/share/gem/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin
 Restart=always
 
 [Install]
