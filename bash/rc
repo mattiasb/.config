@@ -10,7 +10,7 @@ if [ -f "${HOME}/.config/bash/rc.local" ]; then
     . "${HOME}/.config/bash/rc.local"
 fi
 
-### Environment
+### Environment (That can't (only) be put in environment.d)
 
 ## Set up PS1
 
@@ -54,13 +54,6 @@ fi
 export PATH=$HOME/.cabal/bin:$HOME/.local/bin:$GEM_HOME/bin:$PATH
 export LS_COLORS="di=36"
 
-### Completion
-for comp in ${HOME}/.config/bash_completion.d/*; do
-    if [ -f "${comp}" ] ; then
-        . "${comp}"
-    fi
-done
-
 ### History
 shopt -s histappend
 export HISTSIZE=10000
@@ -71,6 +64,13 @@ export PROMPT_COMMAND="history -n; \
                        history -c; \
                        history -r; \
                        ${PROMPT_COMMAND:-true}"
+
+### Completion
+for comp in ${HOME}/.config/bash_completion.d/*; do
+    if [ -f "${comp}" ] ; then
+        . "${comp}"
+    fi
+done
 
 ### Aliases / Functions
 
