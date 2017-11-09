@@ -186,5 +186,5 @@ function simple-sync {
         return 2
     fi
 
-    lftp -c "open sftp://${1}; mirror --dry-run -c -e -R -L \"${2}\" \"${3}\""
+    lftp -c "open sftp://${1}; mirror -c -e -R -L \"${2}\" \"${3}\""
 }
