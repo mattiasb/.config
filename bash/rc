@@ -13,8 +13,7 @@ fi
 ### Environment (That can't (only) be put in environment.d)
 
 ## Set up PS1
-
-if [ "${TERM}" = "xterm-256color" ] &&
+if [[ "${TERM}" == *"-256color" ]] &&
        [ "$(systemctl is-active --user powerline-daemon.service)" = "active" ];
 then
     POWERLINE_BASH_CONTINUATION=1
