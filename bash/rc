@@ -138,6 +138,16 @@ function docker-enter {
     fi
 }
 
+function docker-shell {
+    if [ -z "${1}" ]; then
+        echo "Usage docker-shell <image>"
+        echo
+        echo "Start a throw-away container from an image"
+    else
+        docker run --rm -it "${1}" bash -c "export TERM=xterm; bash"
+    fi
+}
+
 function create-project {
     mkcd "${HOME}/Code/Projects/${1}"
     git init
