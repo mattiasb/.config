@@ -1,0 +1,14 @@
+[Unit]
+Description=RTags daemon
+
+Requires=rdm.socket
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rdm --inactivity-timeout 600
+Nice=19
+CPUSchedulingPolicy=idle
+
+[Install]
+Also=rdm.socket
+WantedBy=default.target
