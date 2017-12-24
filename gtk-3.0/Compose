@@ -79,6 +79,10 @@
 <Multi_key> <c> <a> <v> <a>                                : "🍾" U1F37E
 <Multi_key> <p> <o> <p>                                    : "🍿" U1F37F
 <Multi_key> <c> <a> <k> <e>                                : "🎂" U1F382
+<Multi_key> <x> <m> <a> <s>                                : "🎄" U1F384
+<Multi_key> <g> <i> <f> <t>                                : "🎁" U1F381
+<Multi_key> <p> <y> <r> <o>                                : "🎆" U1F386
+<Multi_key> <s> <a> <n> <t> <a>                            : "🎅" U1F385
 
 <Multi_key> <c> <i> <g> <g>                                : "🚬" U1F6AC
 <Multi_key> <g> <a> <s>                                    : "⛽" U26FD
