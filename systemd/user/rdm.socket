@@ -1,8 +1,1 @@
-[Unit]
-Description=RTags daemon socket
-
-[Socket]
-ListenStream=%t/rdm.socket
-
-[Install]
-WantedBy=sockets.target
+/usr/lib/systemd/user/rtags.socket

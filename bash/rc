@@ -14,7 +14,7 @@ fi
 
 ## Set up PS1
 if [[ "${TERM}" == *"-256color" ]] &&
-       [ "$(systemctl is-active --user powerline-daemon.service)" = "active" ];
+       [ "$(systemctl is-active --user powerline.service)" = "active" ];
 then
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
