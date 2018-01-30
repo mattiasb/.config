@@ -172,7 +172,7 @@ function git-cd {
 function virsh-get-ip {
     local macs domain mac_regex ip_regex
 
-    if [ -z "${1}" ]; then
+    if [ $# -lt 1 ]; then
         echo "Usage vm-get-ip <domain>"
         echo
         echo "Show IP's of a given virsh domain"
