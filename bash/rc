@@ -213,7 +213,7 @@ function virsh-ssh {
         return 2
     fi
 
-    IFS="@"; declare -a uad=($*)
+    IFS="@"; declare -a uad=($@)
 
     case "${#uad[@]}" in
         1)
