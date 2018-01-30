@@ -200,4 +200,39 @@ function _virsh-get-ip {
 
     doms=$(_virsh_list_domains "1")
     COMPREPLY=( $(compgen -W "$doms" -- "$cur") )
-} && complete -F _virsh-get-ip virsh-get-ip
+}
+complete -F _virsh-get-ip virsh-get-ip
+
+function virsh-ssh {
+    local uad domain user host
+
+    if [ ! $# -eq 1 ]; then
+        echo "Usage virsh-ssh [<user>@]<domain>"
+        echo
+        echo "Show IP's of a given virsh domain"
+        return 2
+    fi
+
+    IFS="@"; declare -a uad=($*)
+
+    case "${#uad[@]}" in
+        1)
+            domain="${uad[0]}"
+            ;;
+        2)
+            user="${uad[0]}"
+            domain="${uad[1]}"
+            ;;
+        *)
+            echo "Bad argument. Should be [<user>@]<domain> got: ${uad[*]}"
+    esac
+
+    host=$(virsh-get-ip "${domain}")
+
+    if [ -z "${user}" ]; then
+        ssh "${host}"
+    else
+        ssh "${user}@${host}"
+    fi
+}
+complete -F _virsh-get-ip virsh-ssh
