@@ -190,6 +190,7 @@ function virsh-get-ip {
     done
 }
 
+# Depends on http://github.com/LuyaoHuang/virsh-bash-completion
 _completion_loader virsh
 
 function _virsh-get-ip {
