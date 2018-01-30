@@ -197,10 +197,9 @@ function _virsh-get-ip {
     local cur doms
 
     COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
 
     doms=$(_virsh_list_domains "1")
-    COMPREPLY=( $(compgen -W "$doms" -- "$cur") )
+    COMPREPLY=( $(compgen -W "$doms" -- "${COMP_WORDS[COMP_CWORD]}") )
 }
 complete -F _virsh-get-ip virsh-get-ip
 
@@ -236,4 +235,19 @@ function virsh-ssh {
         ssh "${user}@${host}"
     fi
 }
-complete -F _virsh-get-ip virsh-ssh
+
+function _virsh-ssh {
+    local cur user
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+
+    [[ $cur == *@* ]] && user=${cur%@*}@ && cur=${cur#*@}
+
+    doms=$(_virsh_list_domains "1")
+    COMPREPLY=( $(compgen -W "$doms" -- "$cur") )
+    for (( i=0; i < ${#COMPREPLY[@]}; i++ )); do
+        COMPREPLY[i]=$user${COMPREPLY[i]}
+    done
+}
+
+complete -F _virsh-ssh virsh-ssh
