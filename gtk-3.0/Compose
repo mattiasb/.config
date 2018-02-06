@@ -83,6 +83,8 @@
 <Multi_key> <g> <i> <f> <t>                                : "🎁" U1F381
 <Multi_key> <p> <y> <r> <o>                                : "🎆" U1F386
 <Multi_key> <s> <a> <n> <t> <a>                            : "🎅" U1F385
+<Multi_key> <s> <u> <n>                                    : "🌞" U1F31E
+<Multi_key> <c> <o> <o> <l>                                : "🕶" U-0F576
 
 <Multi_key> <c> <i> <g> <g>                                : "🚬" U1F6AC
 <Multi_key> <g> <a> <s>                                    : "⛽" U26FD
@@ -160,10 +162,8 @@
 <Multi_key> <l> <o> <l>                                    : "😂" U1F602
 <Multi_key> <h> <m>                                        : "🤔" U1F914
 <Multi_key> <n> <e> <r> <d>                                : "🤓" U1F913
-<Multi_key> <s> <a> <d>                                    : "😢" U1F622
 <Multi_key> <t> <e> <a> <r>                                : "😢" U1F622
 <Multi_key> <c> <r> <y>                                    : "😭" U1F62D
-<Multi_key> <s> <o> <b>                                    : "😭" U1F62D
 <Multi_key> <v> <o> <m> <i> <t>                            : "🤮" U1F92E
 <Multi_key> <p> <u> <k> <e>                                : "🤮" U1F92E
 
