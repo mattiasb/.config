@@ -20,7 +20,10 @@ then
     POWERLINE_BASH_SELECT=1
     . /usr/share/powerline/bash/powerline.sh
 else
-    # My old prompt for reference
+    # My old prompt for stuff like aterm in emacs
+
+    PROMPT_DIRTRIM=3
+
     # Git prompt
     if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
         source /usr/share/git-core/contrib/completion/git-prompt.sh
