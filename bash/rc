@@ -254,3 +254,9 @@ function _virsh-ssh {
 }
 
 complete -F _virsh-ssh virsh-ssh
+
+function list-ssh-servers {
+    avahi-browse _ssh._tcp -t                       | \
+        grep --color=never IPv4                     | \
+        awk '{ printf "%-10s %s.local\n", $2, $4 }'
+}
