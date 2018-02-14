@@ -89,6 +89,7 @@ alias refresh='source ~/.bashrc'
 alias c='command'
 alias sys='systemctl'
 alias session='systemctl --user'
+alias cmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 
 _completion_loader command
 _completion_loader systemctl
