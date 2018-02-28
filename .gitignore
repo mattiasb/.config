@@ -59,3 +59,4 @@ autostart/remmina-applet.desktop
 configstore/*
 bash_completion.d/virsh_bash_completion
 virt-viewer/
+/autostart/*
