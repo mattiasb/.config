@@ -254,7 +254,7 @@ function _virsh-ssh {
     done
 }
 
-complete -F _virsh-ssh virsh-ssh
+# complete -F _virsh-ssh virsh-ssh
 
 function list-ssh-servers {
     avahi-browse _ssh._tcp -t                       | \
