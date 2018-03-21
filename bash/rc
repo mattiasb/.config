@@ -262,3 +262,11 @@ function list-ssh-servers {
         grep --color=never IPv4                     | \
         awk '{ printf "%-10s %s.local\n", $2, $4 }'
 }
+
+function magit {
+    pushd "${@}" >/dev/null || return 3
+    /bin/emacsclient -c -nw \
+                     --eval '(progn (magit-status) (delete-other-windows))'
+    popd >/dev/null || return 3
+}
+complete -d magit
