@@ -270,3 +270,7 @@ function magit {
     popd >/dev/null || return 3
 }
 complete -d magit
+
+function wanderlust {
+    /bin/emacsclient -c -nw --eval '(wl)'
+}
