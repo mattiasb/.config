@@ -36,6 +36,7 @@
 	lightweight-tags = "!f() { git for-each-ref refs/tags/ --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = commit ] && echo $name; done }; f"
 	annotated-tags   = "!f() { git for-each-ref refs/tags/ --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = tag    ] && echo $name; done }; f"
 	flow-init 	 = "!f() { git flow init -fd; git config gitflow.prefix.versiontag v; }; f "
+	home             = "!f() { cd; git each $@ :: .config/ .emacs.d/ .local/bin/; }; f"
 [diff]
 	tool = meld
 [rebase]
