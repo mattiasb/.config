@@ -84,7 +84,7 @@ alias tm="tmux a || tmux"
 alias ansible-local="env -u ANSIBLE_VAULT_PASSWORD_FILE ansible-playbook -i 'localhost,' -c local"
 alias wipehist="cat /dev/null > ~/.bash_history && history -c && exit"
 alias ninja="ninja-build"
-alias emacs="emacsclient -c"
+alias emacs="emacsclient -c -s main"
 alias refresh='source ~/.bashrc'
 alias c='command'
 alias sys='systemctl'
@@ -265,12 +265,12 @@ function list-ssh-servers {
 
 function magit {
     pushd "${@}" >/dev/null || return 3
-    /bin/emacsclient -c -nw \
+    /bin/emacsclient -s main -c -nw \
                      --eval '(progn (magit-status) (delete-other-windows))'
     popd >/dev/null || return 3
 }
 complete -d magit
 
 function wanderlust {
-    /bin/emacsclient -c -nw --eval '(wl)'
+    /bin/emacsclient -s wanderlust -c -nw --eval '(wl)'
 }
