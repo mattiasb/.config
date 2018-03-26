@@ -274,3 +274,35 @@ complete -d magit
 function wanderlust {
     /bin/emacsclient -s wanderlust -c -nw --eval '(wl)'
 }
+
+function _cmd-which {
+    local cmd
+    cmd="${1}"
+    shift
+
+    args=( "${@}" )
+    arglen=$(( ${#args[@]} ))
+
+    case $arglen in
+        0)
+            echo "Usage: ${cmd}-which [FLAGS...] <COMMAND>"
+            return 2
+            ;;
+        1)
+            eval "${cmd} $(which "${1}")"
+            return $?
+            ;;
+        *)
+            last="${args[-1]}"
+            init="${args[*]%${!#}}"
+            eval "${cmd} ${init} $(which "${last}")"
+            return $?
+            ;;
+    esac
+}
+
+alias less-which='_cmd-which less'
+complete -c less-which
+
+alias emacs-which='_cmd-which "emacsclient -c -s main"'
+complete -c emacs-which
