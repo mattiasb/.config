@@ -1,0 +1,27 @@
+#!/bin/bash
+
+alias dmesg="dmesg --human"
+alias open="xdg-open"
+alias ls="ls -h -B --color=auto  --group-directories-first"
+alias tmux="tmux -f ~/.config/tmux/config"
+alias tm="tmux a || tmux"
+alias ansible-local="env -u ANSIBLE_VAULT_PASSWORD_FILE ansible-playbook -i 'localhost,' -c local"
+alias wipehist="cat /dev/null > ~/.bash_history && history -c && exit"
+alias ninja="ninja-build"
+alias emacs="emacsclient -c -s main"
+alias refresh='source ~/.bashrc'
+alias c='command'
+alias sys='systemctl'
+alias session='systemctl --user'
+alias cmake='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
+alias groovysh='TERM=xterm-color groovysh'
+
+_completion_loader command
+_completion_loader systemctl
+complete -F _command c
+complete -F _systemctl sys
+complete -F _systemctl session
+complete -G "*.yaml" -d  ansi
+complete -W "" tm
+complete -W "" wipehist
+complete -W "" refresh

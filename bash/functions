@@ -1,0 +1,202 @@
+#!/bin/bash
+
+function git-commiters () {
+    if [ $# -eq 0 ]; then
+        git log --oneline --pretty="format:%an <%ae>" | sort | uniq
+    else
+        git log --oneline --pretty="format:%an <%ae>" "${1}".. | sort | uniq
+    fi
+}
+
+function mkcd () {
+    if [ ! -e "${1}" ]; then
+        mkdir -p "${1}"
+    fi
+    cd "${1}" || return $?
+}
+complete -d mkcd
+
+function cpcd () {
+    cp "${@}" && cd "${@: -1}" || return $?
+}
+_completion_loader _longopt
+complete -F _longopt cpcd
+
+function mvcd () {
+    mv "${@}" && cd "${@: -1}" || return $?
+}
+_completion_loader _longopt
+complete -F _longopt mvcd
+
+function docker-enter {
+    if [ -z "${1}" ]; then
+        echo "Usage docker-enter <container>"
+        echo
+        echo "Enter an already running container"
+    else
+        docker exec -it "${1}" bash -c "export TERM=xterm; bash"
+    fi
+}
+
+function docker-shell {
+    if [ -z "${1}" ]; then
+        echo "Usage docker-shell <image>"
+        echo
+        echo "Start a throw-away container from an image"
+    else
+        docker run --rm -it "${1}" bash -c "export TERM=xterm; bash"
+    fi
+}
+
+function create-project {
+    mkcd "${HOME}/Code/Projects/${1}"
+    git init
+    echo "*~"   > .gitignore
+    echo "*#*" >> .gitignore
+    echo       >> .gitignore
+    touch README.md
+}
+complete -W "" create-project
+
+function ansible-vagrant-playbook {
+    local inventory=.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
+    local private_key=~/.vagrant.d/insecure_private_key
+    ansible-playbook --private-key="${private_key}" -i "${inventory}" "${@}"
+}
+
+function git-cd {
+    cd "$(git rev-parse --show-toplevel)/${*}" || exit $?
+}
+
+function virsh-get-ip {
+    local macs domain mac_regex ip_regex
+
+    if [ $# -lt 1 ]; then
+        echo "Usage vm-get-ip <domain>"
+        echo
+        echo "Show IP's of a given virsh domain"
+        return 2
+    fi
+
+    domain="${1}"
+    mac_regex="([0-9a-f]{2}:){5}([0-9a-f]{2})"
+    ip_regex="^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"
+
+    macs="$(virsh domiflist "${domain}" | grep --color=never -o -E "${mac_regex}")"
+
+    for mac in $macs ; do
+        arp -e | grep "${mac}" | grep --color=never -o -P "${ip_regex}"
+    done
+}
+
+# Depends on http://github.com/LuyaoHuang/virsh-bash-completion
+_completion_loader virsh
+
+function _virsh-get-ip {
+    local cur doms
+
+    COMPREPLY=()
+
+    doms=$(_virsh_list_domains "1")
+    COMPREPLY=( $(compgen -W "$doms" -- "${COMP_WORDS[COMP_CWORD]}") )
+}
+complete -F _virsh-get-ip virsh-get-ip
+
+function virsh-ssh {
+    local uad domain user host
+
+    if [ ! $# -eq 1 ]; then
+        echo "Usage virsh-ssh [<user>@]<domain>"
+        echo
+        echo "Show IP's of a given virsh domain"
+        return 2
+    fi
+
+    IFS="@"; declare -a uad=($@)
+
+    case "${#uad[@]}" in
+        1)
+            domain="${uad[0]}"
+            ;;
+        2)
+            user="${uad[0]}"
+            domain="${uad[1]}"
+            ;;
+        *)
+            echo "Bad argument. Should be [<user>@]<domain> got: ${uad[*]}"
+    esac
+
+    host=$(virsh-get-ip "${domain}")
+
+    if [ -z "${user}" ]; then
+        ssh "${host}"
+    else
+        ssh "${user}@${host}"
+    fi
+}
+
+function _virsh-ssh {
+    local cur user
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+
+    [[ $cur == *@* ]] && user=${cur%@*}@ && cur=${cur#*@}
+
+    doms=$(_virsh_list_domains "1")
+    COMPREPLY=( $(compgen -W "$doms" -- "$cur") )
+    for (( i=0; i < ${#COMPREPLY[@]}; i++ )); do
+        COMPREPLY[i]=$user${COMPREPLY[i]}
+    done
+}
+
+# complete -F _virsh-ssh virsh-ssh
+
+function list-ssh-servers {
+    avahi-browse _ssh._tcp -t                       | \
+        grep --color=never IPv4                     | \
+        awk '{ printf "%-10s %s.local\n", $2, $4 }'
+}
+
+function magit {
+    pushd "${@}" >/dev/null || return 3
+    /bin/emacsclient -s main -c -nw \
+                     --eval '(progn (magit-status) (delete-other-windows))'
+    popd >/dev/null || return 3
+}
+complete -d magit
+
+function wanderlust {
+    /bin/emacsclient -s wanderlust -c -nw --eval '(wl)'
+}
+
+function _cmd-which {
+    local cmd
+    cmd="${1}"
+    shift
+
+    args=( "${@}" )
+    arglen=$(( ${#args[@]} ))
+
+    case $arglen in
+        0)
+            echo "Usage: ${cmd}-which [FLAGS...] <COMMAND>"
+            return 2
+            ;;
+        1)
+            eval "${cmd} $(which "${1}")"
+            return $?
+            ;;
+        *)
+            last="${args[-1]}"
+            init="${args[*]%${!#}}"
+            eval "${cmd} ${init} $(which "${last}")"
+            return $?
+            ;;
+    esac
+}
+
+alias less-which='_cmd-which less'
+complete -c less-which
+
+alias emacs-which='_cmd-which "emacsclient -c -s main"'
+complete -c emacs-which
