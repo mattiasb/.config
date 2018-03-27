@@ -11,13 +11,6 @@
 [include]
 	path = config.local
 
-# GNOME
-[url "ssh://mattiasb@git.gnome.org/git/"]
-	insteadOf = gnome:
-## Always use SSH
-[url "ssh://mattiasb@git.gnome.org/git/"]
-	pushInsteadOf = https://git.gnome.org/browse/
-
 # Github
 # Use SSH when I have access	
 [url "ssh://git@github.com/mattiasb/"]
