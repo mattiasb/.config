@@ -147,7 +147,7 @@
 <Multi_key> <colon> <D>                                    : "😃" U1F603
 <Multi_key> <colon> <D> <D>                                : "😂" U1F602
 <Multi_key> <colon> <o>                                    : "😮" U1F62E
-<Multi_key> <colon> <O>                                    : "😲" U1F632
+<Multi_key> <colon> <O>                                    : "😮" U1F62E
 <Multi_key> <colon> <slash>                                : "😕" U1F615
 <Multi_key> <x> <D>                                        : "😆" U1F606
 <Multi_key> <X> <D>                                        : "😆" U1F606
