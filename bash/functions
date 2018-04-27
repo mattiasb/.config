@@ -58,6 +58,11 @@ function create-project {
 }
 complete -W "" create-project
 
+function create-test {
+    mkcd "${HOME}/Code/Test/${1}"
+}
+complete -W "" create-test
+
 function ansible-vagrant-playbook {
     local inventory=.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
     local private_key=~/.vagrant.d/insecure_private_key
