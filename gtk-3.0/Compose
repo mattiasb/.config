@@ -140,6 +140,8 @@
 
 # Smileys
 
+
+<Multi_key> <colon> <bracketright>                         : "😊" U1F60A
 <Multi_key> <semicolon> <parenright>                       : "😉" U1F609
 <Multi_key> <colon> <asterisk>                             : "😗" U1F617
 <Multi_key> <colon> <asterisk> <asterisk>                  : "😘" U1F618
