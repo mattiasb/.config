@@ -49,7 +49,7 @@ function docker-shell {
 }
 
 function create-project {
-    mkcd "${HOME}/Code/Projects/${1}"
+    mkcd "${HOME}/Code/github.com/mattiasb/${1}"
     git init
     echo "*~"   > .gitignore
     echo "*#*" >> .gitignore
