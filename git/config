@@ -30,6 +30,7 @@
 	annotated-tags   = "!f() { git for-each-ref refs/tags/ --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = tag    ] && echo $name; done }; f"
 	flow-init 	 = "!f() { git flow init -fd; git config gitflow.prefix.versiontag v; }; f "
 	home             = "!f() { cd; git each $@ :: Documents/Magic/decks/ .config/ .emacs.d/ .local/bin/; }; f"
+	projects         = "!f() { cd; git each $@ :: Code/github.com/mattiasb/*; }; f"
 [diff]
 	tool = meld
 [rebase]
