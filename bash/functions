@@ -201,7 +201,7 @@ function cmd-which {
 }
 
 function lpass {
-    LPASS=/bin/lpass
+    LPASS="$(which --skip-functions --skip-alias lpass)"
 
     case "${1}" in
         -v|--version|--help|-h|login|logout|status) ;;
