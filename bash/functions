@@ -199,3 +199,18 @@ function cmd-which {
             ;;
     esac
 }
+
+function lpass {
+    LPASS=/bin/lpass
+
+    case "${1}" in
+        -v|--version|--help|-h|login|logout|status) ;;
+        *)
+            if [ ! "$($LPASS ls 2>/dev/null)" ]; then
+                $LPASS login
+            fi
+            ;;
+    esac
+
+    $LPASS "${@}"
+}
