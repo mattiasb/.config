@@ -174,7 +174,7 @@ function wanderlust {
     /bin/emacsclient -s wanderlust -c -nw --eval '(wl)'
 }
 
-function _cmd-which {
+function cmd-which {
     local cmd
     cmd="${1}"
     shift
@@ -199,9 +199,3 @@ function _cmd-which {
             ;;
     esac
 }
-
-alias less-which='_cmd-which less'
-complete -c less-which
-
-alias emacs-which='_cmd-which "emacsclient -c -s main"'
-complete -c emacs-which
