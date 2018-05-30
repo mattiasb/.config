@@ -34,7 +34,7 @@ function docker-enter {
         echo
         echo "Enter an already running container"
     else
-        docker exec -it "${1}" bash -c "export TERM=xterm; bash"
+        docker exec -it "${1}" sh -c "export TERM=xterm; sh"
     fi
 }
 

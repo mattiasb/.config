@@ -22,6 +22,7 @@ application/x-extension-html=userapp-Firefox-S2EC9Y.desktop;
 application/x-extension-shtml=userapp-Firefox-S2EC9Y.desktop;
 application/x-extension-xhtml=userapp-Firefox-S2EC9Y.desktop;
 application/x-extension-xht=userapp-Firefox-S2EC9Y.desktop;
+image/png=gimp.desktop;
 
 [Default Applications]
 x-scheme-handler/http=userapp-Firefox-S2EC9Y.desktop
