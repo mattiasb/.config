@@ -2,8 +2,8 @@
 Description=Emacs: the extensible, self-documenting text editor
 
 [Service]
-Type=forking
-ExecStart=/usr/bin/emacs --daemon=main
+Type=simple
+ExecStart=/usr/bin/emacs --fg-daemon=main
 ExecStop=/usr/bin/emacsclient -s main --eval "(mb-f-kill-server)"
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
 Restart=always

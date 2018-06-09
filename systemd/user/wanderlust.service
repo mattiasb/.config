@@ -2,8 +2,8 @@
 Description=Wanderlust: An Emacs Mail Client
 
 [Service]
-Type=forking
-ExecStart=/usr/bin/emacs --daemon=wanderlust
+Type=simple
+ExecStart=/usr/bin/emacs --fg-daemon=wanderlust
 ExecStop=/usr/bin/emacsclient -s wanderlust --eval "(mb-f-kill-server)"
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
 Restart=always
