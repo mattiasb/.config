@@ -11,7 +11,12 @@ if [ -f "${HOME}/.config/bash/rc.local" ]; then
     . "${HOME}/.config/bash/rc.local"
 fi
 
-### Environment (That can't (only) be put in environment.d)
+### Environment
+
+for f in ${HOME}/.config/environment.d/*.conf; do
+    # shellcheck source=/dev/null
+    source "${f}"
+done
 
 ## Set up PS1
 if [[ "${TERM}" == *"-256color" ]] &&
@@ -53,26 +58,13 @@ else
     export PS1="\[\e[0;32m\]\u\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(type __git_ps1 1>/dev/null 2>/dev/null && __git_ps1) \$ "
 fi
 
-# Path
-export PATH=$HOME/.cabal/bin:$HOME/.local/bin:$GEM_HOME/bin:$PATH
-export LS_COLORS="di=36"
-
-### History
+# ### History
 shopt -s histappend
-export HISTSIZE=10000
-export HISTFILESIZE=100000
-export HISTCONTROL=ignoredups:erasedups:ignorespace
-
-## Turn this off for a while
-# export PROMPT_COMMAND="history -n; \
-    #                        history -w; \
-    #                        history -c; \
-    #                        history -r; \
-    #                        ${PROMPT_COMMAND:-true}"
 
 ### Completion
 for comp in ${HOME}/.config/bash_completion.d/*; do
     if [ -f "${comp}" ] ; then
+        # shellcheck source=/dev/null
         . "${comp}"
     fi
 done
