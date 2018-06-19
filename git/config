@@ -50,3 +50,5 @@
 	helper = libsecret
 [merge]
 	tool = meld
+[diff "ansible-vault"]
+	textconv = ansible-vault view
