@@ -5,7 +5,10 @@ alias open="xdg-open"
 alias ls="ls -h -B --color=auto  --group-directories-first"
 alias tmux="tmux -f ~/.config/tmux/config"
 alias tm="tmux a || tmux"
-alias ansible-local="env -u ANSIBLE_VAULT_PASSWORD_FILE ansible-playbook -i 'localhost,' -c local"
+alias ansible-local="env -u ANSIBLE_VAULT_PASSWORD_FILE \
+                     ansible-playbook -i 'localhost,' -c local"
+alias ansible-console-local="env -u ANSIBLE_VAULT_PASSWORD_FILE \
+                             ansible-console -i 'localhost,' -c local"
 alias wipehist="cat /dev/null > ~/.bash_history && history -c && exit"
 alias ninja="ninja-build"
 alias emacs="emacsclient -c -s main"
