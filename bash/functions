@@ -214,3 +214,11 @@ function lpass {
 
     $LPASS "${@}"
 }
+
+function calc {
+    local args
+
+    args="${*}"
+
+    echo $((args))
+}
