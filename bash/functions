@@ -159,7 +159,9 @@ function _virsh-ssh {
 function list-ssh-servers {
     avahi-browse _ssh._tcp -t                       | \
         grep --color=never IPv4                     | \
-        awk '{ printf "%-10s %s.local\n", $2, $4 }'
+        awk '{ printf "%-10s %s.local\n", $2, $4 }' | \
+        sort                                        | \
+        awk -F" " '!_[$2]++'
 }
 
 function magit {
