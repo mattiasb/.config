@@ -48,7 +48,7 @@ function docker-shell {
     fi
 }
 
-function create-project {
+function project-create {
     mkcd "${HOME}/Code/github.com/mattiasb/${1}"
     git init
     echo "*~"   > .gitignore
@@ -57,21 +57,21 @@ function create-project {
     touch README.md
 }
 
-function cd-project {
+function project-cd {
     cd "${HOME}/Code/github.com/mattiasb/${1}" || return
 }
 function _complete-project-folder() {
     local projects=("${HOME}/Code/github.com/mattiasb/${2}"*)
     [[ -e ${projects[0]} ]] && COMPREPLY=( "${projects[@]##*/}" )
 }
-complete -F _complete-project-folder create-project
-complete -F _complete-project-folder cd-project
+complete -F _complete-project-folder project-create
+complete -F _complete-project-folder project-cd
 
-function create-test {
+function test-create {
     mkcd "${HOME}/Code/Test/${1}"
 }
 
-function cd-test {
+function test-cd {
     cd "${HOME}/Code/Test/${1}" || return
 }
 
@@ -79,8 +79,8 @@ function _complete-test-folder() {
     local tests=("${HOME}/Code/Test/${2}"*)
     [[ -e ${tests[0]} ]] && COMPREPLY=( "${tests[@]##*/}" )
 }
-complete -F _complete-test-folder create-test
-complete -F _complete-test-folder cd-test
+complete -F _complete-test-folder test-create
+complete -F _complete-test-folder test-cd
 
 function ansible-vagrant-playbook {
     local inventory=.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
@@ -242,4 +242,8 @@ function calc {
     args="${*}"
 
     echo $((args))
+}
+
+function ypterm {
+    yaml2json < "${1}" | jpterm -m result | json2yaml
 }
