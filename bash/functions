@@ -245,5 +245,13 @@ function calc {
 }
 
 function ypterm {
-    yaml2json < "${1}" | jpterm -m result | json2yaml
+    local fd
+
+    if (( $# == 0 )); then
+        fd=/dev/stdin
+    else
+        fd="${1}"
+    fi
+
+    yaml2json < "${fd}" | jpterm
 }
