@@ -56,12 +56,31 @@ function create-project {
     echo       >> .gitignore
     touch README.md
 }
-complete -W "" create-project
+
+function cd-project {
+    cd "${HOME}/Code/github.com/mattiasb/${1}" || return
+}
+function _complete-project-folder() {
+    local projects=("${HOME}/Code/github.com/mattiasb/${2}"*)
+    [[ -e ${projects[0]} ]] && COMPREPLY=( "${projects[@]##*/}" )
+}
+complete -F _complete-project-folder create-project
+complete -F _complete-project-folder cd-project
 
 function create-test {
     mkcd "${HOME}/Code/Test/${1}"
 }
-complete -W "" create-test
+
+function cd-test {
+    cd "${HOME}/Code/Test/${1}" || return
+}
+
+function _complete-test-folder() {
+    local tests=("${HOME}/Code/Test/${2}"*)
+    [[ -e ${tests[0]} ]] && COMPREPLY=( "${tests[@]##*/}" )
+}
+complete -F _complete-test-folder create-test
+complete -F _complete-test-folder cd-test
 
 function ansible-vagrant-playbook {
     local inventory=.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
