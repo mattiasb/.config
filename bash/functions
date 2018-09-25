@@ -255,3 +255,21 @@ function ypterm {
 
     yaml2json < "${fd}" | jpterm
 }
+
+function throttle-net {
+    if [ $# -lt 1 ]; then
+        echo "Usage: throttle-net <device>"
+        return 1
+    fi
+
+    sudo wondershaper "${1}" 800 2400
+}
+
+function unthrottle-net {
+    if [ $# -lt 1 ]; then
+        echo "Usage: unthrottle-net <device>"
+        return 1
+    fi
+
+    sudo wondershaper "${1}" clean
+}
