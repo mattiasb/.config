@@ -63,6 +63,10 @@ fi
 # History
 shopt -s histappend
 
+# Disable C-s / C-q for XOFF/XON
+stty start undef
+stty stop undef
+
 ### Completion
 for comp in ${HOME}/.config/bash_completion.d/*; do
     if [ -f "${comp}" ] ; then
