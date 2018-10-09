@@ -58,7 +58,9 @@ else
     export PS1="\[\e[0;32m\]\u\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(type __git_ps1 1>/dev/null 2>/dev/null && __git_ps1) \$ "
 fi
 
-# ### History
+### Configuration
+
+# History
 shopt -s histappend
 
 ### Completion
