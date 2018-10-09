@@ -12,10 +12,13 @@ if [ -f "${HOME}/.config/bash/rc.local" ]; then
 fi
 
 ### Environment
-
-for f in ${HOME}/.config/environment.d/*.conf; do
-    # shellcheck source=/dev/null
-    source "${f}"
+for file in ${HOME}/.config/environment.d/*.conf; do
+    while IFS= read -r line
+    do
+        if [[ ! "$line" =~ ^[[:space:]]*# ]]; then
+            eval "export ${line}"
+        fi
+    done < "${file}"
 done
 
 ## Set up PS1
