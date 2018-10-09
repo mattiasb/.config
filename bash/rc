@@ -23,6 +23,7 @@ done
 
 ## Set up PS1
 if [[ "${TERM}" == *"-256color" ]] &&
+       [ -z "${INSIDE_EMACS}" ] &&
        [ "$(systemctl is-active --user powerline.service)" = "active" ];
 then
     POWERLINE_BASH_CONTINUATION=1
