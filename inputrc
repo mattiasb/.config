@@ -10,5 +10,3 @@ set completion-ignore-case on
 set completion-query-items 10000
 set page-completions off
 set skip-completed-text on
-
-"\C-s": "\C-a hh -- \C-j"

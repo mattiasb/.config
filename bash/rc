@@ -67,3 +67,6 @@ done
 
 # shellcheck source=./functions
 . "${HOME}/.config/bash/functions"
+
+# Use fzf
+. /usr/share/fzf/shell/key-bindings.bash
