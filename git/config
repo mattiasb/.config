@@ -32,6 +32,7 @@
 	lightweight-tags = "!f() { git for-each-ref refs/tags/ --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = commit ] && echo $name; done }; f"
 	projects         = "!f() { cd; git each $@ :: Code/github.com/mattiasb/*; }; f"
 	sloc             = "!f() { git ls-files -z | xargs -0 cat | wc -l; }; f"
+	sloc-report      = "!f() { cloc $(git ls-files); }; f"
 [diff]
 	tool = meld
 [rebase]
