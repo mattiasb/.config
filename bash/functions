@@ -34,7 +34,8 @@ function docker-enter {
         echo
         echo "Enter an already running container"
     else
-        docker exec -it "${1}" sh -c "export TERM=xterm; sh"
+        cmd="export TERM=$TERM; command -v bash >/dev/null 2>&1 && bash || sh"
+        docker exec -it "${1}" sh -c "${cmd}"
     fi
 }
 
@@ -44,7 +45,8 @@ function docker-shell {
         echo
         echo "Start a throw-away container from an image"
     else
-        docker run --rm -it "${1}" bash -c "export TERM=xterm; bash"
+        cmd="export TERM=$TERM; command -v bash >/dev/null 2>&1 && bash || sh"
+        docker run --rm -it "${1}" sh -c "${cmd}"
     fi
 }
 
