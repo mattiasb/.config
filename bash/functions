@@ -275,3 +275,7 @@ function unthrottle-net {
 
     sudo wondershaper "${1}" clean
 }
+
+function logins-today {
+    journalctl --since "today" -g 'unlocked login keyring' --no-pager
+}
