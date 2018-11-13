@@ -279,3 +279,11 @@ function unthrottle-net {
 function logins-today {
     journalctl --since "today" -g 'unlocked login keyring' --no-pager
 }
+
+function remake {
+    if [ $# -lt 1 ]; then
+        echo "Usage: remake <file>..."
+        return 1
+    fi
+    touch --date=@1 "${@}" && make "${@}"
+}
