@@ -287,3 +287,11 @@ function remake {
     fi
     touch --date=@1 "${@}" && make "${@}"
 }
+
+function gg {
+    if [ $# -ne 1 ]; then
+        echo "Usage: gg <url>"
+        return 1
+    fi
+    git get "${1}" && cd "$(git get --show-path "${1}")" || return $?
+}
