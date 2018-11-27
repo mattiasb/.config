@@ -15,6 +15,11 @@
 # Use SSH when I have access	
 [url "ssh://git@github.com/mattiasb/"]
 	pushInsteadOf = https://github.com/mattiasb/
+[url "git@github.com:"]
+	insteadOf = github:
+[url "git@git.gnome.org:"]
+	insteadOf = gnome:
+
 [bz]
 	browser = firefox3
 [core]
