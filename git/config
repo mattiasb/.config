@@ -8,8 +8,8 @@
 	diff = auto
 	pager = no
 
-[include]
-	path = config.local
+[includeIf "gitdir:~/Code/git.smarteye.se/"]
+	path = config.work
 
 # Github
 # Use SSH when I have access	
