@@ -19,6 +19,8 @@
 	insteadOf = github:
 [url "git@gitlab.com:"]
 	insteadOf = gitlab:
+[url "git@git.smarteye.se:"]
+	insteadOf = smarteye:
 [url "git@gitlab.gnome.org:"]
 	insteadOf = gnome:
 
