@@ -17,6 +17,8 @@
 	pushInsteadOf = https://github.com/mattiasb/
 [url "git@github.com:"]
 	insteadOf = github:
+[url "git@gitlab.com:"]
+	insteadOf = gitlab:
 [url "git@gitlab.gnome.org:"]
 	insteadOf = gnome:
 
