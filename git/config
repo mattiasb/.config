@@ -64,7 +64,7 @@
 
 [github]
 	user = mattiasb
-[gitlab "gitlab.com/api/v4"]
+[gitlab]
 	user = mattiasb
 [gitlab "gitlab.gnome.org/api/v4"]
 	user = mattiasb
