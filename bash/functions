@@ -119,7 +119,7 @@ function ansible-vagrant-playbook {
 }
 
 function ansible-record-hostkeys {
-    local hosts inventory
+    local host_pattern inventory
 
     if [ ! $# -eq 2 ] || _help-flag; then
         echo "Usage: ansible-record-hostkeys <inventory> <host-pattern>"
@@ -128,11 +128,14 @@ function ansible-record-hostkeys {
         return 2
     fi
 
+    inventory="${1}"
+    host_pattern="${2}"
+
     export ANSIBLE_HOST_KEY_CHECKING=False    \
         && ansible -e 'record_host_keys=True' \
                    -m ping                    \
                    -i "${inventory}"          \
-                   "${hosts}"
+                   "${host_pattern}"
 }
 
 function git-cd {
