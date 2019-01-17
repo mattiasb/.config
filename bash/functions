@@ -87,6 +87,23 @@ function ansible-vagrant-playbook {
     ansible-playbook --private-key="${private_key}" -i "${inventory}" "${@}"
 }
 
+function ansible-record-hostkeys {
+    local hosts inventory
+
+    if [ ! $# -eq 2 ]; then
+        echo "Usage: ansible-record-hostkeys <inventory> <host-pattern>"
+        echo
+        echo "Import ssh host keys from hosts"
+        return 2
+    fi
+
+    export ANSIBLE_HOST_KEY_CHECKING=False    \
+        && ansible -e 'record_host_keys=True' \
+                   -m ping                    \
+                   -i "${inventory}"          \
+                   "${hosts}"
+}
+
 function git-cd {
     cd "$(git rev-parse --show-toplevel)/${*}" || exit $?
 }
