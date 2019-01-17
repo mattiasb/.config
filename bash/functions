@@ -1,5 +1,9 @@
 #!/bin/bash
 
+function _help-flag {
+    [[ " ${@} " == *" --help "* ]] || [[ " ${@} " == *" -h "* ]]
+}
+
 function git-commiters () {
     if [ $# -eq 0 ]; then
         git log --oneline --pretty="format:%an <%ae>" | sort | uniq
@@ -26,28 +30,35 @@ _completion_loader _longopt
 complete -F _longopt mvcd
 
 function docker-enter {
-    if [ -z "${1}" ]; then
+    if [ -z "${1}" ] || _help-flag "${@}"; then
         echo "Usage docker-enter <container>"
         echo
         echo "Enter an already running container"
-    else
-        cmd="export TERM=$TERM; command -v bash >/dev/null 2>&1 && bash || sh"
-        docker exec -it "${1}" sh -c "${cmd}"
+        return 2
     fi
+
+    cmd="export TERM=$TERM; command -v bash >/dev/null 2>&1 && bash || sh"
+    docker exec -it "${1}" sh -c "${cmd}"
 }
 
 function docker-shell {
-    if [ -z "${1}" ]; then
+    if [ -z "${1}" ] || _help-flag "${@}"; then
         echo "Usage docker-shell <image>"
         echo
         echo "Start a throw-away container from an image"
-    else
-        cmd="export TERM=$TERM; command -v bash >/dev/null 2>&1 && bash || sh"
-        docker run --rm -it "${1}" sh -c "${cmd}"
+        return 2
     fi
+
+    cmd="export TERM=$TERM; command -v bash >/dev/null 2>&1 && bash || sh"
+    docker run --rm -it "${1}" sh -c "${cmd}"
 }
 
 function project-create {
+    if [ ! $# -eq 1 ] || _help-flag; then
+        echo "Usage: project-create <NAME>"
+        return 2
+    fi
+
     mkcd "${HOME}/Code/github.com/mattiasb/${1}"
     git init
     echo "*~"   > .gitignore
@@ -57,6 +68,11 @@ function project-create {
 }
 
 function project-cd {
+    if [ ! $# -eq 1 ] || _help-flag; then
+        echo "Usage: project-cd <NAME>"
+        return 2
+    fi
+
     cd "${HOME}/Code/github.com/mattiasb/${1}" || return
 }
 function _complete-project-folder() {
@@ -67,10 +83,20 @@ complete -F _complete-project-folder project-create
 complete -F _complete-project-folder project-cd
 
 function test-create {
+    if [ ! $# -eq 1 ] || _help-flag; then
+        echo "Usage: test-create <NAME>"
+        return 2
+    fi
+
     mkcd "${HOME}/Code/Test/${1}"
 }
 
 function test-cd {
+    if [ ! $# -eq 1 ] || _help-flag; then
+        echo "Usage: test-cd <NAME>"
+        return 2
+    fi
+
     cd "${HOME}/Code/Test/${1}" || return
 }
 
@@ -82,6 +108,11 @@ complete -F _complete-test-folder test-create
 complete -F _complete-test-folder test-cd
 
 function ansible-vagrant-playbook {
+    if _help-flag; then
+        echo "Usage: ansible-vagrant-playbook [<ANSIBLE-PLAYBOOK-ARGS>...]"
+        return
+    fi
+
     local inventory=.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
     local private_key=~/.vagrant.d/insecure_private_key
     ansible-playbook --private-key="${private_key}" -i "${inventory}" "${@}"
@@ -90,7 +121,7 @@ function ansible-vagrant-playbook {
 function ansible-record-hostkeys {
     local hosts inventory
 
-    if [ ! $# -eq 2 ]; then
+    if [ ! $# -eq 2 ] || _help-flag; then
         echo "Usage: ansible-record-hostkeys <inventory> <host-pattern>"
         echo
         echo "Import ssh host keys from hosts"
@@ -111,7 +142,7 @@ function git-cd {
 function virsh-get-ip {
     local macs domain mac_regex ip_regex
 
-    if [ $# -lt 1 ]; then
+    if [ $# -lt 1 ] || _help-flag; then
         echo "Usage vm-get-ip <domain>"
         echo
         echo "Show IP's of a given virsh domain"
@@ -145,7 +176,7 @@ complete -F _virsh-get-ip virsh-get-ip
 function virsh-ssh {
     local uad domain user host
 
-    if [ ! $# -eq 1 ]; then
+    if [ ! $# -eq 1 ] || _help-flag; then
         echo "Usage virsh-ssh [<user>@]<domain>"
         echo
         echo "Show IP's of a given virsh domain"
@@ -200,6 +231,11 @@ function list-ssh-servers {
 }
 
 function magit {
+    if [ ! $# -eq 1 ] || _help-flag; then
+        echo "Usage: magit <DIRECTORY>"
+        return 2
+    fi
+
     pushd "${@}" >/dev/null || return 3
     /bin/emacsclient -s main -c -nw \
                      --eval '(progn (magit-status) (delete-other-windows))'
@@ -273,18 +309,18 @@ function ypterm {
 }
 
 function throttle-net {
-    if [ $# -lt 1 ]; then
+    if [ $# -lt 1 ] || _help-flag; then
         echo "Usage: throttle-net <device>"
-        return 1
+        return 2
     fi
 
     sudo wondershaper "${1}" 800 2400
 }
 
 function unthrottle-net {
-    if [ $# -lt 1 ]; then
+    if [ $# -lt 1 ] || _help-flag; then
         echo "Usage: unthrottle-net <device>"
-        return 1
+        return 2
     fi
 
     sudo wondershaper "${1}" clean
@@ -295,17 +331,17 @@ function logins-today {
 }
 
 function remake {
-    if [ $# -lt 1 ]; then
+    if [ $# -lt 1 ] || _help-flag; then
         echo "Usage: remake <file>..."
-        return 1
+        return 2
     fi
     touch --date=@1 "${@}" && make "${@}"
 }
 
 function gg {
-    if [ $# -ne 1 ]; then
+    if [ $# -ne 1 ] || _help-flag; then
         echo "Usage: gg <url>"
-        return 1
+        return 2
     fi
     git get "${1}" && cd "$(git get --show-path "${1}")" || return $?
 }
