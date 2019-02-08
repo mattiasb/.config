@@ -229,8 +229,7 @@ function list-ssh-servers {
     avahi-browse _ssh._tcp -t                       | \
         grep --color=never IPv4                     | \
         awk '{ printf "%-10s %s.local\n", $2, $4 }' | \
-        sort                                        | \
-        awk -F" " '!_[$2]++'
+        sort
 }
 
 function magit {
@@ -347,4 +346,30 @@ function gg {
         return 2
     fi
     git get "${1}" && cd "$(git get --show-path "${1}")" || return $?
+}
+
+function mdns-ssh {
+    local connection
+
+    connection="$(avahi-browse _ssh._tcp -t     | \
+              grep --color=never IPv4           | \
+              awk '{ printf "%s.local\n", $4 }' | \
+              sort                              | \
+              fzf)"
+
+    opts="$(getopt -o u: --long user: -n "mdns-ssh" -- "$@")"
+    eval set -- "$opts"
+    while true; do
+        case "$1" in
+            -u | --user )
+                connection="${2}@${connection}"
+                shift 2
+                ;;
+            -- ) shift; break ;;
+            * ) break ;;
+        esac
+    done
+
+    # shellcheck disable=SC2029
+    ssh "${connection}" "${@}"
 }
