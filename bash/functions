@@ -276,18 +276,18 @@ function cmd-which {
 }
 
 function lpass {
-    LPASS="$(which --skip-functions --skip-alias lpass)"
+    command -v lpass > /dev/null || return $?
 
     case "${1}" in
         -v|--version|--help|-h|login|logout|status) ;;
         *)
-            if [ ! "$($LPASS ls 2>/dev/null)" ]; then
-                $LPASS login
+            if [ ! "$(lpass status -q)" ]; then
+                lpass login mattias.jc.bengtsson@gmail.com
             fi
             ;;
     esac
 
-    $LPASS "${@}"
+    lpass "${@}"
 }
 
 function calc {
