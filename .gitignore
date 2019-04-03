@@ -65,3 +65,5 @@ virt-viewer/
 glade.conf
 /GIMP/*
 /mimeapps.list
+/containers/*
+/kde.org/*
