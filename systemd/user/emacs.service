@@ -1,6 +1,9 @@
 [Unit]
 Description=Emacs: the extensible, self-documenting text editor
 
+Requires=emacs.socket
+After=emacs.socket
+
 [Service]
 Type=simple
 ExecStart=/usr/bin/emacs --fg-daemon=main
@@ -8,6 +11,7 @@ ExecStop=/usr/bin/emacsclient -s main --eval "(mb-f-kill-server)"
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
 Restart=always
 TimeoutStopSec=5
+SuccessExitStatus=0 15
 
 [Install]
 WantedBy=default.target

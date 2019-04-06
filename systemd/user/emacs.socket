@@ -1,0 +1,8 @@
+[Socket]
+ListenStream=%t/emacs/main
+SocketMode=0600
+DirectoryMode=0700
+Service=emacs.service
+
+[Install]
+WantedBy=sockets.target
