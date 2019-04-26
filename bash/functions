@@ -281,13 +281,13 @@ function lpass {
     case "${1}" in
         -v|--version|--help|-h|login|logout|status) ;;
         *)
-            if [ ! "$(lpass status -q)" ]; then
-                lpass login mattias.jc.bengtsson@gmail.com
+            if ! /bin/lpass status -q; then
+                /bin/lpass login mattias.jc.bengtsson@gmail.com
             fi
             ;;
     esac
 
-    lpass "${@}"
+    /bin/lpass "${@}"
 }
 
 function calc {
