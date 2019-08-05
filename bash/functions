@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function _help-flag {
-    [[ " ${@} " == *" --help "* ]] || [[ " ${@} " == *" -h "* ]]
+    [[ " ${*} " == *" --help "* ]] || [[ " ${*} " == *" -h "* ]]
 }
 
 function git-commiters () {
@@ -263,13 +263,13 @@ function cmd-which {
             return 2
             ;;
         1)
-            eval "${cmd} $(which "${1}")"
+            eval "${cmd} $(command -v "${1}")"
             return $?
             ;;
         *)
             last="${args[-1]}"
             init="${args[*]%${!#}}"
-            eval "${cmd} ${init} $(which "${last}")"
+            eval "${cmd} ${init} $(command -v "${last}")"
             return $?
             ;;
     esac
