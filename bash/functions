@@ -38,7 +38,7 @@ function docker-enter {
     fi
 
     cmd="export TERM=$TERM; command -v bash >/dev/null 2>&1 && bash || sh"
-    docker exec -it "${1}" sh -c "${cmd}"
+    sudo docker exec -it "${1}" sh -c "${cmd}"
 }
 
 function docker-shell {
@@ -50,7 +50,7 @@ function docker-shell {
     fi
 
     cmd="export TERM=$TERM; command -v bash >/dev/null 2>&1 && bash || sh"
-    docker run --rm -it "${1}" sh -c "${cmd}"
+    sudo docker run --rm -it "${1}" sh -c "${cmd}"
 }
 
 function project-create {
