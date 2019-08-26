@@ -310,6 +310,10 @@ function ypterm {
     yaml2json < "${fd}" | jpterm
 }
 
+function yq {
+    yaml2json -i /dev/stdin | jq "${@}" | json2yaml
+}
+
 function throttle-net {
     if [ $# -lt 1 ] || _help-flag; then
         echo "Usage: throttle-net <device>"
