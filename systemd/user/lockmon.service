@@ -1,0 +1,11 @@
+[Unit]
+Description=Log GNOME locks and unlocks
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/lockmon
+Restart=always
+TimeoutStopSec=5
+
+[Install]
+WantedBy=default.target

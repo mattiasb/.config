@@ -332,7 +332,7 @@ function unthrottle-net {
 }
 
 function logins-today {
-    journalctl --since "today" -g 'unlocked login keyring' --no-pager
+    journalctl --since "today" -t lockmon --no-pager
 }
 
 function remake {
