@@ -15,14 +15,14 @@
 # Use SSH when I have access	
 [url "ssh://git@github.com/mattiasb/"]
 	pushInsteadOf = https://github.com/mattiasb/
-[url "git@github.com:"]
-	insteadOf = github:
-[url "git@gitlab.com:"]
-	insteadOf = gitlab:
-[url "git@git.smarteye.se:"]
-	insteadOf = smarteye:
-[url "git@gitlab.gnome.org:"]
-	insteadOf = gnome:
+[url "git@github.com"]
+	insteadOf = github
+[url "git@gitlab.com"]
+	insteadOf = gitlab
+[url "git@git.smarteye.se"]
+	insteadOf = smarteye
+[url "git@gitlab.gnome.org"]
+	insteadOf = gnome
 
 [bz]
 	browser = firefox3
