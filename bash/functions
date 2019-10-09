@@ -384,10 +384,10 @@ function http-serve {
 
     mkdir -p "${path}"
 
-    docker run                                         \
-           --rm                                        \
-           --publish 80:80                             \
-           --name nginx-serve                          \
-           --volume "${path}:/usr/share/nginx/html:ro" \
-           nginx:1.14-alpine
+    sudo docker run                                  \
+         --rm                                        \
+         --publish 80:80                             \
+         --name nginx-serve                          \
+         --volume "${path}:/usr/share/nginx/html:ro" \
+         nginx:1.14-alpine
 }
