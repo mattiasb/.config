@@ -23,7 +23,7 @@ done
 
 ## Set up PS1
 if [[ "${TERM}" == *"-256color" ]] &&
-       [ -z "${INSIDE_EMACS}" ] &&
+       { [ -z "${INSIDE_EMACS}" ] || [ "${INSIDE_EMACS}" = "vterm" ]; } &&
        [ "$(systemctl is-active --user powerline.service)" = "active" ];
 then
     . /usr/share/powerline/bash/powerline.sh
