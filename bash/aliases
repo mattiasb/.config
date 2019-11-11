@@ -21,6 +21,8 @@ alias groovysh='TERM=xterm-color groovysh'
 alias less-which='cmd-which less'
 alias emacs-which='cmd-which "emacsclient -c -s main"'
 alias slay-the-spire='~/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/common/SlayTheSpire/SlayTheSpire'
+alias docker-compose='sudo docker-compose'
+alias docker='sudo docker'
 
 _completion_loader command
 _completion_loader systemctl
