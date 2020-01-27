@@ -30,9 +30,7 @@
 	pager  = tig
 	excludesfile = ~/.config/git/ignore
 [alias]
-	gnome            = lab --account=gnome
 	slog 		 = log --oneline
-	smarteye         = lab --account=smarteye
 	annotated-tags   = "!f() { git for-each-ref refs/tags/ --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = tag    ] && echo $name; done }; f"
 	branches 	 = "!f() { git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short):%(committerdate:relative)' | column -t -s ':'; }; f"
 	flow-init 	 = "!f() { git flow init -fd; git config gitflow.prefix.versiontag v; }; f "
