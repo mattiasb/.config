@@ -42,6 +42,7 @@
 	projects         = "!f() { cd; git each $@ :: Code/github.com/mattiasb/*; }; f"
 	sloc             = "!f() { git ls-files -z | xargs -0 cat | wc -l; }; f"
 	sloc-report      = "!f() { cloc $(git ls-files); }; f"
+	exec             = "!exec "
 [diff]
 	tool = meld
 [rebase]
