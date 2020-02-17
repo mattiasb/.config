@@ -67,3 +67,6 @@ glade.conf
 /mimeapps.list
 /containers/*
 /kde.org/*
+/htop/htoprc
+/wireshark/recent
+/wireshark/recent_common
