@@ -2,3 +2,4 @@
 *#*
 TAGS
 .[0-9]*
+.mypy_cache
