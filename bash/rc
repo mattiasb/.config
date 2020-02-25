@@ -70,3 +70,5 @@ done
 
 # Use fzf
 . /usr/share/fzf/shell/key-bindings.bash
+# Take back M-c from fzf
+bind '"\ec":capitalize-word'
