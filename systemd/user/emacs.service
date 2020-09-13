@@ -1,12 +1,14 @@
 [Unit]
-Description=Emacs: the extensible, self-documenting text editor
+Description=Emacs text editor
+Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
 
 [Service]
-Type=simple
+Type=notify
 ExecStart=/usr/bin/emacs --fg-daemon=main
-ExecStop=/usr/bin/emacsclient -s main --eval "(mb-f-kill-server)"
+ExecStop=/usr/bin/emacsclient -s main --eval "(kill-emacs)"
+ExecStop=/bin/sleep 0.01
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
-Restart=always
+Restart=on-failure
 TimeoutStopSec=5
 
 [Install]
