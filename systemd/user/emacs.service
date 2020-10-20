@@ -10,6 +10,6 @@ ExecStop=/bin/sleep 0.01
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
 Restart=on-failure
 TimeoutStopSec=5
-
+TimeoutStartSec=10min
 [Install]
 WantedBy=default.target
