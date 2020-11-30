@@ -69,3 +69,5 @@
 	user = mattiasb
 [gitlab "git.smarteye.se/api/v4"]
 	user = mattiasb
+[pull]
+	rebase = true
