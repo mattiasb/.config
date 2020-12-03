@@ -331,8 +331,13 @@ function unthrottle-net {
     sudo wondershaper "${1}" clean
 }
 
-function logins-today {
-    journalctl --since "today" -t lockmon --no-pager
+function logins {
+    local since until
+
+    since="${1:-today}"
+    until="${2:-tomorrow}"
+
+    journalctl --since "${since}" --until "${until}" -t lockmon --no-pager
 }
 
 function remake {
