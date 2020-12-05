@@ -343,38 +343,7 @@ function logins {
 }
 
 function logins2 {
-    local since until line time prev_time msg
-
-    since="${1}"
-    until="${2}"
-
-    while read -r line; do
-        prev_time="${time}"
-        time="$(cut -d ' ' -f 3 <<< "${line}" | cut -d ':' -f -2)"
-        msg="$(cut -d ' ' -f '4-' <<< "${line}")"
-        case "${msg}" in
-            "Screen Locked" | "Monitoring Terminated.")
-                echo "${time}"
-                echo -n "  Locked: ${time} – "
-                continue
-                ;;
-            "Screen Unlocked" | "Monitoring Started.")
-                echo "${time}"
-                echo -n "Unlocked: ${time} – "
-                continue
-                ;;
-            *)
-                echo "Got unexpected log message:" >&2
-                echo "   ${msg}" >&2
-                return 1
-        esac
-    done <<< "$(logins "${since}" "${until}" | grep -v -- '--')"
-
-    echo
-}
-
-function logins2 {
-    local since verbose line time ptime msg pmsg
+    local since verbose line time ptime msg
 
     verbose=false
 
