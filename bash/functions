@@ -335,9 +335,110 @@ function logins {
     local since until
 
     since="${1:-today}"
-    until="${2:-tomorrow}"
+    until="${2:-$(date '+%Y-%m-%d' -d "${since}+1 days")}"
 
-    journalctl --since "${since}" --until "${until}" -t lockmon --no-pager
+    journalctl --since "${since}" --until "${until}" -t lockmon --no-pager \
+        | tail -n +2                                                       \
+        | cut -d ' ' -f '1-3 6-'
+}
+
+function logins2 {
+    local since until line time prev_time msg
+
+    since="${1}"
+    until="${2}"
+
+    while read -r line; do
+        prev_time="${time}"
+        time="$(cut -d ' ' -f 3 <<< "${line}" | cut -d ':' -f -2)"
+        msg="$(cut -d ' ' -f '4-' <<< "${line}")"
+        case "${msg}" in
+            "Screen Locked" | "Monitoring Terminated.")
+                echo "${time}"
+                echo -n "  Locked: ${time} – "
+                continue
+                ;;
+            "Screen Unlocked" | "Monitoring Started.")
+                echo "${time}"
+                echo -n "Unlocked: ${time} – "
+                continue
+                ;;
+            *)
+                echo "Got unexpected log message:" >&2
+                echo "   ${msg}" >&2
+                return 1
+        esac
+    done <<< "$(logins "${since}" "${until}" | grep -v -- '--')"
+
+    echo
+}
+
+function logins2 {
+    local since verbose line time ptime msg pmsg
+
+    verbose=false
+
+    if [[ "${1}" = *"--verbose" ]] || [[ "${1}" = *"-v" ]]; then
+        verbose=true
+        shift
+    fi
+
+    if [[ "${2}" = *"--verbose" ]] || [[ "${2}" = *"-v" ]]; then
+        verbose=true
+    fi
+
+    since="${1}"
+
+    logins="$(logins "${since}")"
+
+    if [[ "${logins}" = *"No entries"* ]]; then
+        echo "No entries!"
+        return
+    fi
+
+    while read -r line; do
+        ptime="${time}"
+        time="$(cut -d ' ' -f 3 <<< "${line}" | cut -d ':' -f -2)"
+        msg="$(cut -d ' ' -f '4-' <<< "${line}")"
+        case "${msg}" in
+            "Monitoring Terminated.")
+                test -n "${ptime}" && echo "${time}"
+                echo -n "Shutdown: ${time} – "
+                continue
+                ;;
+            "Screen Locked")
+                test -n "${ptime}" && echo "${time}"
+                echo -n "  Locked: ${time} – "
+                continue
+                ;;
+            "Monitoring Started." | "Screen Unlocked")
+                if [ -z "${ptime}" ]; then
+                    if [ "${msg}" = "Monitoring Started." ]; then
+                        echo -n "Shutdown:       – "
+                    else
+                        echo -n "  Locked:       – "
+                    fi
+                fi
+
+                echo "${time}"
+                echo -n "Unlocked: ${time} – "
+                continue
+                ;;
+            *)
+                echo "Got unexpected log message:" >&2
+                echo "   ${msg}" >&2
+                echo
+                echo "See the full logs:"
+                logins "${since}"
+                return 1
+        esac
+    done <<< "$(grep -v -- '--' <<< "${logins}")"
+
+    echo
+    if [ "${verbose}" = true ]; then
+        echo ---------------------
+        logins "${since}"
+    fi
 }
 
 function remake {
