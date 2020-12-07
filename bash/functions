@@ -403,7 +403,15 @@ function logins2 {
         esac
     done <<< "$(grep -v -- '--' <<< "${logins}")"
 
-    echo
+    case "${msg}" in
+        "Monitoring Started." | "Screen Unlocked")
+            date +"%H:%M"
+            ;;
+        *)
+            echo
+            ;;
+    esac
+
     if [ "${verbose}" = true ]; then
         echo ---------------------
         logins "${since}"
