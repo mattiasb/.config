@@ -1,2 +1,2 @@
 ---
-gem: --bindir /home/mattiasb/.local/bin/
+gem: --user-install --bindir /home/mattiasb/.local/bin/
