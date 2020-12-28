@@ -244,10 +244,6 @@ function magit {
 }
 complete -d magit
 
-function wanderlust {
-    /bin/emacsclient -s wanderlust -c -nw --eval '(wl)'
-}
-
 function cmd-which {
     local cmd
     cmd="${1}"
@@ -311,24 +307,6 @@ function ypterm {
 
 function yq {
     yaml2json -i /dev/stdin | jq "${@}" | json2yaml
-}
-
-function throttle-net {
-    if [ $# -lt 1 ] || _help-flag; then
-        echo "Usage: throttle-net <device>"
-        return 2
-    fi
-
-    sudo wondershaper "${1}" 800 2400
-}
-
-function unthrottle-net {
-    if [ $# -lt 1 ] || _help-flag; then
-        echo "Usage: unthrottle-net <device>"
-        return 2
-    fi
-
-    sudo wondershaper "${1}" clean
 }
 
 function logins {
