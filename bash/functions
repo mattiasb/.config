@@ -452,3 +452,11 @@ function http-serve {
          --volume "${path}:/usr/share/nginx/html:ro" \
          nginx:1.14-alpine
 }
+
+function makepasswd-alphanum {
+    local alphanum
+
+    alphanum="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+    makepasswd -c "${alphanum}" "${@}"
+}
