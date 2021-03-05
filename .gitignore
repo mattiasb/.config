@@ -74,3 +74,5 @@ glade.conf
 /wireshark/recent_common
 pipewire-media-session/
 emacs/
+pipewire
+pipewire-media-session/
