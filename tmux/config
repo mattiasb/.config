@@ -64,3 +64,5 @@ bind r source-file ~/.config/tmux/config \; display-message "Config reloaded..."
 # color
 
 set -g status-right ""
+
+set-option -g history-limit 10000
