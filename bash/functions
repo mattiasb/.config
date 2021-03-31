@@ -460,3 +460,12 @@ function makepasswd-alphanum {
 
     makepasswd -c "${alphanum}" "${@}"
 }
+
+function nautilus-smb-logout {
+    if [ "${#}" -lt 2 ] || _help-flag "${@}"; then
+        echo "Usage: nautilus-smb-logout <user> <server>"
+        return 2
+    fi
+
+    secret-tool clear protocol smb user mattias.bengtsson@smarteye.se server nas
+}
