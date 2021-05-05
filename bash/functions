@@ -469,3 +469,13 @@ function nautilus-smb-logout {
 
     secret-tool clear protocol smb user mattias.bengtsson@smarteye.se server nas
 }
+
+function ssh-remove-host {
+    local host ips
+
+    host="${1}"
+    ips="$(dig +short "${host}")"
+    for i in $ips $host; do
+        ssh-keygen -R "${i}"
+    done
+}
