@@ -479,3 +479,11 @@ function ssh-remove-host {
         ssh-keygen -R "${i}"
     done
 }
+
+function loop-hero {
+    # Temporary
+    flatpak run                                                         \
+            --cwd="${HOME}/.var/app/com.valvesoftware.Steam/loop-hero/" \
+            --command=./loop-hero.sh                                    \
+            com.valvesoftware.Steam
+}
