@@ -22,6 +22,7 @@ alias less-which='cmd-which less'
 alias emacs-which='cmd-which "emacsclient -c -s main"'
 alias docker-compose='sudo docker-compose'
 alias docker='sudo docker'
+alias lp='lpass show -c --password $(lpass ls | fzf | awk '"'"'{print $(NF)}'"'"' | sed '"'"'s/\]//g'"'"')'
 
 _completion_loader command
 _completion_loader systemctl
