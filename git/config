@@ -58,6 +58,10 @@
 	helper = libsecret
 [merge]
 	tool = meld
+[merge "ansible-vault"]
+	name = Ansible vault merge driver
+	driver = ansible-vault-merge %O %A %B %L %P
+	recursive = binary
 [diff "ansible-vault"]
 	textconv = ansible-vault view
 
