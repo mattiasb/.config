@@ -54,8 +54,6 @@
 	program = gpg2
 [magit]
 	hideCampaign = true
-[credential]
-	helper = libsecret
 [merge]
 	tool = meld
 [merge "ansible-vault"]
