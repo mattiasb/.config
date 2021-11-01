@@ -24,6 +24,7 @@ alias docker-compose='sudo docker-compose'
 alias docker='sudo docker'
 alias lp='lpass show -c --password $(lpass ls | fzf | awk '"'"'{print $(NF)}'"'"' | sed '"'"'s/\]//g'"'"')'
 alias flatpak-builder='flatpak-builder --ccache'
+alias dns-flush='sudo resolvectl flush-caches'
 
 _completion_loader command
 _completion_loader systemctl
