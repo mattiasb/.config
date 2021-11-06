@@ -65,6 +65,7 @@ function project-create {
     echo "*#*" >> .gitignore
     echo       >> .gitignore
     touch README.md
+    git remote add origin "git@github.com:mattiasb/${1}.git"
 }
 
 function project-cd {
