@@ -486,6 +486,10 @@ function ssh-remove-host {
     done
 }
 
+function ssht {
+    ssh -t "$@" tmux new-session -A -s ssh_tmux
+}
+
 function loop-hero {
     # Temporary
     flatpak run                                                         \
