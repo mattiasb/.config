@@ -497,3 +497,45 @@ function loop-hero {
             --command=./loop-hero.sh                                    \
             com.valvesoftware.Steam
 }
+
+function join-string {
+    local IFS="${1}"
+
+    IFS="${1}"
+    shift
+    echo "${*}"
+}
+
+function hex2dec {
+    printf "%d\n" "0x${1}"
+}
+
+function dec2hex {
+    printf "%x\n" "${1}"
+}
+
+function ip2mac {
+    local values out
+
+    IFS='.' read -ra values <<< "${1}"
+    out=()
+
+    for v in "${values[@]}"; do
+        out+=("$(dec2hex "${v}")")
+    done
+
+    join-string ':' "${out[@]}"
+}
+
+function mac2ip {
+    local values out
+
+    IFS=':' read -ra values <<< "${1}"
+    out=()
+
+    for v in "${values[@]}"; do
+        out+=("$(hex2dec "${v}")")
+    done
+
+    join-string '.' "${out[@]}"
+}
