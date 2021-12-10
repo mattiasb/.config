@@ -416,6 +416,14 @@ function gg {
 function mdns-ssh {
     local connection
 
+    if _help-flag "${@}"; then
+        echo "Usage: mdns-ssh [-u <USER> --user <USER>]"
+        echo
+        echo "Let's you choose and connect to a host over SSH, using mdns to get"
+        echo "a list of possible candidates."
+        return
+    fi
+
     connection="$(avahi-browse _ssh._tcp -t     | \
               grep --color=never IPv4           | \
               awk '{ printf "%s.local\n", $4 }' | \
