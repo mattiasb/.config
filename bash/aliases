@@ -25,15 +25,3 @@ alias docker='sudo docker'
 alias lp='lpass show -c --password $(lpass ls | fzf | awk '"'"'{print $(NF)}'"'"' | sed '"'"'s/\]//g'"'"')'
 alias flatpak-builder='flatpak-builder --ccache'
 alias dns-flush='sudo resolvectl flush-caches'
-
-_completion_loader command
-_completion_loader systemctl
-complete -F _command c
-complete -F _systemctl sys
-complete -F _systemctl session
-complete -G "*.yaml" -d  ansi
-complete -W "" tm
-complete -W "" wipehist
-complete -W "" refresh
-complete -c less-which
-complete -c emacs-which

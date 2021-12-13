@@ -79,3 +79,4 @@ pipewire-media-session/
 /fedoraproject.org/
 /pavucontrol.ini
 /cni/
+/bash_completion.d/complete_alias
