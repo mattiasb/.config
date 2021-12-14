@@ -493,6 +493,8 @@ function ssh-remove-host {
         ssh-keygen -R "${i}"
     done
 }
+_completion_loader ssh
+complete -F _ssh ssh-remove-host
 
 function ssht {
     ssh -t "$@" tmux new-session -A -s ssh_tmux
