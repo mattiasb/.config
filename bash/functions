@@ -501,6 +501,22 @@ function ssht {
 }
 complete -F _ssh ssht
 
+function speedtest {
+    local prefix
+
+    case "${#}" in
+        0) prefix="" ;;
+        *) prefix="ssh -t ${*}"
+    esac
+
+    ${prefix} iperf3                        \
+              -R                            \
+              -c paris.testdebit.info       \
+              -p $((9200 + "$RANDOM" % 41)) \
+              -i 1                          \
+              -t 10
+}
+complete -F _ssh speedtest
 
 function loop-hero {
     # Temporary
