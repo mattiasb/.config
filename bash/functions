@@ -499,6 +499,8 @@ complete -F _ssh ssh-remove-host
 function ssht {
     ssh -t "$@" tmux new-session -A -s ssh_tmux
 }
+complete -F _ssh ssht
+
 
 function loop-hero {
     # Temporary
