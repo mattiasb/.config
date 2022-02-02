@@ -477,6 +477,13 @@ function ssht {
 }
 complete -F _ssh ssht
 
+function ssh-wait {
+    until ssh "${@}" true; do
+        sleep 5
+    done && ssh "${@}"
+}
+complete -F _ssh ssh-wait
+
 function speedtest {
     local prefix
 
