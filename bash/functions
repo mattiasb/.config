@@ -29,30 +29,6 @@ function mvcd () {
 _completion_loader _longopt
 complete -F _longopt mvcd
 
-function docker-enter {
-    if [ -z "${1}" ] || _help-flag "${@}"; then
-        echo "Usage docker-enter <container>"
-        echo
-        echo "Enter an already running container"
-        return 2
-    fi
-
-    cmd="export TERM=$TERM; command -v bash >/dev/null 2>&1 && bash || sh"
-    sudo docker exec -it "${1}" sh -c "${cmd}"
-}
-
-function docker-shell {
-    if [ -z "${1}" ] || _help-flag "${@}"; then
-        echo "Usage docker-shell <image>"
-        echo
-        echo "Start a throw-away container from an image"
-        return 2
-    fi
-
-    cmd="export TERM=$TERM; command -v bash >/dev/null 2>&1 && bash || sh"
-    sudo docker run --rm -it "${1}" sh -c "${cmd}"
-}
-
 function project-create {
     if [ ! $# -eq 1 ] || _help-flag; then
         echo "Usage: project-create <NAME>"
