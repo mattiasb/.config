@@ -526,12 +526,23 @@ function ssh-df {
 complete -F _ssh ssh-df
 
 function speedtest {
-    local prefix
+    local from to
 
-    case "${#}" in
-        0) prefix="" ;;
-        *) prefix="ssh -t ${*}"
-    esac
+    from="${1}"
+    to="${2}"
+
+    if [ "${#}" -gt 2 ] || _help-flag; then
+        echo "Usage: speedtest [FROM] [TO]"
+        return 2
+    fi
+
+    if [ "${#}" -gt 0 ]; then
+        prefix="ssh -t ${from}"
+    fi
+
+    if [ "${#}" -eq 2 ]; then
+        ssh -t "${to}" iperf3
+    fi
 
     ${prefix} iperf3                        \
               -R                            \
