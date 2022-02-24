@@ -253,7 +253,7 @@ function lpass {
     case "${1}" in
         -v|--version|--help|-h|login|logout|status) ;;
         *)
-            if ! /bin/lpass status -q; then
+            if ! /bin/lpass status -q || ! /bin/lpass ls >/dev/null; then
                 /bin/lpass login mattias.jc.bengtsson@gmail.com
             fi
             ;;
