@@ -438,6 +438,13 @@ function http-serve {
          nginx:1.14-alpine
 }
 
+function docker-volume-by-age {
+    for volume in $(sudo docker volume ls --format "{{.Name}}"); do
+        sudo docker volume inspect "${volume}" \
+             --format "{{ .CreatedAt }}   $volume"
+    done | column -t | sort
+}
+
 function makepasswd-alphanum {
     local alphanum
 
