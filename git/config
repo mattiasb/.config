@@ -66,10 +66,11 @@
 [github]
 	user = mattiasb
 [gitlab]
+	host = http://gitlab.com/api/v4
 	user = mattiasb
 [gitlab "gitlab.gnome.org/api/v4"]
 	user = mattiasb
 [gitlab "git.smarteye.se/api/v4"]
-	user = mattiasb
+	user = mattias.bengtsson
 [pull]
 	rebase = true
