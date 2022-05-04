@@ -5,8 +5,7 @@
 	default = simple
 	followTags = true
 [color]
-	diff = auto
-	pager = no
+	diff = always
 
 [includeIf "gitdir:~/Code/git.smarteye.se/"]
 	path = config.work
@@ -27,7 +26,7 @@
 [bz]
 	browser = firefox3
 [core]
-	pager  = tig
+	pager  = less -r
 	excludesfile = ~/.config/git/ignore
 [alias]
 	slog 		 = log --oneline
