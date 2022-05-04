@@ -26,7 +26,7 @@
 [bz]
 	browser = firefox3
 [core]
-	pager  = less -r
+	pager = delta
 	excludesfile = ~/.config/git/ignore
 [alias]
 	slog 		 = log --oneline
@@ -73,3 +73,7 @@
 	user = mattias.bengtsson
 [pull]
 	rebase = true
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = t
