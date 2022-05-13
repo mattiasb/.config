@@ -75,8 +75,8 @@
 [pull]
 	rebase = true
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 [delta]
-    navigate = t
+	navigate = t
 [commit]
 	status = false
