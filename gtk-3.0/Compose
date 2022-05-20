@@ -169,6 +169,9 @@
 <Multi_key> <h> <u> <g>                                    : "🤗" U1F917
 <Multi_key> <h> <e> <r> <p>                                : "🤪" U1F92A
 <Multi_key> <d> <e> <r> <p>                                : "🤪" U1F92A
+<Multi_key> <d> <r> <o> <o> <l>                            : "🤤" U1F924
+<Multi_key> <colon> <P> <dead_tilde>                       : "🤤" U1F924
+
 
 # Dice
 <Multi_key> <bracketleft> <1>                              : "⚀" U2680
