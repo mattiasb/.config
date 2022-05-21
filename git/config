@@ -80,3 +80,5 @@
 	navigate = t
 [commit]
 	status = false
+[init]
+	defaultBranch = main
