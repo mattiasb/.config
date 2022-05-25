@@ -557,3 +557,21 @@ function mac2ip {
 
     join-string '.' "${out[@]}"
 }
+
+function jhparm {
+    local disk
+
+    if [ $# -lt 1 ]; then
+        echo "Usage: ${0} <DISK>" >&2
+        return 2
+    fi
+    disk="${1}"
+
+    sudo dd                                                                    \
+         if="${disk}"                                                          \
+         of=/dev/null                                                          \
+         bs=50M                                                                \
+         count=10000                                                           \
+         status=progress                                                       \
+         iflag=direct
+}
