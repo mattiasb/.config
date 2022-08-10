@@ -84,3 +84,5 @@ pipewire-media-session/
 /solaar/
 /.gsd-keyboard.settings-ported
 /simple-scan/
+/var/lib/swtpm-localca/*
+/swtpm*
