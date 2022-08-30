@@ -20,12 +20,15 @@ alias cmake='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 alias groovysh='TERM=xterm-color groovysh'
 alias less-which='cmd-which less'
 alias emacs-which='cmd-which "emacsclient -c -s main"'
-alias docker-compose='sudo docker-compose'
-alias docker='sudo docker'
 alias lp='lpass show -c --password $(lpass ls | fzf | awk '"'"'{print $(NF)}'"'"' | sed '"'"'s/\]//g'"'"')'
 alias flatpak-builder='flatpak-builder --ccache'
 alias dns-flush='sudo resolvectl flush-caches'
 alias stoneshard='$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/steamapps/common/Stoneshard/StoneShard'
-alias groovysh='docker run -it --rm groovy'
+alias groovysh='podman run -it --rm groovy'
 alias curl='curl -#'
 alias pingsweep='nmap -sn'
+
+if  command -v docker ; then
+    alias docker-compose='sudo docker-compose'
+    alias docker='sudo docker'
+fi
