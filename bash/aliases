@@ -27,7 +27,7 @@ alias groovysh='podman run -it --rm groovy'
 alias curl='curl -#'
 alias pingsweep='nmap -sn'
 
-if  command -v docker ; then
+if  command -v docker &>/dev/null ; then
     alias docker-compose='sudo docker-compose'
     alias docker='sudo docker'
 fi
