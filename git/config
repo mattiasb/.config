@@ -23,8 +23,6 @@
 [url "git@gitlab.gnome.org"]
 	insteadOf = gnome
 
-[bz]
-	browser = firefox3
 [core]
 	pager = delta
 	excludesfile = ~/.config/git/ignore
