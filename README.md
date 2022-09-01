@@ -1,4 +1,4 @@
 .config
 =======
 
-My .config directory
+My `~/.config/` directory.
