@@ -468,13 +468,20 @@ function nautilus-smb-logout {
 }
 
 function ssh-remove-host {
-    local host ips
+    local host ips exitcode
 
-    host="${1}"
-    ips="$(dig +short "${host}")"
-    for i in $ips $host; do
-        ssh-keygen -R "${i}"
+    exitcode=0
+
+    for host in "${@}"; do
+        ips="$(dig +short "${host}")"
+        for i in $ips $host; do
+            if ! ssh-keygen -R "${i}"; then
+                exitcode=2
+            fi
+        done
     done
+
+    return "${exitcode}"
 }
 _completion_loader ssh
 complete -F _ssh ssh-remove-host
