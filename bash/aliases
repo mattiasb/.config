@@ -26,7 +26,7 @@ alias stoneshard='$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/stea
 alias groovysh='podman run -it --rm groovy'
 alias curl='curl -#'
 alias pingsweep='nmap -sn'
-
+alias gnome-console='kgx'
 if  command -v docker &>/dev/null ; then
     alias docker-compose='sudo docker-compose'
     alias docker='sudo docker'
