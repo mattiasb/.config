@@ -589,7 +589,7 @@ function vagrant-up {
     boxes="$( vagrant status --machine-readable                                \
             | cut -d "," -f 2                                                  \
             | tr -s '\n' '\n'                                                  \
-            | uniq -u                                                          \
+            | sort -u                                                          \
             )"
 
     for box in $boxes; do
