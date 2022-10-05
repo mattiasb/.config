@@ -582,3 +582,17 @@ function jhparm {
          status=progress                                                       \
          iflag=direct
 }
+
+function vagrant-up {
+    local boxes
+
+    boxes="$( vagrant status --machine-readable                                \
+            | cut -d "," -f 2                                                  \
+            | tr -s '\n' '\n'                                                  \
+            | uniq -u                                                          \
+            )"
+
+    for box in $boxes; do
+        vagrant up "${box}"
+    done
+}
