@@ -220,6 +220,8 @@ function magit {
 
     pushd "${path}" >/dev/null || return $?
 
+    git rev-parse --is-inside-work-tree >/dev/null || return $?
+
     /bin/emacsclient -s main -c -nw \
                      --eval '(progn (magit-status) (delete-other-windows))'
 
