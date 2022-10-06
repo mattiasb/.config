@@ -28,15 +28,20 @@
 	excludesfile = ~/.config/git/ignore
 	editor = emacsclient -nw -c -s main
 [alias]
-	slog 		 = log --oneline
-	annotated-tags   = "!f() { git for-each-ref refs/tags/ --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = tag    ] && echo $name; done }; f"
-	branches 	 = "!f() { git for-each-ref --sort=committerdate refs/heads/ --format='%(refname:short):%(committerdate:relative)' | column -t -s ':'; }; f"
+	slog             = log --oneline
+	# Execute shell scripts in top directory.
+	exec             = ! exec
+
 	home             = "!f() { cd; git each $@ :: Documents/Magic/decks/ .config/ .config/emacs/ .local/bin/ Code/github.com/mattiasb/MachineSetup/; }; f"
-	lightweight-tags = "!f() { git for-each-ref refs/tags/ --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = commit ] && echo $name; done }; f"
 	projects         = "!f() { cd; git each $@ :: Code/github.com/mattiasb/*; }; f"
+
 	sloc             = "!f() { git ls-files -z | xargs -0 cat | wc -l; }; f"
 	sloc-report      = "!f() { cloc $(git ls-files); }; f"
-	exec             = "!exec "
+
+	branches         = "!f() { git for-each-ref refs/heads/ --format='%(refname:short):%(committerdate:relative)' --sort=committerdate | column -t -s ':'; }; f"
+	annotated-tags   = "!f() { git for-each-ref refs/tags/  --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = tag    ] && echo $name; done }; f"
+	lightweight-tags = "!f() { git for-each-ref refs/tags/  --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = commit ] && echo $name; done }; f"
+
 [diff]
 	tool = meld
 [rebase]
