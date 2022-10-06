@@ -209,14 +209,20 @@ function list-ssh-servers {
 }
 
 function magit {
-    if [ ! $# -eq 1 ] || _help-flag; then
-        echo "Usage: magit <DIRECTORY>"
-        return 2
+    local path
+
+    if _help-flag; then
+        echo "Usage: magit [<PATH>]"
+        return
     fi
 
-    pushd "${@}" >/dev/null || return 3
+    path="${1:-.}"
+
+    pushd "${path}" >/dev/null || return $?
+
     /bin/emacsclient -s main -c -nw \
                      --eval '(progn (magit-status) (delete-other-windows))'
+
     popd >/dev/null || return 3
 }
 complete -d magit
