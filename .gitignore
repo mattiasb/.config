@@ -86,3 +86,4 @@ pipewire-media-session/
 /simple-scan/
 /var/lib/swtpm-localca/*
 /swtpm*
+/gnome-builder
