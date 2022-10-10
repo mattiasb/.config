@@ -1,3 +1,5 @@
+include "%L"
+
 # Notice the X name <minus> refer to the ASCII hyphen‐minus, not the
 # true minus.
 <Multi_key> <minus> <period>                               : "‐" U2010
