@@ -32,6 +32,8 @@
 	# Execute shell scripts in top directory.
 	exec             = ! exec
 
+	pipenv           = "!f() { export OLDPWD=${GIT_PREFIX:-.}; exec bash -c \"pipenv shell cd $OLDPWD\"; }; f"
+
 	home             = "!f() { cd; git each $@ :: Documents/Magic/decks/ .config/ .config/emacs/ .local/bin/ Code/github.com/mattiasb/MachineSetup/; }; f"
 	projects         = "!f() { cd; git each $@ :: Code/github.com/mattiasb/*; }; f"
 
