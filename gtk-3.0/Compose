@@ -55,6 +55,14 @@ include "%L"
 <Multi_key> <underscore> <n>                               : "ₙ" U2099
 <Multi_key> <underscore> <minus>                           : "₋" U208B
 
+# Characters
+<Multi_key> <a> <o>                                        : "å" U00E5
+<Multi_key> <A> <o>                                        : "Å" U00C5
+<Multi_key> <a> <colon>                                    : "ä" U00E4
+<Multi_key> <A> <colon>                                    : "Ä" U00C5
+<Multi_key> <o> <colon>                                    : "ö" U00F6
+<Multi_key> <O> <colon>                                    : "Ö" U00D6
+
 ## Emojis
 
 # General
@@ -138,9 +146,8 @@ include "%L"
 <Multi_key> <6> <6> <6>                                    : "🤘" U1F918
 <Multi_key> <backslash> <o> <slash>                        : "🙌" U1F64C
 
+
 # Smileys
-
-
 <Multi_key> <colon> <bracketright>                         : "😊" U1F60A
 <Multi_key> <semicolon> <parenright>                       : "😉" U1F609
 <Multi_key> <colon> <asterisk>                             : "😗" U1F617
