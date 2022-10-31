@@ -34,7 +34,7 @@
 
 	pipenv           = "!f() { exec bash -c \"pipenv shell cd ${GIT_PREFIX:-.}\"; }; f"
 
-	home             = "!f() { cd; git each $@ :: Documents/Magic/decks/ .config/ .config/emacs/ .local/bin/ Code/github.com/mattiasb/MachineSetup/; }; f"
+	home             = "!f() { cd; git each $@ :: Documents/Magic/decks/ .config/ .config/emacs/ .local/bin/ Code/github.com/mattiasb/MachineSetup/ Code/Test/; }; f"
 	projects         = "!f() { cd; git each $@ :: Code/github.com/mattiasb/*; }; f"
 
 	sloc             = "!f() { git ls-files -z | xargs -0 cat | wc -l; }; f"
