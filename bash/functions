@@ -605,3 +605,19 @@ function vagrant-up {
         vagrant up "${box}"
     done
 }
+
+function k8s-kill-all {
+    local namespace pattern
+
+    if [ "${#}" != 2 ]; then
+        echo "Usage: k8s-kill-all <namespace> <pattern>"
+    fi
+
+    namespace="${1}"
+    pattern="${2}"
+
+    kubectl get pods --namespace="${namespace}" \
+        | cut -d ' ' -f 1                       \
+        | grep -E "${pattern}"                  \
+        | xargs kubectl delete pod -n argo
+}
