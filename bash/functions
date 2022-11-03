@@ -408,11 +408,12 @@ function mdns-ssh {
         return
     fi
 
-    connection="$(avahi-browse _ssh._tcp -t     | \
-              grep --color=never IPv4           | \
-              awk '{ printf "%s.local\n", $4 }' | \
-              sort                              | \
-              fzf)"
+    connection="$( avahi-browse _ssh._tcp -t         \
+                 | grep --color=never IPv4           \
+                 | awk '{ printf "%s.local\n", $4 }' \
+                 | sort                              \
+                 | fzf
+                 )"
 
     opts="$(getopt -o u: --long user: -n "mdns-ssh" -- "$@")"
     eval set -- "$opts"
