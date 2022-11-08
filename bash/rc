@@ -71,6 +71,11 @@ done
 # shellcheck source=./functions
 . "${HOME}/.config/bash/functions"
 
+if [ -f "${HOME}/.config/bash/functions.work" ]; then
+    # shellcheck source=/dev/null
+    . "${HOME}/.config/bash/functions.work"
+fi
+
 # Use fzf
 . /usr/share/fzf/shell/key-bindings.bash
 # Take back M-c from fzf
