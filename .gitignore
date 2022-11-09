@@ -87,3 +87,4 @@ pipewire-media-session/
 /var/lib/swtpm-localca/*
 /swtpm*
 /gnome-builder
+/bash/functions.work
