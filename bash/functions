@@ -12,6 +12,14 @@ function git-commiters () {
     fi
 }
 
+function which {
+    (alias; declare -f) | /usr/bin/which --tty-only                            \
+                                         --read-alias                          \
+                                         --read-functions                      \
+                                         --show-tilde                          \
+                                         --show-dot "${@}"
+}
+
 function mkcd () {
     mkdir -p "${1}" && cd "${_}" || return $?
 }
