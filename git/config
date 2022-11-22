@@ -85,3 +85,5 @@
 	status = false
 [init]
 	defaultBranch = main
+[submodule]
+	recurse = true
