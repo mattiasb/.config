@@ -64,6 +64,7 @@
 	recursive = binary
 [diff "ansible-vault"]
 	textconv = ansible-vault view
+	cachetextconv = false
 
 [github]
 	user = mattiasb
