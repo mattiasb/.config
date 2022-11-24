@@ -606,23 +606,6 @@ function vagrant-up {
     done
 }
 
-function k8s-kill-all {
-    local namespace pattern
-
-    if [ "${#}" != 2 ]; then
-        echo "Usage: k8s-kill-all <namespace> <pattern>"
-        return 2
-    fi
-
-    namespace="${1}"
-    pattern="${2}"
-
-    kubectl get pods --namespace="${namespace}" \
-        | cut -d ' ' -f 1                       \
-        | grep -E "${pattern}"                  \
-        | xargs kubectl delete pod -n argo
-}
-
 function diff-dirs {
     local dir1 dir2
 
@@ -660,4 +643,50 @@ function diff-dirs {
     fi
 
     rm "${dir1}.list" "${dir2}.list"
+}
+
+#### Kubernetes ####
+
+function k8s-kill-all {
+    local namespace pattern
+
+    if [ "${#}" != 2 ]; then
+        echo "Usage: k8s-kill-all <namespace> <pattern>"
+        return 2
+    fi
+
+    namespace="${1}"
+    pattern="${2}"
+
+    kubectl get pods --namespace="${namespace}" \
+        | cut -d ' ' -f 1                       \
+        | grep -E "${pattern}"                  \
+        | xargs kubectl delete pod -n argo
+}
+
+function k8s-get-running-pods-on-node {
+    local node
+
+    if [ "${#}" != 1 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} <NODE>"
+        return 2
+    fi
+
+    node="${1}"
+
+    kubectl get pods \
+            --all-namespaces -o wide \
+            --field-selector "spec.nodeName=${node},status.phase=Running"
+}
+complete -F _ssh k8s-get-running-pods-on-node
+
+function k8s-get-failed-pods {
+    local namespace
+
+    if [ "${#}" -gt 1 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} [NAMESPACE]"
+        return 2
+    fi
+
+    kubectl get pod -n argo -o wide --field-selector 'status.phase!=Succeeded'
 }
