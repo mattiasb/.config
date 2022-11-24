@@ -507,6 +507,20 @@ function ssh-wait {
 }
 complete -F _ssh ssh-wait
 
+function ssh-df {
+    local host
+
+    if [ "${#}" != 1 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} <NODE>"
+        return 2
+    fi
+
+    host="${1}"
+
+    ssh "root@${host}" df -h | grep --color=never -E '^(Filesystem|/dev)'
+}
+complete -F _ssh ssh-df
+
 function speedtest {
     local prefix
 
