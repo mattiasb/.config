@@ -702,5 +702,9 @@ function k8s-get-failed-pods {
         return 2
     fi
 
-    kubectl get pod -n argo -o wide --field-selector 'status.phase!=Succeeded'
+    namespace="${1}"
+
+    kubectl get pod -n "${namespace}" \
+            -o wide                   \
+            --field-selector 'status.phase!=Succeeded'
 }
