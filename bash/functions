@@ -287,19 +287,15 @@ function calc {
 }
 
 function ypterm {
-    local fd
-
-    if (( $# == 0 )); then
-        fd=/dev/stdin
-    else
-        fd="${1}"
-    fi
-
-    yaml2json < "${fd}" | jpterm
+    yaml2json < "${1:-/dev/stdin}" | jpterm
 }
 
 function yq {
     yaml2json -i /dev/stdin | jq "${@}" | json2yaml
+}
+
+function yqp {
+    yaml2json < "${1:-/dev/stdin}" | jqp
 }
 
 function logins {
