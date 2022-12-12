@@ -16,7 +16,7 @@ for file in "${HOME}/.config/environment.d/"*.conf; do
     while IFS= read -r line
     do
         if [[ ! "$line" =~ ^[[:space:]]*# ]]; then
-            eval "export ${line}"
+            eval "export ${line}" &>/dev/null
         fi
     done < "${file}"
 done
