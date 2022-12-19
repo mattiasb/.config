@@ -4,7 +4,7 @@ function _help-flag {
     [[ " ${*} " == *" --help "* ]] || [[ " ${*} " == *" -h "* ]]
 }
 
-function git-commiters () {
+function git-commiters {
     if [ $# -eq 0 ]; then
         git log --oneline --pretty="format:%an <%ae>" | sort | uniq
     else
@@ -20,18 +20,18 @@ function which {
                                          --show-dot "${@}"
 }
 
-function mkcd () {
+function mkcd {
     mkdir -p "${1}" && cd "${_}" || return $?
 }
 complete -d mkcd
 
-function cpcd () {
+function cpcd {
     cp "${@}" && cd "${_}" || return $?
 }
 _completion_loader _longopt
 complete -F _longopt cpcd
 
-function mvcd () {
+function mvcd {
     mv "${@}" && cd "${_}" || return $?
 }
 _completion_loader _longopt
@@ -60,7 +60,7 @@ function project-cd {
 
     cd "${HOME}/Code/github.com/mattiasb/${1}" || return
 }
-function _complete-project-folder() {
+function _complete-project-folder {
     local projects=("${HOME}/Code/github.com/mattiasb/${2}"*)
     [[ -e ${projects[0]} ]] && COMPREPLY=( "${projects[@]##*/}" )
 }
@@ -85,7 +85,7 @@ function test-cd {
     cd "${HOME}/Code/Test/${1}" || return
 }
 
-function _complete-test-folder() {
+function _complete-test-folder {
     local tests=("${HOME}/Code/Test/${2}"*)
     [[ -e ${tests[0]} ]] && COMPREPLY=( "${tests[@]##*/}" )
 }
