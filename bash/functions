@@ -239,28 +239,30 @@ complete -d magit
 
 function cmd-which {
     local cmd
-    cmd="${1}"
-    shift
+    local -a args
 
     args=( "${@}" )
-    arglen=$(( ${#args[@]} ))
 
-    case $arglen in
+    case ${#args[@]} in
         0)
-            echo "Usage: ${cmd}-which [FLAGS...] <COMMAND>"
+            echo "Usage: cmd-which <COMMAND> [FLAGS...]"
             return 2
             ;;
         1)
-            eval "${cmd} $(command -v "${1}")"
-            return $?
-            ;;
-        *)
-            last="${args[-1]}"
-            init="${args[*]%${!#}}"
-            eval "${cmd} ${init} $(command -v "${last}")"
-            return $?
+            echo "Usage: ${1}-which [FLAGS...] <COMMAND>"
+            return 2
             ;;
     esac
+
+    cmd="$(type -P "${args[-1]}")"
+    unset 'args[${#args[@]}-1]'
+
+    if [ ! -x "${cmd}" ]; then
+        echo "No executable named <${cmd}> found!" >&2
+        return 2
+    fi
+
+    eval "${args[*]} $(command -v "${cmd}")"
 }
 
 function lpass {
