@@ -35,3 +35,6 @@ alias groovysh='podman run --rm -it groovy'
 alias ubuntu='podman run --rm -it ubuntu:22.04'
 alias mc='podman run --rm -it minio/mc'
 alias argo='podman run --rm -it --volume argoproj/argocli:v2.12.7'
+
+alias kubectl-production="kubectl --kubeconfig ~/.kube/config.production"
+alias kubectl-staging="kubectl --kubeconfig ~/.kube/config.staging"
