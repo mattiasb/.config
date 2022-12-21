@@ -668,49 +668,53 @@ function diff-dirs {
 #### Kubernetes ####
 
 function k8s-kill-all {
-    local namespace pattern
+    local cluster namespace pattern
 
     if [ "${#}" != 2 ]; then
-        echo "Usage: k8s-kill-all <namespace> <pattern>"
+        echo "Usage: k8s-kill-all <cluster> <namespace> <pattern>"
         return 2
     fi
 
-    namespace="${1}"
-    pattern="${2}"
+    cluster="${1}"
+    namespace="${2}"
+    pattern="${3}"
 
-    kubectl get pods --namespace="${namespace}" \
+    kubectl --kubeconfig "${HOME}/.kube/config.${cluster}" get pods --namespace="${namespace}" \
         | cut -d ' ' -f 1                       \
         | grep -E "${pattern}"                  \
         | xargs kubectl delete pod -n argo
 }
 
 function k8s-get-running-pods-on-node {
-    local node
+    local cluster node
 
     if [ "${#}" != 1 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} <NODE>"
+        echo "Usage: ${FUNCNAME[0]} <CLUSTER> <NODE>"
         return 2
     fi
 
-    node="${1}"
+    cluster="${1}"
+    node="${2}"
 
-    kubectl get pods \
-            --all-namespaces -o wide \
-            --field-selector "spec.nodeName=${node},status.phase=Running"
+    kubectl  --kubeconfig "${HOME}/.kube/config.${cluster}" \
+             get pods \
+             --all-namespaces -o wide \
+             --field-selector "spec.nodeName=${node},status.phase=Running"
 }
 complete -F _ssh k8s-get-running-pods-on-node
 
 function k8s-get-failed-pods {
-    local namespace
+    local cluster namespace
 
     if [ "${#}" -gt 1 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} [NAMESPACE]"
+        echo "Usage: ${FUNCNAME[0]} <cluster> [NAMESPACE]"
         return 2
     fi
 
-    namespace="${1}"
+    cluster="${1}"
+    namespace="${2}"
 
-    kubectl get pod -n "${namespace}" \
+    kubectl --kubeconfig "${HOME}/.kube/config.${cluster}" get pod -n "${namespace}" \
             -o wide                   \
             --field-selector 'status.phase!=Succeeded'
 }
