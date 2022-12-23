@@ -1,24 +1,24 @@
 #!/bin/bash
 
-alias dmesg="dmesg --human"
-alias open="xdg-open"
-alias ls="ls -h -B --color=auto  --group-directories-first"
-alias tmux="tmux -f ~/.config/tmux/config"
-alias tm="tmux a || tmux"
-alias ansible-local="env -u ANSIBLE_VAULT_PASSWORD_FILE \
-                     ansible-playbook -i 'localhost,' -c local"
-alias ansible-console-local="env -u ANSIBLE_VAULT_PASSWORD_FILE \
-                             ansible-console -i 'localhost,' -c local"
-alias wipehist="cat /dev/null > ~/.bash_history && history -c && exit"
-alias ninja="ninja-build"
-alias emacs="emacsclient -c -s main"
+alias dmesg='dmesg --human'
+alias open='xdg-open'
+alias ls='ls -h -B --color=auto  --group-directories-first'
+alias tmux='tmux -f ~/.config/tmux/config'
+alias tm='tmux a || tmux'
+alias ansible-local='env -u ANSIBLE_VAULT_PASSWORD_FILE \
+                     ansible-playbook -i "localhost," -c local'
+alias ansible-console-local='env -u ANSIBLE_VAULT_PASSWORD_FILE \
+                             ansible-console -i "localhost," -c local'
+alias wipehist='cat /dev/null > ~/.bash_history && history -c && exit'
+alias ninja='ninja-build'
+alias emacs='emacsclient -c -s main'
 alias refresh='source ~/.bashrc'
 alias c='command'
 alias sys='systemctl'
 alias session='systemctl --user'
 alias cmake='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 alias less-which='cmd-which less'
-alias emacs-which='cmd-which "emacsclient -c -s main"'
+alias emacs-which="cmd-which 'emacsclient -c -s main'"
 alias lp='lpass show -c --password $(lpass ls | fzf | awk '"'"'{print $(NF)}'"'"' | sed '"'"'s/\]//g'"'"')'
 alias flatpak-builder='flatpak-builder --ccache'
 alias dns-flush='sudo resolvectl flush-caches'
@@ -36,6 +36,6 @@ alias ubuntu='podman run --rm -it ubuntu:22.04'
 alias mc='podman run --rm -it minio/mc'
 alias argo='podman run --rm -it --volume argoproj/argocli:v2.12.7'
 
-alias kubectl-development="kubectl --kubeconfig ~/.kube/config.development"
-alias kubectl-staging="kubectl --kubeconfig ~/.kube/config.staging"
-alias kubectl-production="kubectl --kubeconfig ~/.kube/config.production"
+alias kubectl-development='kubectl --kubeconfig ~/.kube/config.development'
+alias kubectl-staging='kubectl --kubeconfig ~/.kube/config.staging'
+alias kubectl-production='kubectl --kubeconfig ~/.kube/config.production'
