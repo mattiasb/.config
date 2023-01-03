@@ -718,3 +718,23 @@ function k8s-get-failed-pods {
             -o wide                   \
             --field-selector 'status.phase!=Succeeded'
 }
+
+function simple-dns {
+    local -a domains
+
+    local ip_count
+    local -a args
+
+    domains=( "${@}" )
+    if [ "${#domains[@]}" -le 0 ]; then
+        domains=( "test.tld" )
+    fi
+
+    ip_count=200
+
+    for domain in "${domains[@]}"; do
+        args+=( "--host-record=${domain},127.0.0.$(( ++ip_count ))" )
+    done
+
+    echo dnsmasq -Rhd -p 10053 -a 127.0.0.153 "${args[@]}"
+}
