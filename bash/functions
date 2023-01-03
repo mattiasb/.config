@@ -736,5 +736,5 @@ function simple-dns {
         args+=( "--host-record=${domain},127.0.0.$(( ++ip_count ))" )
     done
 
-    echo dnsmasq -Rhd -p 10053 -a 127.0.0.153 "${args[@]}"
+    dnsmasq -Rhd -p 10053 -a 127.0.0.153 "${args[@]}"
 }
