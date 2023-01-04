@@ -738,3 +738,17 @@ function simple-dns {
 
     dnsmasq -Rhd -p 10053 -a 127.0.0.153 "${args[@]}"
 }
+
+function get-route-device-for {
+    local address
+
+    if [ ! $# -eq 1 ] || _help-flag; then
+        echo "Usage: get-route-device-for <address>"
+        return 2
+    fi
+
+    address="${1}"
+
+    ip -o route get "$(dig +short "${address}")" \
+        | sed -E 's/^.+?dev ([^ ]+?) .+$/\1/'
+}
