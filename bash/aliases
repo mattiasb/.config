@@ -3,6 +3,7 @@
 alias dmesg='dmesg --human'
 alias open='xdg-open'
 alias ls='ls -h -B --color=auto  --group-directories-first'
+alias ip='ip -c'
 alias tmux='tmux -f ~/.config/tmux/config'
 alias tm='tmux a || tmux'
 alias ansible-local='env -u ANSIBLE_VAULT_PASSWORD_FILE \
