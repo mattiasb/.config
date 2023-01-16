@@ -688,7 +688,7 @@ function k8s-kill-all {
 function k8s-get-running-pods-on-node {
     local cluster node
 
-    if [ "${#}" != 1 ] || _help-flag "${@}"; then
+    if [ "${#}" != 2 ] || _help-flag "${@}"; then
         echo "Usage: ${FUNCNAME[0]} <CLUSTER> <NODE>"
         return 2
     fi
