@@ -32,6 +32,8 @@
 	# Execute shell scripts in top directory.
 	exec             = ! exec
 
+	history-grep     = log -p -G
+
 	pipenv           = "!f() { exec bash -c \"pipenv shell cd ${GIT_PREFIX:-.}\"; }; f"
 
 	home             = "!f() { cd; git each $@ :: Documents/Magic/decks/ .config/ .config/emacs/ .local/bin/ Code/github.com/mattiasb/MachineSetup/ Code/Test/; }; f"
