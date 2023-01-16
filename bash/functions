@@ -726,6 +726,7 @@ function k8s-get-running-pods-on-nodes {
         echo
     done
 }
+complete -F _ssh k8s-get-running-pods-on-node
 
 
 function k8s-get-failed-pods {
