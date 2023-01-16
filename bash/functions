@@ -794,3 +794,23 @@ function device-route-for {
 
     ip -o route get "$(ip-of "${addr}")" | sed -E 's/^.+?dev ([^ ]+?) .+$/\1/'
 }
+
+function poor-watch {
+    local zzz
+
+    if [ "${#}" -lt 2 ] || _help-flag; then
+        echo "Usage: ${FUNCNAME[0]} <SLEEP> <CMD>..."
+        echo
+        echo "Poor mans \`watch\`. On the upside, works with BASH functions!"
+        return 2
+    fi
+
+    zzz="${1}"
+    shift
+
+    while true; do
+        sleep "${zzz}" || return 1
+        clear
+        eval "${*}"
+    done
+}
