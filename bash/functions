@@ -703,6 +703,31 @@ function k8s-get-running-pods-on-node {
 }
 complete -F _ssh k8s-get-running-pods-on-node
 
+function k8s-get-running-pods-on-nodes {
+    local cluster
+    local nodes
+    local node
+
+    cluster="${1}"
+    shift
+    nodes=( "${@}" )
+
+    if [ "${#}" -lt 2 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} <CLUSTER> <NODE>..."
+        return 2
+    fi
+
+    for node in "${nodes[@]}"; do
+        echo
+        echo "${node}"
+        echo "============="
+        k8s-get-running-pods-on-node production "${node}"
+        echo
+        echo
+    done
+}
+
+
 function k8s-get-failed-pods {
     local cluster namespace
 
