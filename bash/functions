@@ -837,3 +837,14 @@ function k9s {
            -v "${kubeconfig}":/root/.kube/config \
            quay.io/derailed/k9s "${@}"
 }
+
+function header {
+    local header
+
+    header="${*}"
+
+    echo
+    echo "${*}"
+    printf '=%.0s' $(seq 1 "${#header}")
+    echo
+}
