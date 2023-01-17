@@ -814,3 +814,26 @@ function poor-watch {
         eval "${*}"
     done
 }
+
+function k9s {
+    local cluster kubeconfig
+
+    if _help-flag "${@}" || [ "${#}" -lt 1 ]; then
+        podman run --rm -it quay.io/derailed/k9s --help \
+            | sed -E 's/^  k9s /  k9s <CLUSTER> /g'
+        return 2
+    fi
+
+    cluster="${1}"
+    shift
+    kubeconfig="${HOME}/.kube/config.${1}"
+
+    if [ ! -f "${kubeconfig}"  ]; then
+        echo "No such file: ${kubeconfig}"
+        return 3
+    fi
+
+    podman run --rm -it                          \
+           -v "${kubeconfig}":/root/.kube/config \
+           quay.io/derailed/k9s "${@}"
+}
