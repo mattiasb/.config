@@ -10,8 +10,6 @@ alias ansible-local='env -u ANSIBLE_VAULT_PASSWORD_FILE \
                      ansible-playbook -i "localhost," -c local'
 alias ansible-console-local='env -u ANSIBLE_VAULT_PASSWORD_FILE \
                              ansible-console -i "localhost," -c local'
-alias ansible-playbook='ansible-playbook -f "$(nproc)"'
-alias ansible='ansible -f "$(nproc)"'
 alias wipehist='cat /dev/null > ~/.bash_history && history -c && exit'
 alias ninja='ninja-build'
 alias emacs='emacsclient -c -s main'
