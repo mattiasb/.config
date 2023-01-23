@@ -613,15 +613,19 @@ function jhparm {
 }
 
 function vagrant-up {
-    local boxes
+    local -a boxes
 
-    boxes="$( vagrant status --machine-readable                                \
-            | cut -d "," -f 2                                                  \
-            | tr -s '\n' '\n'                                                  \
-            | sort -u                                                          \
-            )"
+    if [ "${#}" -gt 0  ]; then
+        boxes=( "${@}" )
+    else
+        mapfile -t boxes < <( vagrant status --machine-readable \
+                                  | cut -d "," -f 2             \
+                                  | tr -s '\n' '\n'             \
+                                  | sort -u                     \
+                            )
+    fi
 
-    for box in $boxes; do
+    for box in "${boxes[@]}"; do
         vagrant up "${box}"
     done
 }
