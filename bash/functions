@@ -482,6 +482,32 @@ function nautilus-smb-logout {
     secret-tool clear protocol smb user "${user}" server "${server}"
 }
 
+alias ssh-add-hostkey='ssh-regenerate-hostkey'
+function ssh-regenerate-hostkey {
+    local host exitcode
+
+    exitcode=0
+
+    if [ "${#}" -lt 1 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} <server>..."
+        return 2
+    fi
+
+    for host in "${@}"; do
+        if ! key="$(ssh-keyscan "${host}" 2> >(grep -v '^#' >&2))"; then
+            echo "${host}: Couldn't fetch host key from server" >&2
+            exitcode=2
+        fi
+        ssh-remove-hostkey "${host}"
+        echo "${key}" >> ~/.ssh/known_hosts
+    done
+
+    return "${exitcode}"
+}
+_completion_loader ssh
+complete -F _ssh ssh-add-hostkey
+complete -F _ssh ssh-regenerate-hostkey
+
 function ssh-remove-hostkey {
     local host ips exitcode
 
@@ -503,7 +529,6 @@ function ssh-remove-hostkey {
 
     return "${exitcode}"
 }
-_completion_loader ssh
 complete -F _ssh ssh-remove-hostkey
 
 function ssht {
