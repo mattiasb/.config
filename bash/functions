@@ -482,7 +482,7 @@ function nautilus-smb-logout {
     secret-tool clear protocol smb user "${user}" server "${server}"
 }
 
-function ssh-remove-host {
+function ssh-remove-hostkey {
     local host ips exitcode
 
     exitcode=0
@@ -504,7 +504,7 @@ function ssh-remove-host {
     return "${exitcode}"
 }
 _completion_loader ssh
-complete -F _ssh ssh-remove-host
+complete -F _ssh ssh-remove-hostkey
 
 function ssht {
     ssh -t "$@" tmux new-session -A -s ssh_tmux
