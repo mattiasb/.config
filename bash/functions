@@ -487,6 +487,11 @@ function ssh-remove-host {
 
     exitcode=0
 
+    if [ "${#}" -lt 1 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} <server>..."
+        return 2
+    fi
+
     for host in "${@}"; do
         ips="$(dig +short "${host}")"
         for i in $ips $host; do
