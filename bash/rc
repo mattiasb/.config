@@ -22,28 +22,13 @@ for file in "${HOME}/.config/environment.d/"*.conf; do
 done
 
 ## Set up PS1
-if [[ "${TERM}" == *"-256color" ]] &&
-       { [ -z "${INSIDE_EMACS}" ] || [ "${INSIDE_EMACS}" = "vterm" ]; } &&
-       [ "$(systemctl is-active --user powerline.service)" = "active" ];
-then
-    . /usr/share/powerline/bash/powerline.sh
-else
-    # My old prompt for stuff like aterm in emacs
-
-    PROMPT_DIRTRIM=3
-
-    # Git prompt
-    if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
-        source /usr/share/git-core/contrib/completion/git-prompt.sh
-    fi
-
-    # Tmux
-    if [[ -n "${TMUX}" ]]; then
-        PSE="[\[\e[0;31m\]TMUX\[\e[00m\]]"
-    fi
-
-    export PS1="\[\e[0;32m\]\u\[\e[00m\]${PSE} \[\e[0;33m\]\w\[\e[00m\]\$(type __git_ps1 1>/dev/null 2>/dev/null && __git_ps1) \$ "
-fi
+case "${TERM}+powerline=$(systemctl is-active --user powerline.service)" in
+    *-256color+powerline=active)    . /usr/share/powerline/bash/powerline.sh ;;
+   eat-truecolor+powerline=active) . /usr/share/powerline/bash/powerline.sh ;;
+   *)
+       # shellcheck source=/home/mattiasb/.config/bash/old-prompt.sh
+       . ~/.config/bash/old-prompt.sh ;;
+esac
 
 ### Configuration
 
