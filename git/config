@@ -18,6 +18,8 @@
 	insteadOf = github
 [url "git@gitlab.com"]
 	insteadOf = gitlab
+[url "git@codeberg.org"]
+	insteadOf = codeberg
 [url "git@git.smarteye.se"]
 	insteadOf = smarteye
 [url "git@gitlab.gnome.org"]
