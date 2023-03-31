@@ -30,6 +30,11 @@ case "${TERM}+powerline=$(systemctl is-active --user powerline.service)" in
        . ~/.config/bash/old-prompt.sh ;;
 esac
 
+if [ -n "${EAT_SHELL_INTEGRATION_DIR}" ]; then
+    # shellcheck source=/dev/null
+    source "${EAT_SHELL_INTEGRATION_DIR}/bash"
+fi
+
 ### Configuration
 
 # History
