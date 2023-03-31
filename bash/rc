@@ -24,10 +24,10 @@ done
 ## Set up PS1
 case "${TERM}+powerline=$(systemctl is-active --user powerline.service)" in
     *-256color+powerline=active)    . /usr/share/powerline/bash/powerline.sh ;;
-   eat-truecolor+powerline=active) . /usr/share/powerline/bash/powerline.sh ;;
-   *)
-       # shellcheck source=/home/mattiasb/.config/bash/old-prompt.sh
-       . ~/.config/bash/old-prompt.sh ;;
+    eat-truecolor+powerline=active) . /usr/share/powerline/bash/powerline.sh ;;
+    *)
+        # shellcheck source=/home/mattiasb/.config/bash/old-prompt.sh
+        . ~/.config/bash/old-prompt.sh ;;
 esac
 
 if [ -n "${EAT_SHELL_INTEGRATION_DIR}" ]; then
