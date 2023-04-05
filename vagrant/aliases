@@ -1,0 +1,9 @@
+up       = up --no-destroy-on-error
+start    = up --no-destroy-on-error
+
+reboot   = reload
+
+shutdown = halt
+stop     = halt
+
+recreate = !f() { vagrant destroy -f $1; echo; vagrant up $1; }; f
