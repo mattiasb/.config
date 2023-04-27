@@ -52,6 +52,7 @@
 	tool = meld
 [rebase]
 	autoStash = true
+	updateRefs = true
 [branch]
 	autosetuprebase = always
 [status]
