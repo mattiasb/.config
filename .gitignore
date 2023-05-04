@@ -90,3 +90,4 @@ pipewire-media-session/
 /bash/functions.work
 /background
 /*.list
+/ghc/ghci_history
