@@ -54,7 +54,7 @@ done
 
 # shellcheck source=./aliases
 . "${HOME}/.config/bash/aliases"
-if [ -f _complete_alias ]; then
+if [ "$(type -t _complete_alias)" = "function" ]; then
     for a in $(alias | cut -d "=" -f 1 | cut -d " " -f 2); do
         complete -F _complete_alias "$a"
     done
