@@ -54,9 +54,11 @@ done
 
 # shellcheck source=./aliases
 . "${HOME}/.config/bash/aliases"
-for a in $(alias | cut -d "=" -f 1 | cut -d " " -f 2); do
-    complete -F _complete_alias "$a"
-done
+if [ -f _complete_alias ]; then
+    for a in $(alias | cut -d "=" -f 1 | cut -d " " -f 2); do
+        complete -F _complete_alias "$a"
+    done
+fi
 
 # shellcheck source=./functions
 . "${HOME}/.config/bash/functions"
