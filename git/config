@@ -7,7 +7,7 @@
 [color]
 	diff = always
 
-[includeIf "gitdir:~/Code/git.smarteye.se/"]
+[includeIf "gitdir:~/Code/source-secure.haleytek.net/"]
 	path = config.work
 
 # Github
@@ -20,10 +20,10 @@
 	insteadOf = gitlab
 [url "git@codeberg.org"]
 	insteadOf = codeberg
-[url "git@git.smarteye.se"]
-	insteadOf = smarteye
 [url "git@gitlab.gnome.org"]
 	insteadOf = gnome
+[url "ssh://mattiasbe@source-secure.haleytek.net:29418/"]
+	insteadOf = haleytek:
 
 [core]
 	pager = delta
@@ -78,8 +78,6 @@
 	user = mattiasb
 [gitlab "gitlab.gnome.org/api/v4"]
 	user = mattiasb
-[gitlab "git.smarteye.se/api/v4"]
-	user = mattias.bengtsson
 [pull]
 	rebase = true
 [interactive]
