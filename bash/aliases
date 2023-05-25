@@ -33,10 +33,12 @@ if  command -v docker &>/dev/null ; then
     alias docker='sudo docker'
 fi
 
+# Containers
 alias groovysh='podman run --rm -it groovy'
 alias ubuntu='podman run --rm -it ubuntu:22.04'
 alias mc='podman run --rm -it minio/mc'
 alias argo='podman run --rm -it --volume argoproj/argocli:v2.12.7'
+alias promtail='container grafana/promtail'
 
 alias kubectl-development='kubectl --kubeconfig ~/.kube/config.development'
 alias kubectl-staging='kubectl --kubeconfig ~/.kube/config.staging'
