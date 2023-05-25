@@ -33,6 +33,8 @@ if  command -v docker &>/dev/null ; then
     alias docker='sudo docker'
 fi
 
+alias venv="python -m venv"
+
 # Containers
 alias groovysh='podman run --rm -it groovy'
 alias ubuntu='podman run --rm -it ubuntu:22.04'
