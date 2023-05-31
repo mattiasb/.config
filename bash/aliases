@@ -36,11 +36,11 @@ fi
 alias venv="python -m venv"
 
 # Containers
-alias groovysh='podman run --rm -it groovy'
-alias ubuntu='podman run --rm -it ubuntu:22.04'
-alias mc='podman run --rm -it minio/mc'
-alias argo='podman run --rm -it --volume argoproj/argocli:v2.12.7'
-alias promtail='container grafana/promtail'
+alias groovysh='container docker.io/groovy'
+alias mc='container docker.io/minio/mc:latest'
+alias argo='container docker.io/argoproj/argocli:latest'
+alias ubuntu='container docker.io/ubuntu:22.04'
+alias promtail='container docker.io/grafana/promtail:latest'
 
 alias kubectl-development='kubectl --kubeconfig ~/.kube/config.development'
 alias kubectl-staging='kubectl --kubeconfig ~/.kube/config.staging'
