@@ -33,8 +33,6 @@ if  command -v docker &>/dev/null ; then
     alias docker='sudo docker'
 fi
 
-alias venv="python -m venv"
-
 # Containers
 alias groovysh='container docker.io/groovy'
 alias mc='container docker.io/minio/mc:latest'
