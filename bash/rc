@@ -1,17 +1,40 @@
 # -*- mode: sh -*-
 
-# Source global definitions
+### Configuration
+
+# History
+shopt -s histappend
+
+# Disable C-s / C-q for XOFF/XON
+stty start undef
+stty stop undef
+
+### Load stuff
+
+# Global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# Source any potential machine local scripts
+# Machine local scripts
 if [ -f "${HOME}/.config/bash/rc.local" ]; then
     # shellcheck source=/dev/null
     . "${HOME}/.config/bash/rc.local"
 fi
 
-### Environment
+# Functions
+# shellcheck source=./functions
+. "${HOME}/.config/bash/functions"
+if [ -f "${HOME}/.config/bash/functions.work" ]; then
+    # shellcheck source=/dev/null
+    . "${HOME}/.config/bash/functions.work"
+fi
+
+# Aliases
+# shellcheck source=./aliases
+. "${HOME}/.config/bash/aliases"
+
+# Environment
 for file in "${HOME}/.config/environment.d/"*.conf; do
     while IFS= read -r line
     do
@@ -21,7 +44,7 @@ for file in "${HOME}/.config/environment.d/"*.conf; do
     done < "${file}"
 done
 
-## Set up PS1
+# Set up PS1
 case "${TERM}+powerline=$(systemctl is-active --user powerline.service)" in
     *-256color+powerline=active)    . /usr/share/powerline/bash/powerline.sh ;;
     eat-truecolor+powerline=active) . /usr/share/powerline/bash/powerline.sh ;;
@@ -35,16 +58,7 @@ if [ -n "${EAT_SHELL_INTEGRATION_DIR}" ]; then
     source "${EAT_SHELL_INTEGRATION_DIR}/bash"
 fi
 
-### Configuration
-
-# History
-shopt -s histappend
-
-# Disable C-s / C-q for XOFF/XON
-stty start undef
-stty stop undef
-
-### Completion
+# Completions
 for comp in "${HOME}/.config/bash_completion.d/"*; do
     if [ -f "${comp}" ] ; then
         # shellcheck source=/dev/null
@@ -52,23 +66,14 @@ for comp in "${HOME}/.config/bash_completion.d/"*; do
     fi
 done
 
-# shellcheck source=./aliases
-. "${HOME}/.config/bash/aliases"
+### Complete Aliases
 if [ "$(type -t _complete_alias)" = "function" ]; then
     for a in $(alias | cut -d "=" -f 1 | cut -d " " -f 2); do
         complete -F _complete_alias "$a"
     done
 fi
 
-# shellcheck source=./functions
-. "${HOME}/.config/bash/functions"
-
-if [ -f "${HOME}/.config/bash/functions.work" ]; then
-    # shellcheck source=/dev/null
-    . "${HOME}/.config/bash/functions.work"
-fi
-
-# Use fzf
+### FZF
 . /usr/share/fzf/shell/key-bindings.bash
 # Take back M-c from fzf
 bind '"\ec":capitalize-word'
