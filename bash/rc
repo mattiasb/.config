@@ -45,9 +45,17 @@ for file in "${HOME}/.config/environment.d/"*.conf; do
 done
 
 # Set up PS1
-case "${TERM}+powerline=$(systemctl is-active --user powerline.service)" in
-    *-256color+powerline=active)    . /usr/share/powerline/bash/powerline.sh ;;
-    eat-truecolor+powerline=active) . /usr/share/powerline/bash/powerline.sh ;;
+case "${TERM}" in
+    *-256color|eat-truecolor)
+        if systemctl is-active --user powerline.service >/dev/null; then
+            . /usr/share/powerline/bash/powerline.sh
+        else
+            function powerline-go-prompt {
+                PS1="$(powerline-go -error $? -jobs "$(jobs -p | wc -l)")"
+            }
+            PROMPT_COMMAND="powerline-go-prompt; $PROMPT_COMMAND"
+        fi
+        ;;
     *)
         # shellcheck source=/home/mattiasb/.config/bash/old-prompt.sh
         . ~/.config/bash/old-prompt.sh ;;
