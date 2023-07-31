@@ -50,9 +50,6 @@ case "${TERM}" in
         if systemctl is-active --user powerline.service >/dev/null; then
             . /usr/share/powerline/bash/powerline.sh
         else
-            function powerline-go-prompt {
-                PS1="$(powerline-go -error $? -jobs "$(jobs -p | wc -l)")"
-            }
             PROMPT_COMMAND="powerline-go-prompt; $PROMPT_COMMAND"
         fi
         ;;

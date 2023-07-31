@@ -883,3 +883,13 @@ function header {
     printf '=%.0s' $(seq 1 "${#header}")
     echo
 }
+
+function powerline-go-prompt {
+    PS1="$(powerline-go -error $?                                              \
+                        -jobs "$(jobs -p | wc -l)"                             \
+                        -cwd-max-depth 3                                       \
+                        -hostname-only-if-ssh                                  \
+                        -numeric-exit-codes                                    \
+                        -modules "venv,user,host,ssh,cwd,perms,git,jobs,exit"  \
+          )"
+}
