@@ -885,12 +885,14 @@ function header {
 }
 
 function powerline-go-prompt {
-    local modules="user,host,ssh,kube,venv,direnv,cwd,perms,git,jobs,exit"
+    local modules="user,host,ssh,direnv,venv,kube,git,cwd,perms,jobs,exit"
+    local git_stats="ahead,behind,staged,notStaged,untracked,stashed"
     PS1="$(powerline-go -error $?                                              \
                         -jobs "$(jobs -p | wc -l)"                             \
                         -cwd-max-depth 3                                       \
                         -hostname-only-if-ssh                                  \
                         -numeric-exit-codes                                    \
+                        -git-disable-stats "${git_stats}"                      \
                         -modules "${modules}"                                  \
           )"
 }
