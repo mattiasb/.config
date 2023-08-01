@@ -55,6 +55,7 @@ case "${TERM}" in
     *)                        mb-lofi-prompt  ;;
 esac
 
+# Eat terminal
 if [ -n "${EAT_SHELL_INTEGRATION_DIR}" ]; then
     # shellcheck source=/dev/null
     source "${EAT_SHELL_INTEGRATION_DIR}/bash"
