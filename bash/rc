@@ -46,17 +46,13 @@ for file in "${HOME}/.config/environment.d/"*.conf; do
 done
 
 # Set up PS1
+
+# shellcheck source=bash/prompt
+. "${HOME}/.config/bash/prompt"
+
 case "${TERM}" in
-    *-256color|eat-truecolor)
-        if systemctl is-active --user powerline.service >/dev/null; then
-            . /usr/share/powerline/bash/powerline.sh
-        else
-            PROMPT_COMMAND="powerline-go-prompt; $PROMPT_COMMAND"
-        fi
-        ;;
-    *)
-        # shellcheck source=/home/mattiasb/.config/bash/old-prompt.sh
-        . ~/.config/bash/old-prompt.sh ;;
+    *-256color|eat-truecolor) mb-fancy-prompt ;;
+    *)                        mb-lofi-prompt  ;;
 esac
 
 if [ -n "${EAT_SHELL_INTEGRATION_DIR}" ]; then

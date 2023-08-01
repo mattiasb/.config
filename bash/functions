@@ -892,16 +892,3 @@ function header {
     printf '=%.0s' $(seq 1 "${#header}")
     echo
 }
-
-function powerline-go-prompt {
-    local modules="user,host,ssh,direnv,venv,kube,git,cwd,perms,jobs,exit"
-    local git_stats="ahead,behind,staged,notStaged,untracked,stashed"
-    PS1="$(powerline-go -error $?                                              \
-                        -jobs "$(jobs -p | wc -l)"                             \
-                        -cwd-max-depth 5                                       \
-                        -hostname-only-if-ssh                                  \
-                        -numeric-exit-codes                                    \
-                        -git-disable-stats "${git_stats}"                      \
-                        -modules "${modules}"                                  \
-          )"
-}
