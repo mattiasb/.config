@@ -1,3 +1,5 @@
 #!/bin/bash
 
-complete -C "$(which terraform)" terraform
+if terraform="$(command -v terraform &> /dev/null)"; then
+    complete -C "${terraform}" terraform
+fi
