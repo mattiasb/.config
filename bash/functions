@@ -893,7 +893,7 @@ function powerline-go-prompt {
     local git_stats="ahead,behind,staged,notStaged,untracked,stashed"
     PS1="$(powerline-go -error $?                                              \
                         -jobs "$(jobs -p | wc -l)"                             \
-                        -cwd-max-depth 3                                       \
+                        -cwd-max-depth 5                                       \
                         -hostname-only-if-ssh                                  \
                         -numeric-exit-codes                                    \
                         -git-disable-stats "${git_stats}"                      \
