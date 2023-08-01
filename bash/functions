@@ -21,6 +21,10 @@ function which {
     # TODO: Do something about `which docker-compose`.
 }
 
+function path {
+    echo -e "${PATH//:/\\n}"
+}
+
 function mkcd {
     mkdir -p "${1}" && cd "${_}" || return $?
 }
