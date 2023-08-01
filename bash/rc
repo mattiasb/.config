@@ -24,7 +24,7 @@ if [ -f "${HOME}/.config/bash/rc.local" ]; then
 fi
 
 # Functions
-# shellcheck source=./functions
+# shellcheck source=bash/functions
 . "${HOME}/.config/bash/functions"
 if [ -f "${HOME}/.config/bash/functions.work" ]; then
     # shellcheck source=/dev/null
@@ -32,7 +32,7 @@ if [ -f "${HOME}/.config/bash/functions.work" ]; then
 fi
 
 # Aliases
-# shellcheck source=./aliases
+# shellcheck source=bash/aliases
 . "${HOME}/.config/bash/aliases"
 
 # Environment
