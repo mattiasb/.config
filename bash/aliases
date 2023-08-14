@@ -33,6 +33,7 @@ if  command -v docker &>/dev/null ; then
     alias docker-compose='sudo docker-compose'
     alias docker='sudo docker'
 fi
+alias pip="pip --require-virtualenv"
 
 # Containers
 alias groovysh='container docker.io/groovy'
