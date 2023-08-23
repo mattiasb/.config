@@ -318,7 +318,8 @@ function logins {
 
     journalctl --since "${since}" --until "${until}" -t lockmon --no-pager \
         | tail -n +2                                                       \
-        | cut -d ' ' -f '1-3 6-'
+        | cut -d ' ' -f '1-3 6-' \
+        | uniq
 }
 
 function logins2 {
