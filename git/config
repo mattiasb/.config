@@ -50,6 +50,7 @@
 
 [diff]
 	tool = meld
+	external = difft --display="inline"
 [rebase]
 	autoStash = true
 	updateRefs = true
