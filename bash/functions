@@ -23,7 +23,7 @@ function which {
 }
 
 function path {
-    echo -e "${PATH//:/\\n}"
+    echo -e "${PATH//:/\\n}" | tac
 }
 
 function fd {
