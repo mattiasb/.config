@@ -26,6 +26,10 @@ function path {
     echo -e "${PATH//:/\\n}"
 }
 
+function fd {
+    find . -name "${*}" |& grep -v ': Permission denied'
+}
+
 function mkcd {
     mkdir -p "${1}" && cd "${_}" || return $?
 }
