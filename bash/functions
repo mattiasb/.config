@@ -27,7 +27,7 @@ function path {
 }
 
 function fd {
-    find . -name "${*}" |& grep -v ': Permission denied'
+    find . -name "${@}" |& grep -v ': Permission denied'
 }
 
 function mkcd {
