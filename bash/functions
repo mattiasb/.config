@@ -714,86 +714,6 @@ function diff-dirs {
     rm "${dir1}.list" "${dir2}.list"
 }
 
-#### Kubernetes ####
-
-function k8s-kill-all {
-    local cluster namespace pattern
-
-    if [ "${#}" != 2 ]; then
-        echo "Usage: k8s-kill-all <cluster> <namespace> <pattern>"
-        return 2
-    fi
-
-    cluster="${1}"
-    namespace="${2}"
-    pattern="${3}"
-
-    kubectl --kubeconfig "${HOME}/.kube/config.${cluster}" get pods --namespace="${namespace}" \
-        | cut -d ' ' -f 1                       \
-        | grep -E "${pattern}"                  \
-        | xargs kubectl delete pod -n argo
-}
-
-function k8s-get-running-pods-on-node {
-    local cluster node
-
-    if [ "${#}" != 2 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} <CLUSTER> <NODE>"
-        return 2
-    fi
-
-    cluster="${1}"
-    node="${2}"
-
-    kubectl  --kubeconfig "${HOME}/.kube/config.${cluster}" \
-             get pods \
-             --all-namespaces -o wide \
-             --field-selector "spec.nodeName=${node},status.phase=Running"
-}
-complete -F _ssh k8s-get-running-pods-on-node
-
-function k8s-get-running-pods-on-nodes {
-    local cluster
-    local nodes
-    local node
-
-    cluster="${1}"
-    shift
-    nodes=( "${@}" )
-
-    if [ "${#}" -lt 2 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} <CLUSTER> <NODE>..."
-        return 2
-    fi
-
-    for node in "${nodes[@]}"; do
-        echo
-        echo "${node}"
-        echo "============="
-        k8s-get-running-pods-on-node production "${node}"
-        echo
-        echo
-    done
-}
-complete -F _ssh k8s-get-running-pods-on-node
-
-
-function k8s-get-failed-pods {
-    local cluster namespace
-
-    if [ "${#}" -gt 1 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} <cluster> [NAMESPACE]"
-        return 2
-    fi
-
-    cluster="${1}"
-    namespace="${2}"
-
-    kubectl --kubeconfig "${HOME}/.kube/config.${cluster}" get pod -n "${namespace}" \
-            -o wide                   \
-            --field-selector 'status.phase!=Succeeded'
-}
-
 function simple-dns {
     local -a domains
 
@@ -864,29 +784,6 @@ function poor-watch {
     done
 }
 
-function k9s {
-    local cluster kubeconfig
-
-    if _help-flag "${@}" || [ "${#}" -lt 1 ]; then
-        podman run --rm -it quay.io/derailed/k9s --help \
-            | sed -E 's/^  k9s /  k9s <CLUSTER> /g'
-        return 2
-    fi
-
-    cluster="${1}"
-    shift
-    kubeconfig="${HOME}/.kube/config.${cluster}"
-
-    if [ ! -f "${kubeconfig}"  ]; then
-        echo "No such file: ${kubeconfig}"
-        return 3
-    fi
-
-    podman run --rm -it                          \
-           -v "${kubeconfig}":/root/.kube/config \
-           quay.io/derailed/k9s "${@}"
-}
-
 function header {
     local header
 
@@ -896,4 +793,113 @@ function header {
     echo "${*}"
     printf '=%.0s' $(seq 1 "${#header}")
     echo
+}
+
+
+############################ Kubernetes ########################################
+
+
+function k8s-kill-all {
+    local namespace pattern
+
+    if [ "${#}" != 2 ]; then
+        echo "Usage: k8s-kill-all <namespace> <pattern>"
+        return 2
+    fi
+
+    namespace="${1}"
+    pattern="${2}"
+
+    kubectl get pods --namespace="${namespace}" \
+        | cut -d ' ' -f 1                       \
+        | grep -E "${pattern}"                  \
+        | xargs kubectl delete pod -n argo
+}
+
+function k8s-get-running-pods-on-node {
+    local node
+
+    if [ "${#}" != 1 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} <NODE>"
+        return 2
+    fi
+    node="${2}"
+
+    kubectl get pods                                                           \
+            --all-namespaces                                                   \
+            -o wide                                                            \
+            --field-selector "spec.nodeName=${node},status.phase=Running"
+}
+complete -F _ssh k8s-get-running-pods-on-node
+
+function k8s-get-running-pods-on-nodes {
+    local nodes
+    local node
+
+    nodes=( "${@}" )
+
+    if [ "${#}" -lt 2 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} <NODE>..."
+        return 2
+    fi
+
+    for node in "${nodes[@]}"; do
+        echo
+        echo "${node}"
+        echo "============="
+        k8s-get-running-pods-on-node "${node}"
+        echo
+        echo
+    done
+}
+complete -F _ssh k8s-get-running-pods-on-node
+
+
+function k8s-get-failed-pods {
+    local namespace
+
+    if [ "${#}" -gt 1 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} [NAMESPACE]"
+        return 2
+    fi
+
+    namespace="${1:-default}"
+
+    kubectl get pod -n "${namespace}" \
+            -o wide                   \
+            --field-selector 'status.phase!=Succeeded'
+}
+
+function k8s-set-context {
+    local contexts context
+
+    case "${#}" in
+        0)  mapfile -t contexts < <(kubectl config get-contexts                \
+                                            --no-headers                       \
+                                            -o name                            \
+                                   )
+            context="$( printf "%s\n" "${contexts[@]}"                         \
+                      | fzf --ansi --height $(( ${#contexts[@]} + 2))          \
+                      )"
+            ;;
+        1)  context="${1}"
+            ;;
+        *)  echo "Usage: ${FUNCNAME[0]} [CONTEXT]" >&2
+            return 2
+            ;;
+    esac
+
+    kubectl config use-context "${context}"
+}
+
+function k9s {
+    if _help-flag "${@}"; then
+        podman run --rm -it quay.io/derailed/k9s --help \
+            | sed -E 's/^  k9s /  k9s <CLUSTER> /g'
+        return 2
+    fi
+
+    podman run --rm -it                                 \
+           -v "${HOME}/.kube/config":/root/.kube/config \
+           quay.io/derailed/k9s "${@}"
 }
