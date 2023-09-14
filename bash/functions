@@ -870,7 +870,7 @@ function k8s-get-failed-pods {
             --field-selector 'status.phase!=Succeeded'
 }
 
-function k8s-set-context {
+function k8s-context {
     local contexts context
 
     case "${#}" in
