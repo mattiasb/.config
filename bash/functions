@@ -892,6 +892,29 @@ function k8s-context {
     kubectl config use-context "${context}"
 }
 
+function k8s-namespace {
+    local namespaces namespace
+
+    case "${#}" in
+        0)  mapfile -t namespaces < <(kubectl get namespaces                   \
+                                              --no-headers                     \
+                                              -o name                          \
+                                          | xargs -n1 basename                 \
+                                     )
+            namespace="$( printf "%s\n" "${namespaces[@]}"                     \
+                        | fzf --ansi --height $(( ${#namespaces[@]} + 2))      \
+                        )"
+            ;;
+        1)  namespace="${1}"
+            ;;
+        *)  echo "Usage: ${FUNCNAME[0]} [NAMESPACE]" >&2
+            return 2
+            ;;
+    esac
+
+    kubectl config set-context --current --namespace="${namespace}"
+}
+
 function k9s {
     if _help-flag "${@}"; then
         podman run --rm -it quay.io/derailed/k9s --help \
