@@ -8,7 +8,7 @@ function mb-powerline-go-prompt {
                         -hostname-only-if-ssh                                                \
                         -numeric-exit-codes                                                  \
                         -git-disable-stats "ahead,behind,staged,notStaged,untracked,stashed" \
-                        -modules "user,host,ssh,direnv,venv,kube,git,cwd,perms,jobs,exit"    \
+                        -modules "user,host,ssh,kube,direnv,venv,git,cwd,perms,jobs,exit"    \
           )"
 }
 
