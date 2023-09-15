@@ -802,18 +802,18 @@ function header {
 function k8s-kill-all {
     local namespace pattern
 
-    if [ "${#}" != 2 ]; then
+    if [ "${#}" -lt 1 ]; then
         echo "Usage: k8s-kill-all <namespace> <pattern>"
         return 2
     fi
 
     namespace="${1}"
-    pattern="${2}"
+    pattern="${2:-''}"
 
-    kubectl get pods --namespace="${namespace}" \
-        | cut -d ' ' -f 1                       \
-        | grep -E "${pattern}"                  \
-        | xargs kubectl delete pod -n argo
+    kubectl get pods -n "${namespace}"                                         \
+        | cut -d ' ' -f 1                                                      \
+        | grep -E "${pattern}"                                                 \
+        | xargs kubectl delete pod -n "${namespace}"
 }
 
 function k8s-get-running-pods-on-node {
@@ -930,12 +930,6 @@ function k8s-context {
 }
 
 function k9s {
-    if _help-flag "${@}"; then
-        podman run --rm -it quay.io/derailed/k9s --help \
-            | sed -E 's/^  k9s /  k9s <CLUSTER> /g'
-        return 2
-    fi
-
     podman run --rm -it                                 \
            -v "${HOME}/.kube/config":/root/.kube/config \
            quay.io/derailed/k9s "${@}"
