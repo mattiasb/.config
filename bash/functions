@@ -870,26 +870,26 @@ function k8s-get-failed-pods {
             --field-selector 'status.phase!=Succeeded'
 }
 
-function k8s-context {
-    local contexts context
+function k8s-cluster {
+    local clusters cluster
 
     case "${#}" in
-        0)  mapfile -t contexts < <(kubectl config get-contexts                \
+        0)  mapfile -t clusters < <(kubectl config get-contexts                \
                                             --no-headers                       \
                                             -o name                            \
                                    )
-            context="$( printf "%s\n" "${contexts[@]}"                         \
-                      | fzf --ansi --height $(( ${#contexts[@]} + 2))          \
+            cluster="$( printf "%s\n" "${clusters[@]}"                         \
+                      | fzf --ansi --height $(( ${#clusters[@]} + 2))          \
                       )"
             ;;
-        1)  context="${1}"
+        1)  cluster="${1}"
             ;;
         *)  echo "Usage: ${FUNCNAME[0]} [CONTEXT]" >&2
             return 2
             ;;
     esac
 
-    kubectl config use-context "${context}"
+    kubectl config use-context "${cluster}"
 }
 
 function k8s-namespace {
@@ -913,6 +913,20 @@ function k8s-namespace {
     esac
 
     kubectl config set-context --current --namespace="${namespace}"
+}
+
+function k8s-unset-context {
+    kubectl config unset current-context
+}
+
+function k8s-context {
+    if [ "${1}" = "-" ]; then
+        k8s-unset-context
+        return
+    fi
+
+    k8s-cluster ${1:+"${1}"}
+    k8s-namespace ${2:+"${2}"}
 }
 
 function k9s {
