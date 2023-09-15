@@ -870,7 +870,7 @@ function k8s-get-failed-pods {
             --field-selector 'status.phase!=Succeeded'
 }
 
-function k8s-cluster {
+function k8s-change-cluster {
     local clusters cluster
 
     case "${#}" in
@@ -892,7 +892,7 @@ function k8s-cluster {
     kubectl config use-context "${cluster}"
 }
 
-function k8s-namespace {
+function k8s-change-namespace {
     local namespaces namespace
 
     case "${#}" in
@@ -915,7 +915,7 @@ function k8s-namespace {
     kubectl config set-context --current --namespace="${namespace}"
 }
 
-function k8s-unset-context {
+function k8s-context-unset {
     kubectl config unset current-context
 }
 
