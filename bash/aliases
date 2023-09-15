@@ -42,7 +42,5 @@ alias argo='container docker.io/argoproj/argocli:latest'
 alias ubuntu='container docker.io/ubuntu:22.04'
 alias promtail='container docker.io/grafana/promtail:latest'
 
-alias kubectl-development='kubectl --kubeconfig ~/.kube/config.development'
-alias kubectl-staging='kubectl --kubeconfig ~/.kube/config.staging'
-alias kubectl-production='kubectl --kubeconfig ~/.kube/config.production'
-alias kubectl-talos='kubectl --kubeconfig ~/.kube/config.talos'
+# Kubernetes
+alias kctx="k8s-context"
