@@ -921,7 +921,7 @@ function k8s-context-unset {
 
 function k8s-context {
     if [ "${1}" = "-" ]; then
-        k8s-unset-context
+        k8s-context-unset
         return
     fi
 
