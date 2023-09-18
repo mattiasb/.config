@@ -884,7 +884,7 @@ function k8s-change-cluster {
             ;;
         1)  cluster="${1}"
             ;;
-        *)  echo "Usage: ${FUNCNAME[0]} [CONTEXT]" >&2
+        *)  echo "Usage: ${FUNCNAME[0]} [CLUSTER]" >&2
             return 2
             ;;
     esac
