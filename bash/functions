@@ -925,8 +925,8 @@ function k8s-context {
         return
     fi
 
-    k8s-cluster ${1:+"${1}"}
-    k8s-namespace ${2:+"${2}"}
+    k8s-change-cluster ${1:+"${1}"}
+    k8s-change-namespace ${2:+"${2}"}
 }
 
 function k9s {
