@@ -314,17 +314,6 @@ function yqp {
     yaml2json < "${1:-/dev/stdin}" | jqp
 }
 
-# TODO(mattiasb): Fix logins2 below with this
-function logins-non-buggy {
-    local since until
-
-    since="${1:-today}"
-    until="${2:-$(date '+%Y-%m-%d' -d "${since}+1 days")}"
-
-    journalctl --since "${since}" --until "${until}" -t lockmon --no-pager \
-        | uniq
-}
-
 function logins {
     local since until
 
@@ -332,7 +321,6 @@ function logins {
     until="${2:-$(date '+%Y-%m-%d' -d "${since}+1 days")}"
 
     journalctl --since "${since}" --until "${until}" -t lockmon --no-pager \
-        | tail -n +2                                                       \
         | cut -d ' ' -f '1-3 6-' \
         | uniq
 }
