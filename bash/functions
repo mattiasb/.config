@@ -482,6 +482,23 @@ function makepasswd-alphanum {
     makepasswd -c "${alphanum}" "${@}"
 }
 
+
+function beamer {
+    local document docname
+
+    document="${1}"
+
+    if [ ! "${document##*.}" = "md" ]; then
+        echo "Usage: ${FUNCNAME[0]} <MARDKOWN>"
+        return 2
+    fi
+
+    docname="${document%.*}"
+
+    pandoc -t beamer "${docname}.md" -o "${docname}.pdf"
+}
+
+
 function nautilus-smb-logout {
     local user server
 
