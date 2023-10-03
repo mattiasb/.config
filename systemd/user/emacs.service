@@ -1,15 +1,22 @@
 [Unit]
 Description=Emacs text editor
 Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
+After=graphical-session.target
 
 [Service]
 Type=notify
 ExecStart=/usr/bin/emacs --fg-daemon=main --no-site-file
-ExecStop=/usr/bin/emacsclient -s main --eval "(kill-emacs)"
-ExecStop=/bin/sleep 0.01
+
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
-Restart=on-failure
+
+# Emacs will exit with status 15 after having received SIGTERM, which
+# is the default "KillSignal" value systemd uses to stop services.
+SuccessExitStatus=15
+
 TimeoutStopSec=5
 TimeoutStartSec=10min
+
+Restart=on-failure
+
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target
