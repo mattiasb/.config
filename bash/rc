@@ -79,6 +79,10 @@ fi
 ### direnv
 
 eval "$(direnv hook bash)"
+# Sometimes direnv doesn't trigger in new terminals so try this hack out.
+if [ ! -v DIRENV_DIR  ]; then
+    direnv reload 2> >(grep -v "direnv: error .envrc not found")
+fi
 
 ### FZF
 . /usr/share/fzf/shell/key-bindings.bash
