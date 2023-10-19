@@ -6,6 +6,7 @@ function mb-powerline-go-prompt {
                         -jobs "$(jobs -p | wc -l)"                                           \
                         -cwd-max-depth 5                                                     \
                         -hostname-only-if-ssh                                                \
+                        -newline                                                             \
                         -numeric-exit-codes                                                  \
                         -git-disable-stats "ahead,behind,staged,notStaged,untracked,stashed" \
                         -modules "user,host,ssh,kube,direnv,venv,git,cwd,perms,jobs,exit"    \
