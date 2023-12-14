@@ -47,6 +47,7 @@
 	branches         = "!f() { git for-each-ref refs/heads/ --format='%(refname:short):%(committerdate:relative)' --sort=committerdate | column -t -s ':'; }; f"
 	annotated-tags   = "!f() { git for-each-ref refs/tags/  --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = tag    ] && echo $name; done }; f"
 	lightweight-tags = "!f() { git for-each-ref refs/tags/  --format '%(objecttype) %(refname:short)' | while read ty name; do [ $ty = commit ] && echo $name; done }; f"
+	patch-diff       = "!f() { diff -u <(git --no-pager show \"${1}\" | tail -n +2) <(git --no-pager show \"${2}\" | tail -n +2); }; f"
 
 [diff]
 	tool = meld
