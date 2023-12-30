@@ -28,7 +28,8 @@
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-echo-area-message "mattiasb")
  '(inhibit-startup-screen t)
- '(initial-scratch-message nil))
+ '(initial-scratch-message nil)
+ '(project-list-file "~/.cache/minimacs/projects"))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
