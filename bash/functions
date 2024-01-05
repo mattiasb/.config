@@ -811,6 +811,9 @@ function header {
     echo
 }
 
+function system-uuid {
+    sudo cat /sys/class/dmi/id/product_uuid
+}
 
 ############################ Kubernetes ########################################
 
