@@ -32,7 +32,9 @@
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-echo-area-message "mattiasb")
  '(inhibit-startup-screen t)
- '(initial-scratch-message nil))
+ '(initial-scratch-message nil)
+ '(package-selected-packages '(corfu))
+ '(tab-always-indent 'complete))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -40,6 +42,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(declare-function global-corfu-mode "corfu")
+
+(use-package corfu
+  :ensure t
+  :init (global-corfu-mode))
 
 (provide 'init)
 ;;; init.el ends here
