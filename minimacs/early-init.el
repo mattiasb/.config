@@ -22,10 +22,13 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
+(defvar user-emacs-cache-directory
+  (string-replace ".config" ".cache" user-emacs-directory))
+
 ;; These has to go here apparently
-(let ((cache-dir (string-replace ".config" ".cache" user-emacs-directory)))
-  (setcar native-comp-eln-load-path (file-name-concat cache-dir "eln-cache"))
-  (setq package-user-dir (file-name-concat cache-dir "elpa")))
+(setcar native-comp-eln-load-path
+        (file-name-concat user-emacs-cache-directory "eln-cache"))
+(setq package-user-dir (file-name-concat user-emacs-cache-directory "elpa"))
 
 (provide 'early-init)
 ;;; early-init.el ends here

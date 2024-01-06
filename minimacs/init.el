@@ -20,6 +20,10 @@
 (fido-vertical-mode)
 (windmove-default-keybindings)
 
+(defvar user-emacs-cache-directory)
+(defvar project-list-file
+  (file-name-concat user-emacs-cache-directory "projects"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -28,8 +32,7 @@
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-echo-area-message "mattiasb")
  '(inhibit-startup-screen t)
- '(initial-scratch-message nil)
- '(project-list-file "~/.cache/minimacs/projects"))
+ '(initial-scratch-message nil))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
