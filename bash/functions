@@ -62,9 +62,9 @@ function project-create {
     git remote add origin "git@github.com:mattiasb/${1}.git"
 }
 
-function project-cd {
+function pcd {
     if [ ! $# -eq 1 ] || _help-flag; then
-        echo "Usage: project-cd <NAME>"
+        echo "Usage: ${FUNCNAME[0]} <DIR>"
         return 2
     fi
 
