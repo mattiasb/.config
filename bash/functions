@@ -75,7 +75,7 @@ function _complete-project-folder {
     [[ -e ${projects[0]} ]] && COMPREPLY=( "${projects[@]##*/}" )
 }
 complete -F _complete-project-folder project-create
-complete -F _complete-project-folder project-cd
+complete -F _complete-project-folder pcd
 
 function test-create {
     if [ ! $# -eq 1 ] || _help-flag; then
