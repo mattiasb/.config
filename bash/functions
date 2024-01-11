@@ -47,7 +47,7 @@ function mvcd {
 _completion_loader _longopt
 complete -F _longopt mvcd
 
-function project-create {
+function create-project {
     if [ ! $# -eq 1 ] || _help-flag; then
         echo "Usage: project-create <NAME>"
         return 2
@@ -74,7 +74,7 @@ function _complete-project-folder {
     local projects=("${HOME}/Code/github.com/mattiasb/${2}"*)
     [[ -e ${projects[0]} ]] && COMPREPLY=( "${projects[@]##*/}" )
 }
-complete -F _complete-project-folder project-create
+complete -F _complete-project-folder create-project
 complete -F _complete-project-folder pcd
 
 function test-create {
