@@ -77,6 +77,27 @@ function _complete-project-folder {
 complete -F _complete-project-folder create-project
 complete -F _complete-project-folder pcd
 
+function ccd {
+    local project
+
+    project="$(find ~/Code/                                                    \
+                     -maxdepth 5                                               \
+                     \( -name '.git'                                           \
+                        -type d,l                                              \
+                        -or                                                    \
+                        -type f                                                \
+                        -name '.projectile'                                    \
+                     \)                                                        \
+                     -printf '%h\n'                                            \
+               | fzf                                             \
+               )"
+
+    if ! cd "${project}"; then
+        echo "${project} doesn't exist!"
+        return 2
+    fi
+}
+
 function test-create {
     if [ ! $# -eq 1 ] || _help-flag; then
         echo "Usage: test-create <NAME>"
