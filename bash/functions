@@ -26,7 +26,7 @@ function path {
     echo -e "${PATH//:/\\n}" | tac
 }
 
-function fnd {
+function search {
     find . -name "${@}" |& grep -v ': Permission denied'
 }
 
