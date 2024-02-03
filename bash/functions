@@ -89,7 +89,7 @@ function ccd {
                         -name '.projectile'                                    \
                      \)                                                        \
                      -printf '%h\n'                                            \
-               | fzf                                             \
+               | fzf                                                           \
                )"
 
     if ! cd "${project}"; then
