@@ -801,6 +801,22 @@ function device-route-for {
     ip -o route get "$(ip-of "${addr}")" | sed -E 's/^.+?dev ([^ ]+?) .+$/\1/'
 }
 
+function show-ip-ranges {
+    if  [ "${#}" -lt 1 ] || _help-flag; then
+        echo "Usage: ${FUNCNAME[0]} <IP-RANGE>..."
+        return 2
+    fi
+
+    ranges=("${@}")
+
+    for range in "${ranges[@]}"; do
+        echo -ne "${range}: "
+        ipcalc "${range}" --minaddr --maxaddr                                  \
+            | tr '\n' ':'                                                      \
+            | sed -E 's/MINADDR=([0-9\.]+):MAXADDR=([0-9\.]+):/\1 ⇒ \2\n/'
+    done | column -t
+}
+
 function poor-watch {
     local zzz
 
