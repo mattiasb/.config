@@ -19,6 +19,7 @@
 (load-theme 'wombat)
 (fido-vertical-mode)
 (windmove-default-keybindings)
+(display-fill-column-indicator-mode)
 
 (defvar user-emacs-cache-directory)
 (defvar project-list-file
@@ -30,6 +31,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode t)
+ '(fill-column 80)
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-echo-area-message "mattiasb")
  '(inhibit-startup-screen t)
