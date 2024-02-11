@@ -26,8 +26,7 @@
   (string-replace ".config" ".cache" user-emacs-directory))
 
 ;; These has to go here apparently
-(setcar native-comp-eln-load-path
-        (file-name-concat user-emacs-cache-directory "eln-cache"))
+(startup-redirect-eln-cache (file-name-concat mb-cache-directory "eln-cache"))
 (setq package-user-dir (file-name-concat user-emacs-cache-directory "elpa"))
 
 (provide 'early-init)
