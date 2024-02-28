@@ -92,10 +92,7 @@ function ccd {
                | fzf                                                           \
                )"
 
-    if ! cd "${project}"; then
-        echo "${project} doesn't exist!"
-        return 2
-    fi
+    cd "${project}" || return $?
 }
 
 function test-create {
