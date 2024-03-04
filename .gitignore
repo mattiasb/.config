@@ -19,6 +19,8 @@
 /bash_completion.d/npm
 /bash_completion.d/pandoc
 /bash_completion.d/virsh_bash_completion
+/black
+/btop/
 /chromium/*
 /cni/
 /configstore/*
@@ -67,7 +69,11 @@
 /pipewire
 /pipewire-media-session/
 /pipewire-media-session/
+/pudb/internal-cmdline-history.txt
+/pudb/saved-*
+/pudb/saved-breakpoints-3.11
 /pulse/*
+/pycodestyle
 /remmina/*
 /rygel.conf
 /sealert.conf
@@ -93,9 +99,3 @@
 /wireshark/recent
 /wireshark/recent_common
 /yelp/*
-/black
-/pycodestyle
-/pudb/saved-breakpoints-3.11
-/pudb/internal-cmdline-history.txt
-/pudb/saved-*
-/btop/
