@@ -477,12 +477,12 @@ function http-serve {
 
     mkdir -p "${path}"
 
-    sudo docker run                                  \
-         --rm                                        \
-         --publish 80:80                             \
-         --name nginx-serve                          \
-         --volume "${path}:/usr/share/nginx/html:ro" \
-         nginx:1.14-alpine
+    podman run                                         \
+           --rm                                        \
+           --publish 8080:80                           \
+           --name nginx-serve                          \
+           --volume "${path}:/usr/share/nginx/html:ro" \
+           nginx:1.14-alpine
 }
 
 function docker-volume-by-age {
