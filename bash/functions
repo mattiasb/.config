@@ -278,10 +278,12 @@ function logins2 {
 
     logins="$(logins "${since}")"
 
-    if [[ "${logins}" = *"No entries"* ]]; then
-        echo "No entries!"
-        return
-    fi
+    case "${logins}" in
+        *"No entries"*)
+            echo "No entries!"
+            return
+            ;;
+    esac
 
     while read -r line; do
         ptime="${time}"
