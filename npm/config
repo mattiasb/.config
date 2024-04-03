@@ -1,3 +1,4 @@
 prefix = ${HOME}/.local/
 cache = ${HOME}/.cache/npm/
+logs-dir=${HOME}/.cache/npm/logs
 email = mattias.jc.bengtsson@gmail.com
