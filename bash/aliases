@@ -37,6 +37,8 @@ if command -v docker &>/dev/null && [ ! -w /var/run/docker.sock ]; then
 fi
 alias pip="pip --require-virtualenv"
 
+alias wget="wget --hsts-file=~/.cache/wget-hsts"
+
 # Containers
 alias groovysh='container docker.io/groovy'
 alias mc='container docker.io/minio/mc:latest'
