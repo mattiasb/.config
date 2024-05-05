@@ -87,6 +87,7 @@
 /systemd/user/debug-usage-detailed.service
 /systemd/user/debug-usage-load.service
 /systemd/user/debug-usage-uptime.service
+/systemd/user/emacs.service
 /toolbox/
 /totem/*
 /transmission-remote-gtk/*
