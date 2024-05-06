@@ -1,0 +1,11 @@
+[Unit]
+Description=Keep the GTK3 Adwaita themes in sync with the desktop color scheme.
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/gtk3-color-scheme
+Restart=always
+TimeoutStopSec=5
+
+[Install]
+WantedBy=default.target
