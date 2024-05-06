@@ -1,3 +1,4 @@
+
 include "%L"
 
 # Notice the X name <minus> refer to the ASCII hyphen‐minus, not the
@@ -94,7 +95,9 @@ include "%L"
 <Multi_key> <p> <y> <r> <o>                                : "🎆" U1F386
 <Multi_key> <s> <a> <n> <t> <a>                            : "🎅" U1F385
 <Multi_key> <s> <u> <n>                                    : "🌞" U1F31E
-<Multi_key> <c> <o> <o> <l>                                : "🕶" U-0F576
+<Multi_key> <c> <o> <o> <l>                                : "🕶" U0F576
+<Multi_key> <k> <e> <y>                                    : "🔑" U1F511
+
 
 <Multi_key> <c> <i> <g> <g>                                : "🚬" U1F6AC
 <Multi_key> <g> <a> <s>                                    : "⛽" U26FD
@@ -122,6 +125,9 @@ include "%L"
 <Multi_key> <d> <o> <g>                                    : "🐶" U1F436
 <Multi_key> <b> <u> <n> <n> <y>                            : "🐰" U1F430
 <Multi_key> <f> <i> <s> <h>                                : "🐟" U1F41F
+<Multi_key> <b> <u> <g>                                    : "🐞" U1F41E
+<Multi_key> <l> <a> <d> <y> <b> <u> <g>                    : "🐞" U1F41E
+
 <Multi_key> <d> <e> <a> <t> <h>                            : "☠" U2620
 <Multi_key> <v> <e> <n> <o> <m>                            : "☠" U2620
 <Multi_key> <s> <k> <u> <l> <l>                            : "💀" U1F480
