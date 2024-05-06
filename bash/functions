@@ -179,8 +179,9 @@ function magit {
 
     git rev-parse --is-inside-work-tree >/dev/null || return $?
 
-    /bin/emacsclient -s main -c -nw \
-                     --eval '(progn (magit-status) (delete-other-windows))'
+    /bin/emacs --init-directory=~/.config/emacs \
+               -nw                              \
+               --eval '(progn (magit-status) (delete-other-windows))'
 
     popd >/dev/null || return 3
 }
