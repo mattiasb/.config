@@ -32,6 +32,7 @@ alias curl='curl -#'
 alias pingsweep='nmap -sn'
 alias gnome-console='kgx'
 alias g='git'
+alias tig='mkdir ~/.local/share/tig/ 2>/dev/null; /usr/bin/tig'
 if command -v docker &>/dev/null && [ ! -w /var/run/docker.sock ]; then
     alias docker-compose='sudo docker-compose'
     alias docker='sudo docker'
