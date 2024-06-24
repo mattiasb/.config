@@ -1,11 +1,7 @@
 # -*- mode: sh -*-
 # shellcheck shell=bash
 
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-    # shellcheck source=/dev/null
-    . ~/.bashrc
+if [ -f "${HOME}/.config/bash/rc" ]; then
+    # shellcheck source=bash/rc
+    . "${HOME}/.config/bash/rc"
 fi
-
-# User specific environment and startup programs
-
