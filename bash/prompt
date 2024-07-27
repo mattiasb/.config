@@ -2,15 +2,16 @@
 # shellcheck shell=bash
 
 function mb-powerline-go-prompt {
-    PS1="$(powerline-go -error $?                                                            \
-                        -jobs "$(jobs -p | wc -l)"                                           \
-                        -cwd-max-depth 5                                                     \
-                        -hostname-only-if-ssh                                                \
-                        -venv-name-size-limit $(test -v DIRENV_DIR && echo 1 || echo 25)     \
-                        -newline                                                             \
-                        -numeric-exit-codes                                                  \
-                        -git-disable-stats "ahead,behind,staged,notStaged,untracked,stashed" \
-                        -modules "user,host,ssh,kube,direnv,venv,git,cwd,perms,jobs,exit"    \
+    PS1="$(powerline-go                                                        \
+          -error $?                                                            \
+          -jobs "$(jobs -p | wc -l)"                                           \
+          -cwd-max-depth 5                                                     \
+          -hostname-only-if-ssh                                                \
+          -venv-name-size-limit $(test -v DIRENV_DIR && echo 1 || echo 25)     \
+          -newline                                                             \
+          -numeric-exit-codes                                                  \
+          -git-disable-stats "ahead,behind,staged,notStaged,untracked,stashed" \
+          -modules "user,host,ssh,kube,direnv,venv,git,cwd,perms,jobs,exit"    \
           )"
 }
 
