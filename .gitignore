@@ -101,3 +101,5 @@
 /wireshark/recent
 /wireshark/recent_common
 /yelp/*
+/helm/repositories.lock
+/helm/repositories.yaml
