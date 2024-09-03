@@ -4,7 +4,7 @@
 alias dmesg='dmesg --human'
 alias open='xdg-open'
 alias ls='ls -h -B --color=auto  --group-directories-first'
-alias fd='fd -H'
+alias fd='fd -u'
 alias ip='ip -c'
 alias tmux='direnv exec / tmux'
 alias tm='tmux a || tmux'
