@@ -103,3 +103,4 @@
 /yelp/*
 /helm/repositories.lock
 /helm/repositories.yaml
+/go/telemetry
