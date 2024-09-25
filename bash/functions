@@ -771,105 +771,22 @@ function system-uuid {
 
 ############################ Kubernetes ########################################
 
+function kubens {
+    local namespaces namespace context_err
 
-function k8s-kill-all {
-    local namespace pattern
-
-    if [ "${#}" -lt 1 ]; then
-        echo "Usage: k8s-kill-all <namespace> <pattern>"
-        return 2
+    if _help-flag; then
+        echo "Usage: ${FUNCNAME[0]} [NAMESPACE|-]"
+        return
     fi
 
-    namespace="${1}"
-    pattern="${2:-''}"
+    context_err="error: current-context is not set"
 
-    kubectl get pods -n "${namespace}"                                         \
-        | cut -d ' ' -f 1                                                      \
-        | grep -E "${pattern}"                                                 \
-        | xargs kubectl delete pod -n "${namespace}"
-}
-
-function k8s-get-running-pods-on-node {
-    local node
-
-    if [ "${#}" != 1 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} <NODE>"
-        return 2
-    fi
-    node="${2}"
-
-    kubectl get pods                                                           \
-            --all-namespaces                                                   \
-            -o wide                                                            \
-            --field-selector "spec.nodeName=${node},status.phase=Running"
-}
-complete -F _ssh k8s-get-running-pods-on-node
-
-function k8s-get-running-pods-on-nodes {
-    local nodes
-    local node
-
-    nodes=( "${@}" )
-
-    if [ "${#}" -lt 2 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} <NODE>..."
-        return 2
+    if [ "$(kubectl config current-context 2>&1)" = "${context_err}" ]; then
+        kubectx ""
     fi
 
-    for node in "${nodes[@]}"; do
-        echo
-        echo "${node}"
-        echo "============="
-        k8s-get-running-pods-on-node "${node}"
-        echo
-        echo
-    done
-}
-complete -F _ssh k8s-get-running-pods-on-node
-
-
-function k8s-get-failed-pods {
-    local namespace
-
-    if [ "${#}" -gt 1 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} [NAMESPACE]"
-        return 2
-    fi
-
-    namespace="${1:-default}"
-
-    kubectl get pod -n "${namespace}" \
-            -o wide                   \
-            --field-selector 'status.phase!=Succeeded'
-}
-
-function k8s-change-cluster {
-    local clusters cluster
-
-    case "${#}" in
-        0)  mapfile -t clusters < <(kubectl config get-contexts                \
-                                            --no-headers                       \
-                                            -o name                            \
-                                   )
-            cluster="$( printf "%s\n" "${clusters[@]}"                         \
-                      | fzf --ansi --height $(( ${#clusters[@]} + 2))          \
-                      )"
-            ;;
-        1)  cluster="${1}"
-            ;;
-        *)  echo "Usage: ${FUNCNAME[0]} [CLUSTER]" >&2
-            return 2
-            ;;
-    esac
-
-    kubectl config use-context "${cluster}"
-}
-
-function k8s-change-namespace {
-    local namespaces namespace
-
-    case "${#}" in
-        0)  mapfile -t namespaces < <(kubectl get namespaces                   \
+    case "${1}" in
+        "") mapfile -t namespaces < <(kubectl get namespaces                   \
                                               --no-headers                     \
                                               -o name                          \
                                           | xargs -n1 basename                 \
@@ -878,28 +795,40 @@ function k8s-change-namespace {
                         | fzf --ansi --height $(( ${#namespaces[@]} + 2))      \
                         )"
             ;;
-        1)  namespace="${1}"
-            ;;
-        *)  echo "Usage: ${FUNCNAME[0]} [NAMESPACE]" >&2
-            return 2
-            ;;
+
+        -)  namespace=""     ;;
+
+        *)  namespace="${1}" ;;
     esac
 
     kubectl config set-context --current --namespace="${namespace}"
 }
 
-function k8s-context-unset {
-    kubectl config unset current-context
-}
+function kubectx {
+    local contexts context
 
-function k8s-context {
-    if [ "${1}" = "-" ]; then
-        k8s-context-unset
-        return
-    fi
+    case "${1}" in
+        -h | --help)
+            echo "Usage: ${FUNCNAME[0]} [CONTEXT|-]"
+            ;;
 
-    k8s-change-cluster ${1:+"${1}"}
-    k8s-change-namespace ${2:+"${2}"}
+        -)  kubectl config unset current-context
+            return
+            ;;
+
+        "") mapfile -t contexts < <(kubectl config get-contexts                \
+                                            --no-headers                       \
+                                            -o name                            \
+                                   )
+            context="$( printf "%s\n" "${contexts[@]}"                         \
+                      | fzf --ansi --height $(( ${#contexts[@]} + 2))          \
+                      )"
+            ;;
+
+        *)  context="${1}" ;;
+    esac
+
+    kubectl config use-context "${context}"
 }
 
 function k9s {
