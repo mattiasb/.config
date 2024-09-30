@@ -688,6 +688,27 @@ function simple-dns {
     dnsmasq -Rhd -p 10053 -a 127.0.0.153 "${args[@]}"
 }
 
+function simple-dhcp {
+    local interface
+
+    if [ "${#}" -lt 2 ]; then
+        cat <<EOM
+Usage: ${FUNCNAME[0]} <INTERFACE> <RANGE>
+
+Where RANGE is something like:
+
+   192.168.127.2,192.168.127.254,255.255.255.0,6h
+
+EOM
+        return 2
+    fi
+
+    interface="${1}"
+    range="${2}"
+
+    sudo dnsmasq -d --interface "${interface}" --dhcp-range="${range}" --port=0
+}
+
 function ip-of {
     local addr
 
