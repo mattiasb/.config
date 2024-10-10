@@ -7,7 +7,7 @@ function mb-powerline-go-prompt {
           -jobs "$(jobs -p | wc -l)"                                           \
           -cwd-max-depth 5                                                     \
           -hostname-only-if-ssh                                                \
-          -venv-name-size-limit $(test -v DIRENV_DIR && echo 1 || echo 25)     \
+          -venv-name-size-limit "$(test -v DIRENV_DIR && echo 1 || echo 25)"   \
           -newline                                                             \
           -numeric-exit-codes                                                  \
           -git-disable-stats "ahead,behind,staged,notStaged,untracked,stashed" \
