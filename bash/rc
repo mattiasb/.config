@@ -82,6 +82,10 @@ fi
 
 eval "$(direnv hook bash)"
 
+if [ -n "${EAT_SHELL_INTEGRATION_DIR}" ]; then
+    direnv reload 2> >(grep -v "direnv: error .envrc not found" >&2)
+fi
+
 ### FZF
 . /usr/share/fzf/shell/key-bindings.bash
 # Take back M-c from fzf
