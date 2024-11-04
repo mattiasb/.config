@@ -104,3 +104,4 @@
 /helm/repositories.lock
 /helm/repositories.yaml
 /go/telemetry
+/ansible/galaxy_token
