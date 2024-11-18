@@ -95,6 +95,7 @@ include "%L"
 <Multi_key> <p> <y> <r> <o>                                : "🎆" U1F386
 <Multi_key> <s> <a> <n> <t> <a>                            : "🎅" U1F385
 <Multi_key> <s> <u> <n>                                    : "🌞" U1F31E
+<Multi_key> <p> <r> <i> <d> <e>                            : "🌈" U1F308
 <Multi_key> <c> <o> <o> <l>                                : "🕶" U0F576
 <Multi_key> <k> <e> <y>                                    : "🔑" U1F511
 
