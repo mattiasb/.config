@@ -416,21 +416,15 @@ function docker-volume-by-age {
 function docker-rootkit {
     local -a cmd
 
-    cmd=(
-        docker
-        run
-        --rm -it
-        --user=root
-        --volume /:/tmp/root
-        --privileged
-        --workdir /root
-        fedora
-        bash -c 'chroot /tmp/root'
-    )
+    cmd=(docker run --rm -it
+         --volume /:/tmp/root
+         --privileged
+         fedora
+         chroot /tmp/root)
 
     if [ ! -w /run/docker.sock ]; then
         cat <<EOM
-You're not in the docker group!
+You're *not* in the docker group!
 If you were, this command would make you root:
 
   \$ ${cmd[*]}
