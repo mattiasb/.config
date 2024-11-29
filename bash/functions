@@ -428,7 +428,7 @@ function docker-rootkit {
         bash -c 'chroot /tmp/root'
     )
 
-    if [ -w /run/docker.sock ]; then
+    if [ ! -w /run/docker.sock ]; then
         cat <<EOM
 You're not in the docker group!
 If you were, this command would make you root:
