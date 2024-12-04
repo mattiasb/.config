@@ -5,14 +5,6 @@ function _help-flag {
     [[ " ${*} " == *" --help "* ]] || [[ " ${*} " == *" -h "* ]]
 }
 
-function git-commiters {
-    if [ $# -eq 0 ]; then
-        git log --oneline --pretty="format:%an <%ae>" | sort | uniq
-    else
-        git log --oneline --pretty="format:%an <%ae>" "${1}".. | sort | uniq
-    fi
-}
-
 function which {
     (alias; declare -f) | /usr/bin/which --tty-only                            \
                                          --read-alias                          \

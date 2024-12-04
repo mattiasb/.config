@@ -30,6 +30,7 @@
 	excludesfile = ~/.config/git/ignore
 	editor = emacsclient -nw -c -s main
 [alias]
+	authors        = "!f() { git log --oneline --pretty='format:%aN <%aE>' ${1:+${1}..} | sort | uniq; }; f"
 	slog             = log --oneline
 	# Execute shell scripts in top directory.
 	exec             = ! exec
