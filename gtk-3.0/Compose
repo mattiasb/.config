@@ -131,6 +131,8 @@ include "%L"
 <Multi_key> <a> <p> <e>                                    : "🐒" U1F412
 <Multi_key> <m> <o> <n> <k> <e> <y>                        : "🐒" U1F412
 <Multi_key> <t> <u> <x>                                    : "🐧" U1F427
+<Multi_key> <b> <i> <r> <d>                                : "🐦" U1F426
+<Multi_key> <d> <r> <a> <g> <o> <n>                        : "🐉" U1F409
 
 <Multi_key> <d> <e> <a> <t> <h>                            : "☠" U2620
 <Multi_key> <v> <e> <n> <o> <m>                            : "☠" U2620
