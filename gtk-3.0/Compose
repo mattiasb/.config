@@ -130,12 +130,12 @@ include "%L"
 <Multi_key> <l> <a> <d> <y> <b> <u> <g>                    : "🐞" U1F41E
 <Multi_key> <a> <p> <e>                                    : "🐒" U1F412
 <Multi_key> <m> <o> <n> <k> <e> <y>                        : "🐒" U1F412
+<Multi_key> <t> <u> <x>                                    : "🐧" U1F427
 
 <Multi_key> <d> <e> <a> <t> <h>                            : "☠" U2620
 <Multi_key> <v> <e> <n> <o> <m>                            : "☠" U2620
 <Multi_key> <s> <k> <u> <l> <l>                            : "💀" U1F480
 <Multi_key> <a> <l> <i> <e> <n>                            : "👽" U1F47D
-<Multi_key> <t> <u> <x>                                    : "🐧" U1F427
 
 # Hand Signs
 <Multi_key> <f> <u>                                        : "🖕" U1F595
