@@ -823,7 +823,8 @@ function kubectx {
 
 function k9s {
     podman run --rm -it                                 \
-           -v "${HOME}/.kube/config":/root/.kube/config \
+           -v "${KUBECONFIG:-${HOME}/.kube/config}":/root/.kube/config \
+           --network=host\
            quay.io/derailed/k9s "${@}"
 }
 
