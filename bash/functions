@@ -13,7 +13,7 @@ function which {
                                          --show-dot "${@}"
 }
 
-function path {
+function paths {
     echo -e "${PATH//:/\\n}" | tac
 }
 
