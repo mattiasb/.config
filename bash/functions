@@ -5,6 +5,40 @@ function _help-flag {
     [[ " ${*} " == *" --help "* ]] || [[ " ${*} " == *" -h "* ]]
 }
 
+function join-string {
+    local IFS="${1}"
+
+    IFS="${1}"
+    shift
+    echo "${*}"
+}
+
+function hex2dec {
+    printf "%d\n" "0x${1}"
+}
+
+function dec2hex {
+    printf "%x\n" "${1}"
+}
+
+function header {
+    local header
+
+    header="${*}"
+
+    echo
+    echo "${*}"
+    printf '=%.0s' $(seq 1 "${#header}")
+    echo
+}
+
+function system-uuid {
+    sudo cat /sys/class/dmi/id/product_uuid
+}
+
+################################################################################
+## Utils
+
 function which {
     (alias; declare -f) | /usr/bin/which --tty-only                            \
                                          --read-alias                          \
@@ -21,162 +55,21 @@ function search {
     find . -name "${@}" |& grep -v ': Permission denied'
 }
 
-function mkcd {
-    mkdir -p "${1}" && cd "${_}" || return $?
-}
-complete -d mkcd
+function calc {
+    local args
 
-function cpcd {
-    cp "${@}" && cd "${_}" || return $?
-}
-_completion_loader _longopt
-complete -F _longopt cpcd
+    args="${*}"
 
-function mvcd {
-    mv "${@}" && cd "${_}" || return $?
-}
-_completion_loader _longopt
-complete -F _longopt mvcd
-
-function create-project {
-    if [ ! $# -eq 1 ] || _help-flag; then
-        echo "Usage: project-create <NAME>"
-        return 2
-    fi
-
-    mkcd "${HOME}/Code/github.com/mattiasb/${1}"
-    git init
-    echo "*~"   > .gitignore
-    echo "*#*" >> .gitignore
-    echo       >> .gitignore
-    touch README.md
-    git remote add origin "git@github.com:mattiasb/${1}.git"
+    echo $((args))
 }
 
-function pcd {
-    if [ ! $# -eq 1 ] || _help-flag; then
-        echo "Usage: ${FUNCNAME[0]} <DIR>"
-        return 2
-    fi
+function makepasswd-alphanum {
+    local alphanum
 
-    cd "${HOME}/Code/github.com/mattiasb/${1}" || return
+    alphanum="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+    makepasswd -c "${alphanum}" "${@}"
 }
-function _complete-project-folder {
-    local projects=("${HOME}/Code/github.com/mattiasb/${2}"*)
-    [[ -e ${projects[0]} ]] && COMPREPLY=( "${projects[@]##*/}" )
-}
-complete -F _complete-project-folder create-project
-complete -F _complete-project-folder pcd
-
-function ccd {
-    local project
-
-    project="$(find ~/Code/                                                    \
-                     -maxdepth 5                                               \
-                     \( -name '.git'                                           \
-                        -type d,l                                              \
-                        -or                                                    \
-                        -type f                                                \
-                        -name '.projectile'                                    \
-                     \)                                                        \
-                     -printf '%h\n'                                            \
-               | fzf                                                           \
-               )"
-
-    cd "${project}" || return $?
-}
-
-function test-create {
-    if [ ! $# -eq 1 ] || _help-flag; then
-        echo "Usage: test-create <NAME>"
-        return 2
-    fi
-
-    mkcd "${HOME}/Code/Test/${1}"
-}
-
-function test-cd {
-    if [ ! $# -eq 1 ] || _help-flag; then
-        echo "Usage: test-cd <NAME>"
-        return 2
-    fi
-
-    cd "${HOME}/Code/Test/${1}" || return
-}
-
-function _complete-test-folder {
-    local tests=("${HOME}/Code/Test/${2}"*)
-    [[ -e ${tests[0]} ]] && COMPREPLY=( "${tests[@]##*/}" )
-}
-complete -F _complete-test-folder test-create
-complete -F _complete-test-folder test-cd
-
-function ansible-vagrant-playbook {
-    if _help-flag; then
-        echo "Usage: ansible-vagrant-playbook [<ANSIBLE-PLAYBOOK-ARGS>...]"
-        return
-    fi
-
-    local inventory=.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
-    ansible-playbook -i "${inventory}" "${@}"
-}
-
-function ansible-record-hostkeys {
-    local host_pattern inventory
-
-    if [ ! $# -eq 2 ] || _help-flag; then
-        echo "Usage: ansible-record-hostkeys <inventory> <host-pattern>"
-        echo
-        echo "Import ssh host keys from hosts"
-        return 2
-    fi
-
-    inventory="${1}"
-    host_pattern="${2}"
-
-    export ANSIBLE_HOST_KEY_CHECKING=False    \
-        && ansible -e 'record_host_keys=True' \
-                   -m ping                    \
-                   -i "${inventory}"          \
-                   "${host_pattern}"
-}
-
-function gcd {
-    cd "$(git rev-parse --show-toplevel)/${*}" || exit $?
-}
-
-function rcd {
-    cd "$(repo --show-toplevel 2>/dev/null)/${*}" || exit $?
-}
-
-function list-ssh-servers {
-    avahi-browse _ssh._tcp -t                       | \
-        grep --color=never IPv4                     | \
-        awk '{ printf "%-10s %s.local\n", $2, $4 }' | \
-        sort
-}
-
-function magit {
-    local path
-
-    if _help-flag; then
-        echo "Usage: magit [<PATH>]"
-        return
-    fi
-
-    path="${1:-.}"
-
-    pushd "${path}" >/dev/null || return $?
-
-    git rev-parse --is-inside-work-tree >/dev/null || return $?
-
-    /bin/emacs --init-directory=~/.config/emacs \
-               -nw                              \
-               --eval '(progn (magit-status) (delete-other-windows))'
-
-    popd >/dev/null || return 3
-}
-complete -d magit
 
 function cmd-which {
     local cmd
@@ -206,6 +99,30 @@ function cmd-which {
     eval "${args[*]} $(command -v "${cmd}")"
 }
 
+function poor-watch {
+    local zzz
+
+    if [ "${#}" -lt 2 ] || _help-flag; then
+        echo "Usage: ${FUNCNAME[0]} <SLEEP> <CMD>..."
+        echo
+        echo "Poor mans \`watch\`. On the upside, works with BASH functions!"
+        return 2
+    fi
+
+    zzz="${1}"
+    shift
+
+    while true; do
+        sleep "${zzz}" || return 1
+        clear
+        eval "${*}"
+    done
+}
+
+
+################################################################################
+## Misc
+
 function lpass {
     command -v lpass > /dev/null || return $?
 
@@ -221,25 +138,69 @@ function lpass {
     /bin/lpass "${@}"
 }
 
-function calc {
-    local args
-
-    args="${*}"
-
-    echo $((args))
+function remake {
+    if [ $# -lt 1 ] || _help-flag; then
+        echo "Usage: remake <file>..."
+        return 2
+    fi
+    touch --date=@1 "${@}" && make "${@}"
 }
 
-function ypterm {
-    yaml2json < "${1:-/dev/stdin}" | jpterm
+function beamer {
+    local document docname
+
+    document="${1}"
+
+    if [ ! "${document##*.}" = "md" ]; then
+        echo "Usage: ${FUNCNAME[0]} <MARDKOWN>"
+        return 2
+    fi
+
+    docname="${document%.*}"
+
+    pandoc -t beamer "${docname}.md" -o "${docname}.pdf"
 }
 
-function yq {
-    yaml2json -i /dev/stdin | jq "${@}" | json2yaml
+function jhparm {
+    local disk
+
+    if [ $# -lt 1 ]; then
+        echo "Usage: ${0} <DISK>" >&2
+        return 2
+    fi
+    disk="${1}"
+
+    sudo dd                                                                    \
+         if="${disk}"                                                          \
+         of=/dev/null                                                          \
+         bs=50M                                                                \
+         count=10000                                                           \
+         status=progress                                                       \
+         iflag=direct
 }
 
-function yqp {
-    yaml2json < "${1:-/dev/stdin}" | jqp
+################################################################################
+## File management
+
+function mkcd {
+    mkdir -p "${@}" && cd "${!#}" || return $?
 }
+complete -d mkcd
+
+function cpcd {
+    mkdir -p "${!#}" && cp -r "${@}" && cd "${!#}" || return $?
+}
+_completion_loader _longopt
+complete -F _longopt cpcd
+
+function mvcd {
+    mkdir -p "${!#}" && mv "${@}" && cd "${!#}" || return $?
+}
+_completion_loader _longopt
+complete -F _longopt mvcd
+
+################################################################################
+## Login tracking stuff (move to separate script
 
 function logins {
     local since until
@@ -330,12 +291,110 @@ function logins2 {
     fi
 }
 
-function remake {
-    if [ $# -lt 1 ] || _help-flag; then
-        echo "Usage: remake <file>..."
+################################################################################
+## YAML and JSON
+
+function ypterm {
+    yaml2json < "${1:-/dev/stdin}" | jpterm | json2yaml
+}
+
+function yq {
+    yaml2json -i /dev/stdin | jq "${@}" | json2yaml
+}
+
+function yqp {
+    yaml2json < "${1:-/dev/stdin}" | jqp "${@}"
+}
+
+################################################################################
+## Projects
+
+function create-project {
+    if [ ! $# -eq 1 ] || _help-flag; then
+        echo "Usage: project-create <NAME>"
         return 2
     fi
-    touch --date=@1 "${@}" && make "${@}"
+
+    mkcd "${HOME}/Code/github.com/mattiasb/${1}"
+    git init
+    echo "*~"   > .gitignore
+    echo "*#*" >> .gitignore
+    echo       >> .gitignore
+    touch README.md
+    git remote add origin "git@github.com:mattiasb/${1}.git"
+}
+
+function pcd {
+    if [ ! $# -eq 1 ] || _help-flag; then
+        echo "Usage: ${FUNCNAME[0]} <DIR>"
+        return 2
+    fi
+
+    cd "${HOME}/Code/github.com/mattiasb/${1}" || return
+}
+
+function _complete-project-folder {
+    local projects=("${HOME}/Code/github.com/mattiasb/${2}"*)
+    [[ -e ${projects[0]} ]] && COMPREPLY=( "${projects[@]##*/}" )
+}
+complete -F _complete-project-folder create-project
+complete -F _complete-project-folder pcd
+
+function ccd {
+    local project
+
+    project="$(find ~/Code/                                                    \
+                     -maxdepth 5                                               \
+                     \( -name '.git'                                           \
+                        -type d,l                                              \
+                        -or                                                    \
+                        -type f                                                \
+                        -name '.projectile'                                    \
+                     \)                                                        \
+                     -printf '%h\n'                                            \
+               | fzf                                                           \
+               )"
+
+    cd "${project}" || return $?
+}
+
+################################################################################
+## Test code
+
+function test-create {
+    if [ ! $# -eq 1 ] || _help-flag; then
+        echo "Usage: test-create <NAME>"
+        return 2
+    fi
+
+    mkcd "${HOME}/Code/Test/${1}"
+}
+
+function test-cd {
+    if [ ! $# -eq 1 ] || _help-flag; then
+        echo "Usage: test-cd <NAME>"
+        return 2
+    fi
+
+    cd "${HOME}/Code/Test/${1}" || return
+}
+
+function _complete-test-folder {
+    local tests=("${HOME}/Code/Test/${2}"*)
+    [[ -e ${tests[0]} ]] && COMPREPLY=( "${tests[@]##*/}" )
+}
+complete -F _complete-test-folder test-create
+complete -F _complete-test-folder test-cd
+
+################################################################################
+## Git
+
+function gcd {
+    cd "$(git rev-parse --show-toplevel)/${*}" || exit $?
+}
+
+function rcd {
+    cd "$(repo --show-toplevel 2>/dev/null)/${*}" || exit $?
 }
 
 function gg {
@@ -344,6 +403,108 @@ function gg {
         return 2
     fi
     git get "${1}" && cd "$(git get --show-path "${1}")" || return $?
+}
+
+function magit {
+    local path
+
+    if _help-flag; then
+        echo "Usage: magit [<PATH>]"
+        return
+    fi
+
+    path="${1:-.}"
+
+    pushd "${path}" >/dev/null || return $?
+
+    git rev-parse --is-inside-work-tree >/dev/null || return $?
+
+    /bin/emacs --init-directory=~/.config/emacs \
+               -nw                              \
+               --eval '(progn (magit-status) (delete-other-windows))'
+
+    popd >/dev/null || return 3
+}
+complete -d magit
+
+################################################################################
+## SSH
+
+_completion_loader ssh
+
+function ssh-regenerate-hostkey {
+    local host exitcode
+
+    exitcode=0
+
+    if [ "${#}" -lt 1 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} <server>..."
+        return 2
+    fi
+
+    for host in "${@}"; do
+        if ! key="$(ssh-keyscan "${host}" 2> >(grep -v '^#' >&2))"; then
+            echo "${host}: Couldn't fetch host key from server" >&2
+            exitcode=2
+        fi
+        ssh-remove-hostkey "${host}"
+        echo "${key}" >> ~/.ssh/known_hosts
+    done
+
+    return "${exitcode}"
+}
+alias ssh-add-hostkey='ssh-regenerate-hostkey'
+
+function ssh-remove-hostkey {
+    local host ips exitcode
+
+    exitcode=0
+
+    if [ "${#}" -lt 1 ] || _help-flag "${@}"; then
+        echo "Usage: ${FUNCNAME[0]} <server>..."
+        return 2
+    fi
+
+    for host in "${@}"; do
+        ips="$(dig +short "${host}")"
+        for i in $ips $host; do
+            if ! ssh-keygen -R "${i}"; then
+                exitcode=2
+            fi
+        done
+    done
+
+    return "${exitcode}"
+}
+
+function ssh {
+    if [ "${TERM}" = "eat-truecolor" ]; then
+        export TERM=xterm-256color
+    fi
+
+    command ssh "${@}"
+}
+
+function ssh-tmux {
+    ssh -t "$@" tmux new-session -A -s ssh_tmux
+}
+alias ssht=ssh-tmux
+
+function ssh-wait {
+    until ssh "${@}" true 2> >(grep -v -E "Connection refused" >&2); do
+        echo -n .
+        sleep 3
+    done && {
+        echo
+        ssh "${@}"
+    }
+}
+
+function list-ssh-servers {
+    avahi-browse _ssh._tcp -t                       | \
+        grep --color=never IPv4                     | \
+        awk '{ printf "%-10s %s.local\n", $2, $4 }' | \
+        sort
 }
 
 function mdns-ssh {
@@ -381,217 +542,14 @@ function mdns-ssh {
     ssh "${connection}" "${@}"
 }
 
-function http-serve {
-    local path
+complete -F _comp_cmd_ssh ssh-add-hostkey
+complete -F _comp_cmd_ssh ssh-regenerate-hostkey
+complete -F _comp_cmd_ssh ssh-remove-hostkey
+complete -F _comp_cmd_ssh ssh-wait
+complete -F _comp_cmd_ssh ssht
 
-    path="$(readlink -f "${1:-.}")"
-
-    mkdir -p "${path}"
-
-    podman run                                         \
-           --rm                                        \
-           --publish 8080:80                           \
-           --name nginx-serve                          \
-           --volume "${path}:/usr/share/nginx/html:ro" \
-           nginx:1.14-alpine
-}
-
-function docker-volume-by-age {
-    for volume in $(sudo docker volume ls --format "{{.Name}}"); do
-        sudo docker volume inspect "${volume}" \
-             --format "{{ .CreatedAt }}   $volume"
-    done | column -t | sort
-}
-
-
-function docker-rootkit {
-    local -a cmd
-
-    cmd=(docker run --rm -it
-         --volume /:/tmp/root
-         --privileged
-         fedora
-         chroot /tmp/root)
-
-    if [ ! -w /run/docker.sock ]; then
-        cat <<EOM
-You're *not* in the docker group!
-If you were, this command would make you root:
-
-  \$ ${cmd[*]}
-
-EOM
-    else
-        echo "\$ ${cmd[*]}"
-        echo "You're root!"
-        echo
-        "${cmd[@]}"
-    fi
-}
-
-
-function makepasswd-alphanum {
-    local alphanum
-
-    alphanum="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-
-    makepasswd -c "${alphanum}" "${@}"
-}
-
-
-function beamer {
-    local document docname
-
-    document="${1}"
-
-    if [ ! "${document##*.}" = "md" ]; then
-        echo "Usage: ${FUNCNAME[0]} <MARDKOWN>"
-        return 2
-    fi
-
-    docname="${document%.*}"
-
-    pandoc -t beamer "${docname}.md" -o "${docname}.pdf"
-}
-
-
-function nautilus-smb-logout {
-    local user server
-
-    if [ "${#}" -lt 2 ] || _help-flag "${@}"; then
-        echo "Usage: nautilus-smb-logout <user> <server>"
-        return 2
-    fi
-
-    user="${1}"
-    server="${2}"
-
-    secret-tool clear protocol smb user "${user}" server "${server}"
-}
-
-alias ssh-add-hostkey='ssh-regenerate-hostkey'
-function ssh-regenerate-hostkey {
-    local host exitcode
-
-    exitcode=0
-
-    if [ "${#}" -lt 1 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} <server>..."
-        return 2
-    fi
-
-    for host in "${@}"; do
-        if ! key="$(ssh-keyscan "${host}" 2> >(grep -v '^#' >&2))"; then
-            echo "${host}: Couldn't fetch host key from server" >&2
-            exitcode=2
-        fi
-        ssh-remove-hostkey "${host}"
-        echo "${key}" >> ~/.ssh/known_hosts
-    done
-
-    return "${exitcode}"
-}
-_completion_loader ssh
-complete -F _ssh ssh-add-hostkey
-complete -F _ssh ssh-regenerate-hostkey
-
-function ssh-remove-hostkey {
-    local host ips exitcode
-
-    exitcode=0
-
-    if [ "${#}" -lt 1 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} <server>..."
-        return 2
-    fi
-
-    for host in "${@}"; do
-        ips="$(dig +short "${host}")"
-        for i in $ips $host; do
-            if ! ssh-keygen -R "${i}"; then
-                exitcode=2
-            fi
-        done
-    done
-
-    return "${exitcode}"
-}
-complete -F _ssh ssh-remove-hostkey
-
-function ssh {
-    if [ "${TERM}" = "eat-truecolor" ]; then
-        export TERM=xterm-256color
-    fi
-
-    command ssh "${@}"
-}
-
-function ssht {
-    ssh -t "$@" tmux new-session -A -s ssh_tmux
-}
-complete -F _ssh ssht
-
-function ssh-wait {
-    until ssh "${@}" true; do
-        sleep 5
-    done && ssh "${@}"
-}
-complete -F _ssh ssh-wait
-
-function ssh-df {
-    local host
-
-    if [ "${#}" != 1 ] || _help-flag "${@}"; then
-        echo "Usage: ${FUNCNAME[0]} <NODE>"
-        return 2
-    fi
-
-    host="${1}"
-
-    ssh "root@${host}" df -h | grep --color=never -E '^(Filesystem|/dev)'
-}
-complete -F _ssh ssh-df
-
-function speedtest {
-    local prefix
-
-    case "${#}" in
-        0) prefix="" ;;
-        *) prefix="ssh -t ${*}"
-    esac
-
-    ${prefix} iperf3                        \
-              -R                            \
-              -c paris.testdebit.info       \
-              -p $((9200 + "$RANDOM" % 41)) \
-              -i 1                          \
-              -t 10
-}
-complete -F _ssh speedtest
-
-function loop-hero {
-    # Temporary
-    flatpak run                                                         \
-            --cwd="${HOME}/.var/app/com.valvesoftware.Steam/loop-hero/" \
-            --command=./loop-hero.sh                                    \
-            com.valvesoftware.Steam
-}
-
-function join-string {
-    local IFS="${1}"
-
-    IFS="${1}"
-    shift
-    echo "${*}"
-}
-
-function hex2dec {
-    printf "%d\n" "0x${1}"
-}
-
-function dec2hex {
-    printf "%x\n" "${1}"
-}
+################################################################################
+## IP Calculation
 
 function ip2mac {
     local values out
@@ -619,79 +577,23 @@ function mac2ip {
     join-string '.' "${out[@]}"
 }
 
-function jhparm {
-    local disk
+################################################################################
+## Networking
 
-    if [ $# -lt 1 ]; then
-        echo "Usage: ${0} <DISK>" >&2
-        return 2
-    fi
-    disk="${1}"
+function speedtest {
+    local prefix
 
-    sudo dd                                                                    \
-         if="${disk}"                                                          \
-         of=/dev/null                                                          \
-         bs=50M                                                                \
-         count=10000                                                           \
-         status=progress                                                       \
-         iflag=direct
-}
+    case "${#}" in
+        0) prefix="" ;;
+        *) prefix="ssh -t ${*}"
+    esac
 
-function vagrant-up {
-    local -a boxes
-
-    if [ "${#}" -gt 0  ]; then
-        boxes=( "${@}" )
-    else
-        mapfile -t boxes < <( vagrant status --machine-readable \
-                                  | cut -d "," -f 2             \
-                                  | tr -s '\n' '\n'             \
-                                  | sort -u                     \
-                            )
-    fi
-
-    for box in "${boxes[@]}"; do
-        vagrant up "${box}"
-    done
-}
-
-function diff-dirs {
-    local dir1 dir2
-
-    dir1="${1}"
-    dir2="${2}"
-
-    echo "====== Just names ======"
-    if diff -qr "${dir1}" "${dir2}"; then
-        echo
-        echo "All ok!"
-    else
-        echo
-        echo "File differences detected!"
-        return 3
-    fi
-
-    echo
-    echo "====== Permissions ======"
-    pushd "${dir1}" >/dev/null || exit
-    find . -exec stat --format='%n %A %U %G' {} \; | sort > ../"${dir1}.list"
-    popd >/dev/null || exit
-
-    pushd "${dir2}" >/dev/null || exit
-    find . -exec stat --format='%n %A %U %G' {} \; | sort > ../"${dir2}.list"
-    popd >/dev/null || exit
-
-
-    if diff -u "${dir1}.list" "${dir2}.list"; then
-        echo
-        echo "All ok!"
-    else
-        echo
-        echo "File permission differences detected!"
-        return 4
-    fi
-
-    rm "${dir1}.list" "${dir2}.list"
+    ${prefix} iperf3                        \
+              -R                            \
+              -c paris.testdebit.info       \
+              -p $((9200 + "$RANDOM" % 41)) \
+              -i 1                          \
+              -t 10
 }
 
 function simple-dns {
@@ -781,42 +683,83 @@ function show-ip-ranges {
     done | column -t
 }
 
-function poor-watch {
-    local zzz
+complete -F _ssh speedtest
 
-    if [ "${#}" -lt 2 ] || _help-flag; then
-        echo "Usage: ${FUNCNAME[0]} <SLEEP> <CMD>..."
+################################################################################
+## Ansible
+
+function ansible-record-hostkeys {
+    local host_pattern inventory
+
+    if [ ! $# -eq 2 ] || _help-flag; then
+        echo "Usage: ansible-record-hostkeys <inventory> <host-pattern>"
         echo
-        echo "Poor mans \`watch\`. On the upside, works with BASH functions!"
+        echo "Import ssh host keys from hosts"
         return 2
     fi
 
-    zzz="${1}"
-    shift
+    inventory="${1}"
+    host_pattern="${2}"
 
-    while true; do
-        sleep "${zzz}" || return 1
-        clear
-        eval "${*}"
-    done
+    export ANSIBLE_HOST_KEY_CHECKING=False    \
+        && ansible -e 'record_host_keys=True' \
+                   -m ping                    \
+                   -i "${inventory}"          \
+                   "${host_pattern}"
 }
 
-function header {
-    local header
+################################################################################
+## Containers
 
-    header="${*}"
+function http-serve {
+    local path
 
-    echo
-    echo "${*}"
-    printf '=%.0s' $(seq 1 "${#header}")
-    echo
+    path="$(readlink -f "${1:-.}")"
+
+    mkdir -p "${path}"
+
+    podman run                                         \
+           --rm                                        \
+           --publish 8080:80                           \
+           --name nginx-serve                          \
+           --volume "${path}:/usr/share/nginx/html:ro" \
+           nginx:1.14-alpine
 }
 
-function system-uuid {
-    sudo cat /sys/class/dmi/id/product_uuid
+function docker-volume-by-age {
+    for volume in $(sudo docker volume ls --format "{{.Name}}"); do
+        sudo docker volume inspect "${volume}" \
+             --format "{{ .CreatedAt }}   $volume"
+    done | column -t | sort
 }
 
-############################ Kubernetes ########################################
+function docker-rootkit {
+    local -a cmd
+
+    cmd=(docker run --rm -it
+         --volume /:/tmp/root
+         --privileged
+         fedora
+         chroot /tmp/root)
+
+    if [ ! -w /run/docker.sock ]; then
+        cat <<EOM
+You're *not* in the docker group!
+If you were, this command would make you root:
+
+  \$ ${cmd[*]}
+
+EOM
+    else
+        echo "\$ ${cmd[*]}"
+        echo "You're root!"
+        echo
+        "${cmd[@]}"
+    fi
+}
+
+################################################################################
+## Kubernetes
 
 function kubens {
     local namespaces namespace context_err
@@ -883,3 +826,5 @@ function k9s {
            -v "${HOME}/.kube/config":/root/.kube/config \
            quay.io/derailed/k9s "${@}"
 }
+
+################################################################################
