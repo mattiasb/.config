@@ -736,11 +736,7 @@ function docker-volume-by-age {
 function docker-rootkit {
     local -a cmd
 
-    cmd=(docker run --rm -it
-         --volume /:/tmp/root
-         --privileged
-         fedora
-         chroot /tmp/root)
+    cmd=(docker run --rm -it -v /:/host --privileged fedora chroot /host)
 
     if [ ! -w /run/docker.sock ]; then
         cat <<EOM
