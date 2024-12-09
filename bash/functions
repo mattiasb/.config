@@ -119,6 +119,14 @@ function poor-watch {
     done
 }
 
+function iso8601-date {
+    date --iso-8601=days
+}
+
+function iso8601-time {
+    date --iso-8601=seconds
+}
+
 
 ################################################################################
 ## Misc
