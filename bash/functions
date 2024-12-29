@@ -591,6 +591,16 @@ function mac2ip {
 ################################################################################
 ## Networking
 
+function host-wait {
+    local host
+
+    host="${1}"
+
+    until ping -c1 "${host}" &>/dev/null; do
+        echo -ne .
+    done && echo Up!
+}
+
 function speedtest {
     local prefix
 
