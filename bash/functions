@@ -592,14 +592,29 @@ function mac2ip {
 ## Networking
 
 function host-wait {
-    local host
+    local host success
 
     host="${1}"
+    success=true
 
-    until ping -c1 "${host}" &>/dev/null; do
-        echo -ne .
-    done && echo Up!
+    set +m
+
+    { until ping -c1 -w1 -W1 "${host}" >/dev/null; do
+          echo -ne .
+      done &
+    } 2>/dev/null
+
+    # shellcheck disable=SC2064
+    trap "success=false; kill ${!}; disown ${!}; trap - SIGINT" SIGINT
+    wait "${!}"
+
+    if [ "${success}" = true ]; then
+        echo Up!
+    else
+        echo
+    fi
 }
+complete -F _comp_cmd_host host-wait
 
 function speedtest {
     local prefix
