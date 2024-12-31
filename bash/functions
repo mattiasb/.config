@@ -557,7 +557,7 @@ complete -F _comp_cmd_ssh ssh-add-hostkey
 complete -F _comp_cmd_ssh ssh-regenerate-hostkey
 complete -F _comp_cmd_ssh ssh-remove-hostkey
 complete -F _comp_cmd_ssh ssh-wait
-complete -F _comp_cmd_ssh ssht
+complete -F _comp_cmd_ssh ssh-tmux
 
 ################################################################################
 ## IP Calculation
