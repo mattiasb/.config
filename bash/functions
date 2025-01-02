@@ -195,18 +195,18 @@ function jhparm {
 function mkcd {
     mkdir -p "${@}" && cd "${!#}" || return $?
 }
-complete -d mkcd
 
 function cpcd {
     mkdir -p "${!#}" && cp -r "${@}" && cd "${!#}" || return $?
 }
-_completion_loader _longopt
-complete -F _longopt cpcd
 
 function mvcd {
     mkdir -p "${!#}" && mv "${@}" && cd "${!#}" || return $?
 }
+
 _completion_loader _longopt
+complete -d mkcd
+complete -F _longopt cpcd
 complete -F _longopt mvcd
 
 ################################################################################
@@ -344,13 +344,6 @@ function pcd {
     cd "${HOME}/Code/github.com/mattiasb/${1}" || return
 }
 
-function _complete-project-folder {
-    local projects=("${HOME}/Code/github.com/mattiasb/${2}"*)
-    [[ -e ${projects[0]} ]] && COMPREPLY=( "${projects[@]##*/}" )
-}
-complete -F _complete-project-folder create-project
-complete -F _complete-project-folder pcd
-
 function ccd {
     local project
 
@@ -368,6 +361,13 @@ function ccd {
 
     cd "${project}" || return $?
 }
+
+function _complete-project-folder {
+    local projects=("${HOME}/Code/github.com/mattiasb/${2}"*)
+    [[ -e ${projects[0]} ]] && COMPREPLY=( "${projects[@]##*/}" )
+}
+complete -F _complete-project-folder create-project
+complete -F _complete-project-folder pcd
 
 ################################################################################
 ## Test code
@@ -436,12 +436,11 @@ function magit {
 
     popd >/dev/null || return 3
 }
+
 complete -d magit
 
 ################################################################################
 ## SSH
-
-_completion_loader ssh
 
 function ssh-regenerate-hostkey {
     local host exitcode
@@ -553,6 +552,7 @@ function mdns-ssh {
     ssh "${connection}" "${@}"
 }
 
+_completion_loader ssh
 complete -F _comp_cmd_ssh ssh-add-hostkey
 complete -F _comp_cmd_ssh ssh-regenerate-hostkey
 complete -F _comp_cmd_ssh ssh-remove-hostkey
@@ -614,7 +614,6 @@ function host-wait {
         echo
     fi
 }
-complete -F _comp_cmd_host host-wait
 
 function speedtest {
     local prefix
@@ -719,7 +718,8 @@ function show-ip-ranges {
     done | column -t
 }
 
-complete -F _ssh speedtest
+complete -F _comp_cmd_host host-wait
+complete -F _comp_cmd_host speedtest
 
 ################################################################################
 ## Ansible
