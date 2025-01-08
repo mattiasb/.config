@@ -718,6 +718,7 @@ function show-ip-ranges {
     done | column -t
 }
 
+_completion_loader host
 complete -F _comp_cmd_host host-wait
 complete -F _comp_cmd_host speedtest
 
