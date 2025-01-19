@@ -476,8 +476,8 @@ function ssh-remove-hostkey {
     fi
 
     for host in "${@}"; do
-        ips="$(dig +short "${host}")"
-        for i in $ips $host; do
+        mapfile -t ips < <(dig +short "${host}")
+        for i in "${ips[@]}" "${host}"; do
             if ! ssh-keygen -R "${i}"; then
                 exitcode=2
             fi
@@ -536,7 +536,7 @@ function mdns-ssh {
                  )"
 
     opts="$(getopt -o u: --long user: -n "mdns-ssh" -- "$@")"
-    eval set -- "$opts"
+    eval set -- "${opts}"
     while true; do
         case "$1" in
             -u | --user )
@@ -623,11 +623,11 @@ function speedtest {
         *) prefix="ssh -t ${*}"
     esac
 
-    ${prefix} iperf3                        \
-              -R                            \
-              -c paris.testdebit.info       \
-              -p $((9200 + "$RANDOM" % 41)) \
-              -i 1                          \
+    ${prefix} iperf3                                                           \
+              -R                                                               \
+              -c paris.testdebit.info                                          \
+              -p $((9200 + "${RANDOM}" % 41))                                  \
+              -i 1                                                             \
               -t 10
 }
 
@@ -766,7 +766,7 @@ function http-serve {
 function docker-volume-by-age {
     for volume in $(sudo docker volume ls --format "{{.Name}}"); do
         sudo docker volume inspect "${volume}" \
-             --format "{{ .CreatedAt }}   $volume"
+             --format "{{ .CreatedAt }}   ${volume}"
     done | column -t | sort
 }
 
