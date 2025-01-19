@@ -763,8 +763,18 @@ function http-serve {
            nginx:1.14-alpine
 }
 
-function docker-volume-by-age {
-    local vol rx_date rx_time rx_ms rx_tz
+function container-volume-by-age {
+    local vol cri rx_date rx_time rx_ms rx_tz
+    local -a cmd
+
+    cri="${1:-podman}"
+
+    case "${cri}" in
+        podman) cmd=(podman)      ;;
+        docker) cmd=(sudo docker) ;;
+        *) error "Unknown container runtime: ${cri}!"
+           return 2
+    esac
 
     rx_date='[0-9]{4}-[0-9]{2}-[0-9]{2}'
     rx_time='[0-9]{2}:[0-9]{2}:[0-9]{2}'
@@ -772,11 +782,14 @@ function docker-volume-by-age {
     rx_tz='\+[0-9]+ [A-Z]+'
     rx="(${rx_date}) (${rx_time})${rx_ms} ${rx_tz}"
 
-    for vol in $(sudo docker volume ls --format "{{.Name}}"); do
-        sudo docker volume inspect "${vol}" -f "{{ .CreatedAt }}"              \
+    for vol in $("${cmd[@]}" volume ls --format "{{.Name}}"); do
+        "${cmd[@]}" volume inspect "${vol}" -f "{{ .CreatedAt }}"              \
             | sed -r "s/${rx}/\1 \2 ${vol}/"
     done | column -t | sort
 }
+
+alias docker-volume-by-age='container-volume-by-age docker'
+alias podman-volume-by-age='container-volume-by-age podman'
 
 function docker-rootkit {
     local -a cmd
