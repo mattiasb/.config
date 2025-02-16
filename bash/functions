@@ -611,7 +611,7 @@ function mdns-ssh {
                  | fzf
                  )"
 
-    opts="$(getopt -o u: --long user: -n "mdns-ssh" -- "$@")"
+    opts="$(getopt -o u: --long user: -n "mdns-ssh" -- "$@")" || return 2
     eval set -- "${opts}"
     while true; do
         case "$1" in
