@@ -848,7 +848,7 @@ function container-volume-by-age {
     case "${cri}" in
         podman) cmd=(podman)      ;;
         docker) cmd=(sudo docker) ;;
-        *) error "Unknown container runtime: ${cri}!"
+        *) echo "Unknown container runtime: ${cri}!" >&2
            return 2
     esac
 
