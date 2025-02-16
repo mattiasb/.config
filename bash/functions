@@ -210,6 +210,82 @@ complete -F _longopt cpcd
 complete -F _longopt mvcd
 
 ################################################################################
+## Tarballs
+
+function unpack {
+    local opts tarball usage opt_delete
+
+    usage="usage: unpack [-d] <TARBALL...>"
+
+    opts="$(getopt -o h,d --long help,delete -n unpack -- "${@}")" || return 2
+    eval set -- "${opts}"
+
+    opt_delete=false
+
+    while true; do
+        case "${1}" in
+            -h | --help)   usage
+                           return
+                           ;;
+            -d | --delete) opt_delete=true
+                           shift
+                           ;;
+            -- ) shift; break ;;
+            * ) break ;;
+        esac
+    done
+
+    if [ "${#}" -eq 0 ]; then
+        echo -e "${usage}" >&2
+        return 2
+    fi
+
+    for tarball in "${@}"; do
+        if [ ! -f "${tarball}" ]; then
+            echo -e "ERROR: ${tarball} is not a file!\n\n${usage}" >&2
+            return 3
+        fi
+    done
+
+    for tarball in "${@}"; do
+        echo "Extracting ${tarball} ..."
+        tar axf "${tarball}"
+        if [ "${opt_delete}" = true ]; then
+            rm "${tarball}"
+        fi
+    done
+}
+
+function pack {
+    local tarball files usage
+
+    usage="usage: pack <DIR>\n   or: pack <TARBALL> <FILES...>"
+
+    if _help-flag "${@}"; then
+        echo -e "${usage}"
+        return
+    fi
+
+    case "${#}" in
+        0)  echo -e "${usage}" >&2
+            return 2
+            ;;
+        1)  if [ ! -d "${1}" ]; then
+                echo -e "ERROR: ${1} is not a directory!\n\n${usage}" >&2
+                return 3
+            fi
+            files="${1}"
+            tarball="${files}.tar.zst"
+            ;;
+        *)  tarball="${1}"
+            files="${2}"
+            ;;
+    esac
+
+    tar acf "${tarball}" "${files}"
+}
+
+################################################################################
 ## Login tracking stuff (move to separate script
 
 function logins {
