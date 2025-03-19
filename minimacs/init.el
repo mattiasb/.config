@@ -32,6 +32,8 @@
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode t)
  '(fill-column 80)
+ '(ielm-history-file-name
+   (file-name-concat user-emacs-cache-directory "ielm-history.eld"))
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-echo-area-message "mattiasb")
  '(inhibit-startup-screen t)
