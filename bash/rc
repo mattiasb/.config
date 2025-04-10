@@ -74,7 +74,7 @@ done
 ### Complete Aliases
 if [ "$(type -t _complete_alias)" = "function" ]; then
     for a in $(alias | cut -d "=" -f 1 | cut -d " " -f 2); do
-        complete -F _complete_alias "$a"
+        complete -F _complete_alias "${a}"
     done
 fi
 
