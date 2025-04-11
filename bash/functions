@@ -563,14 +563,6 @@ function ssh-remove-hostkey {
     return "${exitcode}"
 }
 
-function ssh {
-    if [ "${TERM}" = "eat-truecolor" ]; then
-        export TERM=xterm-256color
-    fi
-
-    command ssh "${@}"
-}
-
 function ssh-tmux {
     ssh -t "$@" tmux new-session -A -s ssh_tmux
 }
