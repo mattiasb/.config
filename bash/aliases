@@ -27,7 +27,6 @@ alias cat-which='cmd-which cat'
 alias less='less -c'
 alias less-which='cmd-which less'
 alias emacs-which="cmd-which 'emacsclient -c -s main'"
-alias lp='lpass show -c --password $(lpass ls | fzf | awk '"'"'{print $(NF)}'"'"' | sed '"'"'s/\]//g'"'"')'
 alias flatpak-builder='flatpak-builder --ccache'
 alias dns-flush='sudo resolvectl flush-caches'
 alias stoneshard='$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/steamapps/common/Stoneshard/StoneShard'

@@ -148,6 +148,27 @@ function lpass {
     /bin/lpass "${@}"
 }
 
+# TODO: Make this give user and pass in order and end by emptying clipboard
+function lp {
+    local cmd secret
+    local -a flags=()
+
+    cmd="${1:-pass}"
+
+    case "${cmd}" in
+        pass) flags+=( '-c' '--password' ) ;;
+        user) flags+=( '-c' '--user' )     ;;
+        show) flags+=( '--all' )           ;;
+        *) echo "Usage: ${FUNCNAME[0]} [pass|user|show]"
+           return 2
+           ;;
+    esac
+
+    secret="$( lpass ls --format="%ag/%an" | grep -Ev '/$' | fzf)"
+
+    lpass show "${flags[@]}" "${secret}"
+}
+
 function remake {
     if [ $# -lt 1 ] || _help-flag; then
         echo "Usage: remake <file>..."
