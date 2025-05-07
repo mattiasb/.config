@@ -36,6 +36,10 @@ function system-uuid {
     sudo cat /sys/class/dmi/id/product_uuid
 }
 
+function anykey {
+    read -rp "Press any key to continue …"
+}
+
 ################################################################################
 ## Utils
 
