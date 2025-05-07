@@ -7,7 +7,7 @@
 [color]
 	diff = always
 
-[includeIf "gitdir:~/Code/source.haleytek.net/"]
+[include]
 	path = config.work
 
 # Github
@@ -22,8 +22,6 @@
 	insteadOf = codeberg
 [url "git@gitlab.gnome.org"]
 	insteadOf = gnome
-[url "ssh://mattiasbe@source-secure.haleytek.net:29418/"]
-	insteadOf = haleytek:
 
 [core]
 	pager = delta --features "$(gnome-color-scheme)"
