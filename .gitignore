@@ -7,6 +7,7 @@
 /StoneShard/
 /VirtualBox/*
 /Yubico/
+/ansible/galaxy_token
 /autostart/*
 /autostart/dropbox.desktop
 /autostart/remmina-applet.desktop
@@ -30,6 +31,7 @@
 /dleyna-*
 /emacs/
 /enchant/*
+/environment.d/99-work.conf
 /eog/*
 /epiphany/*
 /evince/*
@@ -40,6 +42,7 @@
 /gedit/*
 /ghc/ghci_history
 /git/config.local
+/git/config.work
 /git/gitk
 /git/spindle
 /glade.conf
@@ -48,11 +51,14 @@
 /gnome-contacts/*
 /gnome-control-center/*
 /gnome-initial-setup-done
+/go/telemetry
 /goa-1.0/*
 /google-chrome/*
 /gtk-2.0
 /gtk-3.0/bookmarks
 /gtk-3.0/servers
+/helm/repositories.lock
+/helm/repositories.yaml
 /htop/
 /ibus/*
 /inkscape/
@@ -66,6 +72,7 @@
 /mimeapps.list
 /monitors.xml
 /nautilus/search-metadata
+/org.gnome.Ptyxis/
 /pavucontrol.ini
 /pipewire
 /pipewire-media-session/
@@ -101,9 +108,3 @@
 /wireshark/recent
 /wireshark/recent_common
 /yelp/*
-/helm/repositories.lock
-/helm/repositories.yaml
-/go/telemetry
-/ansible/galaxy_token
-/org.gnome.Ptyxis/
-/git/config.work
