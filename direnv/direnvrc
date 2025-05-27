@@ -19,7 +19,7 @@ layout_python_uv() {
     unset PYTHONHOME
 
     if [ ! -f "pyproject.toml" ]; then
-        uv init -p "${python}" --no-readme --no-pin-python
+        uv init -p "${python}" --bare
         rm hello.py
     fi
 
