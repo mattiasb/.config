@@ -3,8 +3,8 @@
 declare -A direnv_layout_dirs
 direnv_layout_dir() {
     local hash dir
-    echo "${direnv_layout_dirs[$PWD]:=$(
-        hash="$(sha1sum - <<< "$PWD" | head -c40)"
+    echo "${direnv_layout_dirs[${PWD}]:=$(
+        hash="$(sha1sum - <<< "${PWD}" | head -c40)"
         dir="$(basename "${PWD}")"
         echo "${XDG_CACHE_HOME:-${HOME}/.cache}/direnv/layouts/${dir}-${hash}"
     )}"
@@ -24,7 +24,7 @@ layout_python_uv() {
     fi
 
     python_path="$(uv python find "${python}")"
-    version="$($python_path -V | cut -d' ' -f 2 | cut -d . -f 1-2)"
+    version="$(${python_path} -V | cut -d' ' -f 2 | cut -d . -f 1-2)"
 
     if [ -z "${version}" ]; then
         log_error "Could not find python's version"
