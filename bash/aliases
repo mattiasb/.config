@@ -14,6 +14,7 @@ alias ansible-local="env -u ANSIBLE_VAULT_PASSWORD_FILE \
 alias ansible-console-local="env -u ANSIBLE_VAULT_PASSWORD_FILE \
                              ansible-console -i 'localhost,' -c local"
 alias wipehist='cat /dev/null > "${HISTFILE}" && history -c && exec "${SHELL}"'
+alias units='units -H "$(xdg-mkdir cache units)/history"'
 alias ninja='ninja-build'
 alias ema='emacsclient -c -s main'
 alias emacs='emacsclient -c -s main'
