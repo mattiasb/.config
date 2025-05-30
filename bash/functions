@@ -387,7 +387,7 @@ function logins2 {
 }
 
 ################################################################################
-## YAML and JSON
+## Data formats JSON, YAML, CSV etc
 
 function ypterm {
     yaml2json < "${1:-/dev/stdin}" | jpterm | json2yaml
@@ -399,6 +399,14 @@ function yq {
 
 function yqp {
     yaml2json < "${1:-/dev/stdin}" | jqp "${@}"
+}
+
+function csv2tsv {
+    csvformat -T "${1}" > "${2:-/dev/stdout}"
+}
+
+function tsv2csv {
+    csvformat -t "${1}" > "${2:-/dev/stdout}"
 }
 
 ################################################################################
