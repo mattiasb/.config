@@ -40,6 +40,23 @@ function anykey {
     read -rp "Press any key to continue …"
 }
 
+
+################################################################################
+## Fancy aliases
+
+function units {
+    local cache_dir
+
+    cache_dir="${XDG_CACHE_DIR:-${HOME}/.cache}/units"
+
+    if [ ! -d "${cache_dir}" ]; then
+        mkdir -p "${cache_dir}"
+    fi
+
+    command units -H "${cache_dir}/history" "${@}"
+}
+
+
 ################################################################################
 ## Utils
 
