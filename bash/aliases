@@ -7,6 +7,7 @@ alias ls='ls -h -B --color=auto  --group-directories-first'
 alias tree='tree --dirsfirst'
 alias fd='fd -u'
 alias ip='ip -c'
+alias su='sudo -i'
 alias tmux='direnv exec / tmux'
 alias tm='tmux a || tmux'
 alias ansible-local="env -u ANSIBLE_VAULT_PASSWORD_FILE \
