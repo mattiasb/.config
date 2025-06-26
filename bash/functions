@@ -106,25 +106,36 @@ function cmd-which {
     eval "${args[*]} $(command -v "${cmd}")"
 }
 
-function poor-watch {
-    local zzz
+function fwatch {
+    local secs out header align
 
     if [ "${#}" -lt 2 ] || _help-flag; then
         echo "Usage: ${FUNCNAME[0]} <SLEEP> <CMD>..."
         echo
-        echo "Poor mans \`watch\`. On the upside, works with BASH functions!"
+        echo "A watch that works for functions!"
         return 2
     fi
 
-    zzz="${1}"
-    shift
+    case "${1}" in
+        -n) secs="${2}"; shift 2 ;;
+        *)  secs="2"             ;;
+    esac
+
+    header="Every ${secs}s: ${*}"
+    align=$(($(/usr/bin/tput cols) - ${#header}))
 
     while true; do
-        sleep "${zzz}" || return 1
-        clear
-        eval "${*}"
+        out="${header}$(printf "%${align}s\n" "$(hostname): $(date)")\n\n"
+        out+="$("${@}")"
+        echo -e "\033[2J\033[H${out}"
+        sleep "${secs}" || return 1
     done
 }
+alias poor-watch=fwatch
+
+_completion_loader watch
+complete -F _comp_cmd_watch fwatch
+complete -F _comp_cmd_watch poor-watch
 
 function iso8601-date {
     date --iso-8601=days
