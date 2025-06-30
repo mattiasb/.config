@@ -47,6 +47,11 @@ done
 # Ensure histfile directory exists
 mkdir -p "$(dirname "${HISTFILE}")"
 
+# Ensure GPG directory exists
+if [ ! -d "${GNUPGHOME}"  ]; then
+    mkdir -m 0700 "${GNUPGHOME}"
+fi
+
 # Set up PS1
 
 # shellcheck source=bash/prompt
