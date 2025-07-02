@@ -720,9 +720,10 @@ function speedtest {
     esac
 
     ${prefix} iperf3                                                           \
-              -R                                                               \
-              -c speedtest.kamel.network                                       \
-              -p 5201-5205                                                     \
+              -R -u                                                            \
+              -6                                                               \
+              -c speedtest.cityhost.se                                         \
+              -p 5201-5206                                                     \
               -i 1                                                             \
               -t 10
 }
