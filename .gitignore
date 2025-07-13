@@ -99,7 +99,6 @@
 /totem/*
 /transmission-remote-gtk/*
 /transmission/*
-/user-dirs.dirs
 /user-dirs.locale
 /user-share/*
 /var/lib/swtpm-localca/*
