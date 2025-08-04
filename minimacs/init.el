@@ -30,6 +30,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-dark-themes '((wombat) (leuven)))
  '(delete-selection-mode t)
  '(fill-column 80)
  '(ielm-history-file-name
@@ -38,7 +39,14 @@
  '(inhibit-startup-echo-area-message "mattiasb")
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
- '(package-selected-packages '(corfu))
+ '(package-archive-priorities
+   '(("gnu" . 20) ("nongnu" . 20) ("melpa-stable" . 20) ("melpa" . 10)))
+ '(package-archivesw
+   '(("gnu" . "http://elpa.gnu.org/packages/")
+     ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+     ("melpa" . "http://melpa.org/packages/")
+     ("melpa-stable" . "http://stable.melpa.org/packages/")))
+ '(package-selected-packages '(auto-dark corfu))
  '(tab-always-indent 'complete))
 
 (custom-set-faces
@@ -56,6 +64,11 @@
 (use-package corfu
   :ensure t
   :hook (after-init . global-corfu-mode))
+
+(use-package auto-dark
+  :ensure t
+  :diminish
+  :hook (after-init . auto-dark-mode))
 
 (provide 'init)
 ;;; init.el ends here
