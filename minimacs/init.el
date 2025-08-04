@@ -55,7 +55,7 @@
 
 (use-package corfu
   :ensure t
-  :init (global-corfu-mode))
+  :hook (after-init . global-corfu-mode))
 
 (provide 'init)
 ;;; init.el ends here
