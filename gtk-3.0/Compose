@@ -164,7 +164,7 @@ include "%L"
 <Multi_key> <colon> <asterisk>                             : "😗" U1F617
 <Multi_key> <colon> <asterisk> <asterisk>                  : "😘" U1F618
 <Multi_key> <colon> <asterisk> <less> <3>                  : "😘" U1F618
-<Multi_key> <colon> <D>                                    : "😃" U1F603
+<Multi_key> <colon> <D> <space>                            : "😃" U1F603
 <Multi_key> <colon> <D> <D>                                : "😂" U1F602
 <Multi_key> <colon> <o>                                    : "😮" U1F62E
 <Multi_key> <colon> <O>                                    : "😮" U1F62E
