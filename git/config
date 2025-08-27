@@ -46,6 +46,7 @@
 	patch-diff       = "!f() { diff -u <(git --no-pager show \"${1}\" | tail -n +2) <(git --no-pager show \"${2}\" | tail -n +2); }; f"
 [diff]
 	tool = meld
+	mnemonicPrefix = true
 [rebase]
 	autoStash = true
 	updateRefs = true
