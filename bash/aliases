@@ -56,11 +56,11 @@ alias toml2yaml="toml2yaml --multiline 1 --width 80"
 alias yaml2yaml="yaml2yaml --multiline 1 --width 80"
 
 # Containers
+alias argo='container docker.io/argoproj/argocli:latest'
 alias groovysh='container docker.io/groovy'
 alias mc='container docker.io/minio/mc:latest'
-alias argo='container docker.io/argoproj/argocli:latest'
-alias ubuntu='container docker.io/ubuntu:22.04'
 alias promtail='container docker.io/grafana/promtail:latest'
+alias ubuntu='container docker.io/ubuntu:22.04'
 
 # Kubernetes
 alias kctx="k8s-context"
