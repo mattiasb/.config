@@ -45,6 +45,7 @@
 /git/config.work
 /git/gitk
 /git/spindle
+/glab-cli/config.yml
 /glade.conf
 /gnome-boxes/
 /gnome-builder
