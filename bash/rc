@@ -37,11 +37,7 @@ fi
 
 # Environment
 for file in "${HOME}/.config/environment.d/"*.conf; do
-    while IFS= read -r line || [ -n "${line}" ]; do
-        if [[ ! "${line}" =~ ^[[:space:]]*# ]]; then
-            eval "export ${line}" &>/dev/null
-        fi
-    done < "${file}"
+    loadenv "${file}"
 done
 
 # Ensure histfile directory exists

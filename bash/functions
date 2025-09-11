@@ -40,6 +40,17 @@ function anykey {
     read -rp "Press any key to continue …"
 }
 
+function loadenv {
+    if [ ! -f "${1}" ]; then
+        echo "loadenv: Cannot access '${1}': No such file or directory"
+        return 1
+    fi
+
+    set -a
+
+    # shellcheck disable=SC1090
+    source "${1}"
+}
 
 ################################################################################
 ## Utils
