@@ -59,7 +59,8 @@ case "${TERM}" in
 esac
 
 # Eat terminal
-if [ -n "${EAT_SHELL_INTEGRATION_DIR}" ]; then
+if [ -v INSIDE_EMACS ] && [ -d "${EAT_SHELL_INTEGRATION_DIR}" ]; then
+    echo "Loading eat integration ..."
     # shellcheck source=/dev/null
     source "${EAT_SHELL_INTEGRATION_DIR}/bash"
 fi
