@@ -41,15 +41,33 @@ function anykey {
 }
 
 function loadenv {
-    if [ ! -f "${1}" ]; then
-        echo "loadenv: Cannot access '${1}': No such file or directory"
+    local pat out file ret
+    local -a files
+
+    files=( "${@}" )
+
+    if ! stat -c '' "${files[@]}" 2> >( grep -oE "'.+'.+" >&2 ) >/dev/null; then
         return 1
     fi
 
-    set -a
+    # NOTE: This will never be truly safe.
+    pat='^\s*(|#.*|[A-Za-z_][A-Za-z0-9_]+=((?!\$\()[^`])*)$'
+    if out="$(grep -vP "${pat}" "${files[@]}")"; then
+        echo "loadenv: Some files has suspicious content:"
+        echo "${out}" | pr -to 2
+        return 2
+    fi
 
-    # shellcheck disable=SC1090
-    source "${1}"
+    set -a
+    for file in "${files[@]}"; do
+        # shellcheck disable=SC1090
+        if ! source "${file}"; then
+            ret=3
+        fi
+    done
+    set +a
+
+    return "${ret:-0}"
 }
 
 ################################################################################

@@ -31,9 +31,7 @@ fi
 . "${HOME}/.config/bash/aliases"
 
 # Environment
-for file in "${HOME}/.config/environment.d/"*.conf; do
-    loadenv "${file}"
-done
+loadenv "${HOME}/.config/environment.d/"*.conf
 
 # Ensure histfile directory exists
 mkdir -p "$(dirname "${HISTFILE}")"
