@@ -12,11 +12,6 @@ stty stop undef
 
 ### Load stuff
 
-# Global definitions
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
-
 # Machine local scripts
 if [ -f "${HOME}/.config/bash/rc.local" ]; then
     # shellcheck source=/dev/null
