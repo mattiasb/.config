@@ -40,8 +40,7 @@
 /gconf/*
 /gedit/*
 /ghc/ghci_history
-/git/config.local
-/git/config.work
+/git/config.*
 /git/gitk
 /git/spindle
 /glab-cli/config.yml

@@ -1,27 +1,46 @@
-[user]
-	name = Mattias Bengtsson
-	email = mattias.jc.bengtsson@gmail.com
+################################################################################
+## Includes
+
+## GitHub
+[url "git@github.com"]
+	insteadOf = github
+[includeIf "gitdir:~/Code/github.com/"]
+	path = config.defaults
+[includeIf "gitdir:~/.config/"]
+	path = config.defaults
+[includeIf "gitdir:~/Code/Test/"]
+	path = config.defaults
+
+## GitLab
+[url "git@gitlab.com"]
+	insteadOf = gitlab
+[includeIf "gitdir:~/Code/gitlab.com/"]
+	path = config.defaults
+
+## Codeberg
+[url "git@codeberg.org"]
+	insteadOf = codeberg
+[includeIf "gitdir:~/Code/codeberg.org/"]
+	path = config.defaults
+
+## GNOME
+[url "git@gitlab.gnome.org"]
+	insteadOf = gnome
+[includeIf "gitdir:~/Code/gitlab.gnome.org/"]
+	path = config.defaults
+
+## Work
+[include]
+	# This should include `includeIf`:s and `url`:s similar to above
+	path = config.work
+
+################################################################################
+
 [push]
 	default = simple
 	followTags = true
 [color]
 	diff = always
-
-[include]
-	path = config.work
-
-# Github
-# Use SSH when I have access	
-[url "ssh://git@github.com/mattiasb/"]
-	pushInsteadOf = https://github.com/mattiasb/
-[url "git@github.com"]
-	insteadOf = github
-[url "git@gitlab.com"]
-	insteadOf = gitlab
-[url "git@codeberg.org"]
-	insteadOf = codeberg
-[url "git@gitlab.gnome.org"]
-	insteadOf = gnome
 
 [core]
 	pager = delta --features "$(gnome-color-scheme)"
