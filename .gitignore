@@ -25,7 +25,6 @@
 /chromium/*
 /cni/
 /configstore/*
-/containers/*
 /corebird/*
 /dconf/*
 /dleyna-*
