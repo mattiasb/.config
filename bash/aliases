@@ -39,6 +39,7 @@ alias stoneshard='$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/stea
 alias curl='curl -#'
 alias pingsweep='nmap -sn'
 alias gnome-console='kgx'
+alias ptyxis='ptyxis --new-window'
 alias g='git'
 alias tig='mkdir ~/.local/share/tig/ 2>/dev/null; /usr/bin/tig'
 alias word-diff='git --no-pager diff --no-index --word-diff=color --word-diff-regex=.'
