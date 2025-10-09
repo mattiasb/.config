@@ -44,6 +44,7 @@ alias g='git'
 alias tig='mkdir ~/.local/share/tig/ 2>/dev/null; /usr/bin/tig'
 alias word-diff='git --no-pager diff --no-index --word-diff=color --word-diff-regex=.'
 alias diff="diff -u --color=always"
+alias delta="delta --features \"\$(gnome-color-scheme)\""
 alias rg="rg --no-ignore --hidden 2> >( grep -v 'Permission denied')"
 
 alias pip="pip --require-virtualenv"
