@@ -42,7 +42,7 @@ alias gnome-console='kgx'
 alias g='git'
 alias tig='mkdir ~/.local/share/tig/ 2>/dev/null; /usr/bin/tig'
 alias word-diff='git --no-pager diff --no-index --word-diff=color --word-diff-regex=.'
-alias diff="diff -u --color=auto"
+alias diff="diff -u --color=always"
 alias rg="rg --no-ignore --hidden 2> >( grep -v 'Permission denied')"
 
 alias pip="pip --require-virtualenv"
