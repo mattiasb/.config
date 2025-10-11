@@ -434,11 +434,11 @@ function ypterm {
     yaml2json < "${1:-/dev/stdin}" | jpterm | json2yaml
 }
 
-function yq {
+function yjq {
     yaml2json -i /dev/stdin | jq "${@}" | json2yaml
 }
 
-function yqp {
+function yjqp {
     yaml2json < "${1:-/dev/stdin}" | jqp "${@}"
 }
 
