@@ -7,10 +7,7 @@ function _help-flag {
 
 function join-string {
     local IFS="${1}"
-
-    IFS="${1}"
-    shift
-    echo "${*}"
+    echo "${*:2}"
 }
 
 function hex2dec {
