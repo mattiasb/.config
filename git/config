@@ -47,7 +47,7 @@
 [core]
 	pager = delta --features "$(gnome-color-scheme)"
 	excludesfile = ~/.config/git/ignore
-	editor = emacsclient -nw -c -s main
+	editor = emacsclient -c -s main
 [alias]
 	authors        = "!f() { git log --oneline --pretty='format:%aN <%aE>' ${1:+${1}..} | sort | uniq; }; f"
 	slog             = log --oneline
