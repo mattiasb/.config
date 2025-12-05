@@ -54,6 +54,8 @@
 	# Execute shell scripts in top directory.
 	exec             = ! exec
 
+	difft            = -c diff.external=difft diff
+
 	history-grep     = log -p -G
 
 	projects         = "!f() { cd; git each $@ :: Code/github.com/mattiasb/*; }; f"
