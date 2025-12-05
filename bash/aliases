@@ -67,5 +67,7 @@ alias mc='container --rm docker.io/minio/mc:latest'
 alias promtail='container --rm docker.io/grafana/promtail:latest'
 
 # Pets
-alias ubuntu='container docker.io/library/ubuntu:24.04'
+alias ubuntu-24.04='container docker.io/library/ubuntu:24.04'
+alias ubuntu-25.04='container docker.io/library/ubuntu:25.04'
+alias ubuntu-25.10='container docker.io/library/ubuntu:25.10'
 alias bash-3.2='container docker.io/library/bash:3.2'
