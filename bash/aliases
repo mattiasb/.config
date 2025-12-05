@@ -69,6 +69,3 @@ alias promtail='container --rm docker.io/grafana/promtail:latest'
 # Pets
 alias ubuntu='container docker.io/library/ubuntu:24.04'
 alias bash-3.2='container docker.io/library/bash:3.2'
-
-# Kubernetes
-alias kctx="k8s-context"
