@@ -1,0 +1,5 @@
+all: false
+width: 80
+style: "auto"
+mouse: false
+pager: true
