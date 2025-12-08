@@ -17,11 +17,7 @@ function mb-powerline-go-prompt {
 ################################################################################
 
 function mb-fancy-prompt {
-    if systemctl is-active --user powerline.service >/dev/null; then
-        . /usr/share/powerline/bash/powerline.sh
-    else
-        PROMPT_COMMAND="mb-powerline-go-prompt; ${PROMPT_COMMAND}"
-    fi
+    PROMPT_COMMAND="mb-powerline-go-prompt; ${PROMPT_COMMAND}"
 }
 
 function mb-lofi-prompt {
