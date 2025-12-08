@@ -180,18 +180,48 @@ function epoch-time {
 ## Misc
 
 function lpass {
-    command -v lpass > /dev/null || return $?
+    local cmd
 
-    case "${1}" in
-        -v|--version|--help|-h|login|logout|status) ;;
-        *)
-            if ! /bin/lpass status -q || ! /bin/lpass ls >/dev/null; then
-                /bin/lpass login mattias.jc.bengtsson@gmail.com
-            fi
-            ;;
+    if ! command -v lpass > /dev/null; then
+        echo "The lpass CLI is not installed!"
+        return 1
+    fi
+
+    for arg in "${@}"; do
+        case "${arg}" in
+            # My own aliases
+            logged-in|copy-*)                                cmd="${arg}"     ;;
+
+            # Upstream commands
+            add|duplicate|edit|export|generate|import|login) cmd="${arg}"     ;;
+            logout|ls|mv|passwd|rm|share|status|show|sync)   cmd="${arg}"     ;;
+
+            # Flags that should immediately interrupt
+            -v|--version|--help|-h) command lpass "${@}"; return              ;;
+            *)  ;;
+        esac
+    done
+
+    if [ -z "${cmd-}" ]; then
+        echo "Unknown command '${cmd}'"
+        return 2
+    fi
+
+    case "${cmd-}" in
+        logged-in) command lpass "${@}"    ; return                           ;;
+        status)    command lpass "${@}"    ; return                           ;;
+        logout)    command lpass "${@}" -f ; return                           ;;
+        *)                                                                    ;;
     esac
 
-    /bin/lpass "${@}"
+    if ! command lpass logged-in; then
+        command lpass login mattias.jc.bengtsson@gmail.com
+    fi
+
+    case "${cmd-}" in
+        login) return                                                         ;;
+        *)     command lpass "${@}"                                           ;;
+    esac
 }
 
 function remake {
