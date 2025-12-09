@@ -52,7 +52,7 @@ alias adbsync='NO_COLOR=1 adbsync'
 
 alias pip="pip --require-virtualenv"
 alias uv="NO_COLOR=1 uv"
-alias dnf='dnf -C'
+alias dnf='dnf --quiet --cache-only'
 
 alias wget="wget --hsts-file=~/.cache/wget-hsts"
 
