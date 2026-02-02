@@ -12,6 +12,10 @@
 	path = config.defaults
 [includeIf "gitdir:~/Code/Test/"]
 	path = config.defaults
+[includeIf "gitdir:~/Documents/Cabinet/"]
+	path = config.defaults
+[includeIf "gitdir:~/Documents/Magic/decks/"]
+	path = config.defaults
 
 ## GitLab
 [url "git@gitlab.com"]
