@@ -4,11 +4,11 @@
 ## GitHub
 [url "git@github.com"]
 	insteadOf = github
-[includeIf "gitdir:~/Code/github.com/"]
-	path = config.defaults
 [includeIf "gitdir:~/.config/"]
 	path = config.defaults
 [includeIf "gitdir:~/.local/bin/"]
+	path = config.defaults
+[includeIf "gitdir:~/Code/github.com/"]
 	path = config.defaults
 [includeIf "gitdir:~/Code/Test/"]
 	path = config.defaults
