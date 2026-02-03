@@ -79,6 +79,22 @@ if [ "$(type -t _complete_alias)" = "function" ]; then
     done
 fi
 
+### uv
+
+# Add uv tool man-files to MANPATH
+function uv-manpath {
+    find "${XDG_DATA_HOME:-${HOME}/.local/share}/uv/tools"                     \
+         -maxdepth 3                                                           \
+         -type d                                                               \
+         -name man                                                             \
+         -printf '%p:'
+
+    manpath 2> >(grep -v "manpath: warning:\$MANPATH set,")
+}
+
+MANPATH="$(uv-manpath)"
+export MANPATH
+
 ### direnv
 eval "$(direnv hook bash)"
 
