@@ -32,7 +32,6 @@ alias syslog='journalctl --system --no-hostname'
 alias userlog='journalctl --user --no-hostname'
 alias cmake='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 alias cat-which='cmd-which cat'
-alias less='less -c'
 alias less-which='cmd-which less'
 alias emacs-which="cmd-which 'emacsclient -c -s main'"
 alias flatpak-builder='flatpak-builder --ccache'
