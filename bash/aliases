@@ -51,6 +51,7 @@ alias adbsync='NO_COLOR=1 adbsync'
 
 alias pip="pip --require-virtualenv"
 alias uv="NO_COLOR=1 uv"
+alias uvx="NO_COLOR=1 uvx"
 
 alias wget="wget --hsts-file=~/.cache/wget-hsts"
 
