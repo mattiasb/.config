@@ -1,6 +1,8 @@
 # -*- mode: sh -*-
 # shellcheck shell=bash
 
+# NOTE: A trailing space makes an alias expand the next word as an alias!
+
 alias dmesg='dmesg --human'
 alias open='xdg-open'
 alias ls='LC_COLLATE=C ls -h --color=auto  --group-directories-first'
@@ -8,7 +10,7 @@ alias tree='tree --dirsfirst'
 alias fd='fd -u'
 alias ip='ip -c'
 alias su='sudo -i'
-alias watch='watch -c'
+alias watch='watch -c ' # ← Expand aliases
 alias tmux='direnv exec / tmux'
 alias tm='tmux a || tmux'
 alias ansible-local="env -u ANSIBLE_VAULT_PASSWORD_FILE \
