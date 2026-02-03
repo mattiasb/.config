@@ -3,7 +3,6 @@
 
 # NOTE: A trailing space makes an alias expand the next word as an alias!
 
-alias dmesg='dmesg --human'
 alias open='xdg-open'
 alias ls='LC_COLLATE=C ls -h --color=auto  --group-directories-first'
 alias tree='tree --dirsfirst'
@@ -28,6 +27,7 @@ alias refresh='source ~/.bashrc'
 alias sys='systemctl'
 alias session='systemctl --user'
 alias journalctl='journalctl --no-hostname'
+alias dmesg='journalctl --dmesg'
 alias syslog='journalctl --system --no-hostname'
 alias userlog='journalctl --user --no-hostname'
 alias cmake='cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
