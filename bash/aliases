@@ -72,4 +72,7 @@ alias promtail='container --rm docker.io/grafana/promtail:latest'
 alias ubuntu-24.04='container docker.io/library/ubuntu:24.04'
 alias ubuntu-25.04='container docker.io/library/ubuntu:25.04'
 alias ubuntu-25.10='container docker.io/library/ubuntu:25.10'
+
+alias fedora-43='container quay.io/fedora/fedora:43'
+
 alias bash-3.2='container docker.io/library/bash:3.2'
