@@ -91,6 +91,10 @@ function manpaths {
     echo -e "${path//:/\\n}"
 }
 
+function uv-manpaths {
+    find ~/.local/share/uv/tools -maxdepth 3 -type d -name man
+}
+
 function search {
     find . -name "${@}" |& grep -v ': Permission denied'
 }
