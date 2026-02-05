@@ -80,7 +80,7 @@ function which {
 }
 
 function paths {
-    echo -e "${PATH//:/\\n}" | tac
+    echo -e "${PATH//:/\\n}"
 }
 
 function search {
