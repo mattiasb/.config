@@ -83,6 +83,14 @@ function paths {
     echo -e "${PATH//:/\\n}"
 }
 
+function manpaths {
+    local path
+
+    path="$(manpath 2>/dev/null)"
+
+    echo -e "${path//:/\\n}"
+}
+
 function search {
     find . -name "${@}" |& grep -v ': Permission denied'
 }
