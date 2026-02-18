@@ -982,13 +982,3 @@ EOM
 }
 
 ################################################################################
-## Kubernetes
-
-function k9s {
-    podman run --rm -it                                                        \
-           -v "${KUBECONFIG:-${HOME}/.kube/config}":/root/.kube/config         \
-           --network=host                                                      \
-           quay.io/derailed/k9s "${@}"
-}
-
-################################################################################
