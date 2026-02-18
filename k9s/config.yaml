@@ -1,0 +1,6 @@
+---
+k9s:
+  ui:
+    splashless: true
+    # See: https://github.com/derailed/k9s/tree/master/skins
+    skin: transparent
