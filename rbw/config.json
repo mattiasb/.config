@@ -1,0 +1,9 @@
+{
+    "email": "mattias.jc.bengtsson@gmail.com",
+    "base_url": "https://api.bitwarden.eu",
+    "identity_url": "https://identity.bitwarden.eu",
+    "ui_url": "https://vault.bitwarden.eu",
+    "notifications_url": "https://notifications.bitwarden.eu",
+    "lock_timeout": 300,
+    "sync_interval": 900
+}
