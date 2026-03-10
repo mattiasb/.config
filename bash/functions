@@ -187,6 +187,9 @@ function epoch-time {
     date +'%s'
 }
 
+function fill {
+    fmt -sw 80 | expand -i
+}
 
 ################################################################################
 ## Misc
