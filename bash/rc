@@ -85,6 +85,10 @@ fi
 MANPATH="$(uv-manpaths | paste -sd ':'):"
 export MANPATH
 
+### Minikube
+
+ln -sf "${MINIKUBE_HOME}/"{,.}minikube
+
 ### direnv
 eval "$(direnv hook bash)"
 
