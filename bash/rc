@@ -87,7 +87,10 @@ export MANPATH
 
 ### Minikube
 
-ln -sf "${MINIKUBE_HOME}/"{,.}minikube
+# Hack around minikube not supporting the XDG base directory spec
+mkdir -p "${MINIKUBE_HOME}"
+ln -snf "${MINIKUBE_HOME}/"{,.}minikube
+ln -snf "${HOME}/.config/minikube" "${MINIKUBE_HOME}/.minikube/config"
 
 ### direnv
 eval "$(direnv hook bash)"

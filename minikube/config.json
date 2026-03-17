@@ -1,0 +1,4 @@
+{
+    "driver": "kvm2",
+    "kubernetes-version": "v1.32.7"
+}
