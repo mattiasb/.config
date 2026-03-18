@@ -985,3 +985,13 @@ EOM
 }
 
 ################################################################################
+## Kubernetes
+
+function minikube {
+    case "${1:-}" in
+        start) command minikube --profile=local start --keep-context "${@:2}" ;;
+        *)     command minikube --profile=local "${@}"                        ;;
+    esac
+}
+
+################################################################################
