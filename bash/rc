@@ -88,7 +88,7 @@ export MANPATH
 ### Minikube
 
 # Hack around minikube not supporting the XDG base directory spec
-mkdir -p "${MINIKUBE_HOME}"
+mkdir -p "${MINIKUBE_HOME}/minikube"
 ln -snf "${MINIKUBE_HOME}/"{,.}minikube
 ln -snf "${HOME}/.config/minikube" "${MINIKUBE_HOME}/.minikube/config"
 
