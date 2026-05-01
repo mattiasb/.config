@@ -280,6 +280,11 @@ function jhparm {
          iflag=direct
 }
 
+function reuse {
+    # Filter out warnings about not being able to write to /etc/apt/apt.conf.d/
+    command reuse "${@}" 2> >(grep -vE '(debian_support.py|apt_pkg.init)')
+}
+
 ################################################################################
 ## File management
 
