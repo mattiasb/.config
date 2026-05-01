@@ -29,6 +29,7 @@
 /corebird/*
 /dconf/*
 /dleyna-*
+/elinks/
 /emacs/
 /enchant/*
 /environment.d/99-work.conf
