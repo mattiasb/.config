@@ -59,7 +59,7 @@ alias wget="wget --hsts-file=~/.cache/wget-hsts"
 # Remarshal
 alias json2yaml="json2yaml --multiline 1 --width 80"
 alias toml2yaml="toml2yaml --multiline 1 --width 80"
-alias yaml2yaml="yaml2yaml --multiline 1 --width 80"
+alias yaml2yaml="yaml2yaml --multiline 1 --width 80 --expand-alias"
 
 ## Containers
 

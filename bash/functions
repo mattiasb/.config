@@ -497,10 +497,6 @@ function tsv2csv {
     csvformat -t "${1}" > "${2:-/dev/stdout}"
 }
 
-function yaml2yaml {
-    yaml2json "${@}" | json2yaml
-}
-
 ################################################################################
 ## Projects
 
