@@ -5,6 +5,9 @@
 
 alias open='xdg-open'
 alias ls='LC_COLLATE=C ls -h --color=auto  --group-directories-first'
+# Having -c set in $LESS (see: environment.d/90-misc.conf) breaks less when used
+# as a pager by other tools.
+alias less='less -c'
 alias tree='tree --dirsfirst'
 alias fd='fd -u'
 alias ip='ip -c'
