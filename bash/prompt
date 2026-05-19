@@ -8,6 +8,7 @@ function mb-powerline-go-prompt {
           -cwd-max-depth 4                                                     \
           -hostname-only-if-ssh                                                \
           -newline                                                             \
+          -numeric-exit-codes                                                  \
           -venv-name-size-limit 1                                              \
           -git-disable-stats "ahead,behind,staged,notStaged,untracked,stashed" \
           -modules "user,host,ssh,kube,dotenv,venv,git,cwd,perms,jobs,exit"    \
