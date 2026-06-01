@@ -3,3 +3,5 @@ enable=avoid-nullary-conditions
 enable=deprecate-which
 enable=quote-safe-variables
 enable=require-variable-braces
+
+external-sources=true
