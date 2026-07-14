@@ -673,7 +673,11 @@ function ssh-tmux {
 alias ssht=ssh-tmux
 
 function ssh-wait {
-    until ssh "${@}" true 2> >(grep -v -E "Connection refused" >&2); do
+    local ignore
+
+    ignore='(Connection refused|No route to host)'
+
+    until ssh "${@}" true 2> >(grep -v -E "${ignore}" >&2); do
         echo -n .
         sleep 3
     done && {
