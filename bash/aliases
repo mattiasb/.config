@@ -85,3 +85,6 @@ alias fedora-44='container quay.io/fedora/fedora:44'
 alias fedora='fedora-44'
 
 alias bash-3.2='container docker.io/library/bash:3.2'
+
+alias alpine-3.24='container docker.io/library/alpine:3.24'
+alias alpine='alpine-3.24'
