@@ -88,3 +88,7 @@ alias bash-3.2='container docker.io/library/bash:3.2'
 
 alias alpine-3.24='container docker.io/library/alpine:3.24'
 alias alpine='alpine-3.24'
+
+alias mitmdump='NO_COLOR=1 mitmdump'
+alias mitmproxy='NO_COLOR=1 mitmproxy'
+alias mitmweb='NO_COLOR=1 mitmweb'
