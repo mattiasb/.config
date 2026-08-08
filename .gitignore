@@ -38,6 +38,7 @@
 /evince/*
 /evolution/*
 /fedoraproject.org/
+/fragments/
 /freerdp/*
 /gconf/*
 /gedit/*
@@ -110,6 +111,7 @@
 /var/lib/swtpm-localca/*
 /virt-viewer/
 /vlc/*
+/wireshark/
 /wireshark/recent
 /wireshark/recent_common
 /yelp/*
