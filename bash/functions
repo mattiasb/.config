@@ -500,21 +500,6 @@ function tsv2csv {
 ################################################################################
 ## Projects
 
-function create-project {
-    if [ ! $# -eq 1 ] || _help-flag; then
-        echo "Usage: project-create <NAME>"
-        return 2
-    fi
-
-    mkcd "${HOME}/Code/github.com/mattiasb/${1}"
-    git init
-    echo "*~"   > .gitignore
-    echo "*#*" >> .gitignore
-    echo       >> .gitignore
-    touch README.md
-    git remote add origin "git@github.com:mattiasb/${1}.git"
-}
-
 function pcd {
     if [ ! $# -eq 1 ] || _help-flag; then
         echo "Usage: ${FUNCNAME[0]} <DIR>"
@@ -527,27 +512,23 @@ function pcd {
 function ccd {
     local project
 
-    project="$(find ~/Code/                                                    \
-                     -maxdepth 5                                               \
-                     \( -name '.git'                                           \
-                        -type d,l                                              \
-                        -or                                                    \
-                        -type f                                                \
-                        -name '.projectile'                                    \
-                     \)                                                        \
-                     -printf '%h\n'                                            \
-               | fzf                                                           \
-               )"
+    project="${1:-$(project choose)}"
 
     cd "${project}" || return $?
 }
 
-function _complete-project-folder {
-    local projects=("${HOME}/Code/github.com/mattiasb/${2}"*)
-    [[ -e ${projects[0]} ]] && COMPREPLY=( "${projects[@]##*/}" )
+function _comp-project-personal {
+    local base="${HOME}/Code/github.com/mattiasb"
+
+    mapfile -t COMPREPLY < <(project complete "${base}" "${2:-}"); wait $!
 }
-complete -F _complete-project-folder create-project
-complete -F _complete-project-folder pcd
+
+function _comp-project {
+    mapfile -t COMPREPLY < <(project complete "${PWD}" "${2:-}"); wait $!
+}
+
+complete -F _comp-project ccd
+complete -F _comp-project-personal pcd
 
 ################################################################################
 ## Test code
@@ -594,6 +575,8 @@ function gg {
         return 2
     fi
     git get "${1}" && cd "$(git get --show-path "${1}")" || return $?
+
+    project index
 }
 
 function magit {

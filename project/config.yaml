@@ -1,0 +1,12 @@
+---
+index:
+  # Search paths
+  - path: ~/Code
+    depth: 5
+  - path: ~/Documents
+    depth: 2
+
+# Known projects
+projects:
+  - ~/.config
+  - ~/.local/bin

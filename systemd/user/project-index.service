@@ -1,0 +1,10 @@
+[Unit]
+Description=Project index
+
+[Service]
+Type=oneshot
+Environment=VERBOSE=1
+ExecStart=%h/.local/bin/project index
+
+[Install]
+WantedBy=default.target
