@@ -515,8 +515,10 @@ function ccd {
 
     project="${1:-$(project choose)}"
 
+    if project="${1:-$(project choose)}" && [ -n "${project}" ]; then
     # shellcheck disable=SC2164
     cd "${project}"
+    fi
 }
 
 function _comp-project-personal {
