@@ -506,7 +506,8 @@ function pcd {
         return 2
     fi
 
-    cd "${HOME}/Code/github.com/mattiasb/${1}" || return
+    # shellcheck disable=SC2164
+    cd "${HOME}/Code/github.com/mattiasb/${1}"
 }
 
 function ccd {
@@ -514,7 +515,8 @@ function ccd {
 
     project="${1:-$(project choose)}"
 
-    cd "${project}" || return $?
+    # shellcheck disable=SC2164
+    cd "${project}"
 }
 
 function _comp-project-personal {
