@@ -52,6 +52,10 @@ alias diff="diff -u --color=always"
 alias delta="delta --features \"\$(gnome-color-scheme)\""
 alias rg="rg --no-ignore --hidden 2> >( grep -v 'Permission denied')"
 
+# duplicates <FILE-1> <FILE-2>
+# List all lines in FILE-1 that is present in FILE-2.
+alias file-duplicates='grep --color=never -Fxf'
+
 alias adbsync='NO_COLOR=1 adbsync'
 
 alias pip="pip --require-virtualenv"
