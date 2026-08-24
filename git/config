@@ -101,6 +101,7 @@
 	sloc-report      = "!f() { cloc $(git ls-files); }; f"
 
 	patch-diff       = "!f() { diff -u <(git --no-pager show \"${1}\" | tail -n +2) <(git --no-pager show \"${2}\" | tail -n +2); }; f"
+	pre-commit       = for-all pre-commit run --all
 [diff]
 	tool = meld
 	mnemonicPrefix = true
