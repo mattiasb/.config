@@ -1,0 +1,11 @@
+[Unit]
+Description=Act on GNOME color scheme changes.
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/color-scheme-watch
+Restart=always
+TimeoutStopSec=5
+
+[Install]
+WantedBy=default.target
