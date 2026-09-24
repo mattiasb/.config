@@ -481,6 +481,18 @@ function logins2 {
 ################################################################################
 ## Data formats JSON, YAML, CSV etc
 
+function jqp {
+    local theme
+
+    if gnome-color-scheme --is dark; then
+        theme=monokai
+    else
+        theme=manni
+    fi
+
+    command jqp --theme="${theme}" "${@}"
+}
+
 function ypterm {
     yaml2json < "${1:-/dev/stdin}" | jpterm | json2yaml
 }
