@@ -204,7 +204,6 @@ function colwrap {
     trap "stty columns '${width}'" EXIT
 }
 
-
 function highlight {
     grep -E --color=always -e "^" -e "${1}"
 }
