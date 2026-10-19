@@ -91,10 +91,6 @@ function manpaths {
     echo -e "${path//:/\\n}"
 }
 
-function uv-manpaths {
-    find ~/.local/share/uv/tools -maxdepth 3 -type d -name man
-}
-
 function search {
     find . -name "${@}" |& grep -v ': Permission denied'
 }
@@ -198,7 +194,7 @@ function colwrap {
 
     stty columns 80
 
-    "${@}"
+    command -- "${@}"
 
     # shellcheck disable=SC2064
     trap "stty columns '${width}'" EXIT
@@ -1014,3 +1010,16 @@ function minikube {
 }
 
 ################################################################################
+## Python
+
+function uv {
+    NO_COLOR=1 colwrap uv "${@}"
+}
+
+function uvx {
+    NO_COLOR=1 colwrap uvx "${@}"
+}
+
+function uv-manpaths {
+    find ~/.local/share/uv/tools -maxdepth 3 -type d -name man
+}
