@@ -57,8 +57,8 @@ alias file-duplicates='grep --color=never -Fxf'
 alias adbsync='NO_COLOR=1 adbsync'
 
 alias pip="pip --require-virtualenv"
-alias uv="NO_COLOR=1 uv"
-alias uvx="NO_COLOR=1 uvx"
+alias uv=" NO_COLOR=1 colwrap uv"
+alias uvx="NO_COLOR=1 colwrap uvx"
 
 alias wget="wcurl --curl-options='-#'"
 

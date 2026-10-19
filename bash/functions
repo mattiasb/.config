@@ -191,6 +191,20 @@ function fill {
     fmt -sw 80 | expand -i
 }
 
+function colwrap {
+    local width
+
+    width="${COLUMNS:-$(tput cols)}"
+
+    stty columns 80
+
+    "${@}"
+
+    # shellcheck disable=SC2064
+    trap "stty columns '${width}'" EXIT
+}
+
+
 function highlight {
     grep -E --color=always -e "^" -e "${1}"
 }
