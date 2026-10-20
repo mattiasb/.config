@@ -1,3 +1,47 @@
 ---
 # group-clone <GROUP>
 group-clone: repo clone -g $1 -a=false -S=false -p --paginate
+
+# images [REPOSITORY]
+images: "!glab registry-tag-ls \"${1:-$(glab image-repos | fzf)}\""
+image-repos: "!glab registry-repo-ls"
+
+### REGISTRY ###
+
+registry-repo-ls: >
+  container-registry repository list -F json --jq 'sort_by(.path)[] | .path'
+
+# registry-repo-id <REPOSITORY>
+registry-repo-id: >-
+  container-registry repository list
+  --output json
+  --jq '.[] | select(.name == "$1" or .path == "$1") | .id'
+
+# registry-repo-ls <REPOSITORY>
+registry-tag-ls: >-
+  !glab container-registry tag list $(glab registry-repo-id $1)
+  --details
+  --per-page 10
+  --output json
+  --jq '# https://users.aalto.fi/~tontti/posts/jq-and-human-readable-bytes/
+        def size:
+          def _size(v; u):
+            if (u | length) == 1 or (u[0] == "" and v < 10240) or v < 1024 then
+              "\(v | round) \(u[0])B"
+            else
+              _size(v/1024; u[1:])
+            end;
+        _size(.; ":Ki:Mi:Gi:Ti:Pi:Ei:Zi:Yi" / ":");
+
+        def time(f): . | strptime("%Y-%m-%dT%H:%M:%S.%f%z") | strftime(f);
+
+        ##################################################################
+
+        sort_by(.created_at)[] | [ (.created_at | time("%Y-%m-%d"))
+                                 , (.created_at | time("%H:%M:%S"))
+                                 , (.total_size | size)
+                                 , .name
+                                 ]
+                               | @tsv
+  '
+  | column -s '	' -t -C name=DATE -C name=TIME -C name=SIZE,right -C name=TAG
