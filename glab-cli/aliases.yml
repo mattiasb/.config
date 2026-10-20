@@ -2,8 +2,8 @@
 # group-clone <GROUP>
 group-clone: repo clone -g $1 -a=false -S=false -p --paginate
 
-# images [REPOSITORY]
-images: "!glab registry-tag-ls \"${1:-$(glab image-repos | fzf)}\""
+# images [REPOSITORY] [TAGS-PER-PAGE]
+images: '!glab registry-tag-ls "${1:-$(glab image-repos | fzf)}" "${2:-}"'
 image-repos: "!glab registry-repo-ls"
 
 ### REGISTRY ###
@@ -13,15 +13,15 @@ registry-repo-ls: >
 
 # registry-repo-id <REPOSITORY>
 registry-repo-id: >-
-  container-registry repository list
+  !glab container-registry repository list
   --output json
-  --jq '.[] | select(.name == "$1" or .path == "$1") | .id'
+  --jq '.[] | select(.name == "'"${1:-}"'" or .path == "'"${1:-}"'") | .id'
 
-# registry-repo-ls <REPOSITORY>
+# registry-repo-ls <REPOSITORY> [TAGS-PER-PAGE]
 registry-tag-ls: >-
-  !glab container-registry tag list $(glab registry-repo-id $1)
+  !glab container-registry tag list $(glab registry-repo-id "${1/./""}")
   --details
-  --per-page 10
+  ${2:+ "--per-page=${2/--all/10000}"}
   --output json
   --jq '# https://users.aalto.fi/~tontti/posts/jq-and-human-readable-bytes/
         def size:
@@ -33,15 +33,22 @@ registry-tag-ls: >-
             end;
         _size(.; ":Ki:Mi:Gi:Ti:Pi:Ei:Zi:Yi" / ":");
 
-        def time(f): . | strptime("%Y-%m-%dT%H:%M:%S.%f%z") | strftime(f);
+        def strip_ms:
+          sub( "^(?<a>.+?)(\\.[0-9]+)?(?<b>Z|[+-][0-9]{2}:?[0-9]{2})$"
+             ; "\(.a)\(.b)");
 
-        ##################################################################
+        def time(f):
+          . | strip_ms
+            | strptime("%Y-%m-%dT%H:%M:%S%z")
+            | strftime(f);
 
-        sort_by(.created_at)[] | [ (.created_at | time("%Y-%m-%d"))
-                                 , (.created_at | time("%H:%M:%S"))
+        ########################################################################
+
+        sort_by(.created_at)[] | [ .name
                                  , (.total_size | size)
-                                 , .name
+                                 , (.created_at | time("%Y-%m-%d"))
+                                 , (.created_at | time("%H:%M:%S"))
                                  ]
                                | @tsv
   '
-  | column -s '	' -t -C name=DATE -C name=TIME -C name=SIZE,right -C name=TAG
+  | column -s '	' -t -C name=TAG -C name=SIZE,right -C name=DATE -C name=TIME
