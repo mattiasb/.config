@@ -1,2 +1,3 @@
 ---
+# group-clone <GROUP>
 group-clone: repo clone -g $1 -a=false -S=false -p --paginate
