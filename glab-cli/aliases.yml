@@ -48,11 +48,13 @@ registry-tag-ls: >-
 
         ########################################################################
 
-        sort_by(.created_at)[] | [ .name
-                                 , (.total_size | size)
-                                 , (.created_at | time("%Y-%m-%d"))
-                                 , (.created_at | time("%H:%M:%S"))
-                                 ]
-                               | @tsv
+        map(.created_at = (.created_at // "1970-01-01T00:00:00Z"))
+           | sort_by(.created_at)[]
+           | [ .name
+             , (.total_size | size)
+             , (.created_at | time("%Y-%m-%d"))
+             , (.created_at | time("%H:%M:%S"))
+             ]
+           | @tsv
   '
   | column -s '	' -t -C name=TAG -C name=SIZE,right -C name=DATE -C name=TIME
