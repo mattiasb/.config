@@ -5,6 +5,10 @@ group-clone: repo clone -g $1 -a=false -S=false -p --paginate
 # images [REPOSITORY] [TAGS-PER-PAGE]
 images: '!glab registry-tag-ls "${1:-$(glab image-repos | fzf)}" "${2:-}"'
 image-repos: "!glab registry-repo-ls"
+image-delete: >-
+  !echo glab container-registry tag delete
+  "$(glab registry-repo-id "${1/./""}")"
+  "${2}"
 
 ### REGISTRY ###
 
