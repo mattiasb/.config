@@ -10,3 +10,7 @@ index:
 projects:
   - ~/.config
   - ~/.local/bin
+
+output:
+  - path: ~/.local/state/emacs/projects.eld
+    type: emacs-project
